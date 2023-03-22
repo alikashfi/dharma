@@ -7,6 +7,7 @@ use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -36,6 +37,10 @@ class ProductResource extends Resource
                         ->enableReordering()
                         ->maxSize(2048)
                         ->translateLabel(),
+
+                    Select::make('category_id')
+                        ->relationship('category', 'name')
+                        ->preload(),
 
                     TextInput::make('name')
                         ->required()

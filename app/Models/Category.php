@@ -15,6 +15,21 @@ class Category extends Model implements HasMedia
 
     public $guarded = [];
 
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'parent_id', 'id');
+    }
+
+    public function subCategories()
+    {
+        return $this->hasMany(Category::class, 'id', 'parent_id');
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')

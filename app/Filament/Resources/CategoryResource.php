@@ -7,6 +7,7 @@ use App\Filament\Resources\CategoryResource\RelationManagers;
 use App\Models\Category;
 use Filament\Forms;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -36,8 +37,11 @@ class CategoryResource extends Resource
                         ->maxSize(1024)
                         ->translateLabel(),
 
-                    // TextInput::make('parent_id')
-                    //     ->translateLabel(),
+                    Select::make('parent_id')
+                        ->relationship('parent', 'name')
+                        ->preload()
+                        ->translateLabel(),
+
 
                     TextInput::make('name')
                         ->required()
