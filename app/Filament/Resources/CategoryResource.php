@@ -85,8 +85,7 @@ class CategoryResource extends Resource
             ->columns([
                 SpatieMediaLibraryImageColumn::make('image')->collection('category')->conversion('thumb')->translateLabel(),
                 Tables\Columns\TextColumn::make('name')->translateLabel(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()->translateLabel(),
+                Tables\Columns\TextColumn::make('created_at')->dateTime()->translateLabel(),
             ])
             ->filters([
                 //
