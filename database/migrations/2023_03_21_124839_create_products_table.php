@@ -13,7 +13,17 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 50);
+            $table->string('name', 30);
+            $table->string('title', 50)->nullable();
+            $table->string('slug', 30)->unique();
+            $table->text('description')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->string('code', 30)->nullable()->unique();
+            $table->unsignedMediumInteger('price')->default(0);
+            $table->boolean('is_available')->default(true);
+            $table->unsignedSmallInteger('daily_views')->default(0);
+            $table->unsignedMediumInteger('views')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -1,0 +1,15 @@
+{
+  "Images": "تصاویر",
+  "Name": "نام",
+  "Title": "نام (برای گوگل)",
+  "Slug": "نام انگلیسی (برای url)",
+  "Description": "توضیحات",
+  "Meta description": "توضیحات (برای گوگل)",
+  "Code": "کد",
+  "Price": "قیمت (تومان)",
+  "Is available": "موجودی",
+  "Is active": "نمایش در سایت",
+  "Daily views": "بازدید روزانه",
+  "Views": "بازدید کل",
+  "Created at": "تاریخ"
+}
