@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers;
-use App\Models\Product;
+use App\Filament\Resources\CategoryResource\Pages;
+use App\Filament\Resources\CategoryResource\RelationManagers;
+use App\Models\Category;
 use Filament\Forms;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
@@ -18,24 +18,26 @@ use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ProductResource extends Resource
+class CategoryResource extends Resource
 {
-    protected static ?string $model = Product::class;
+    protected static ?string $model = Category::class;
     protected static ?string $navigationIcon = 'heroicon-o-collection';
-    static null|string $label = 'محصول';
-    static null|string $pluralLabel = 'محصولات';
+    static null|string $label = 'دسته';
+    static null|string $pluralLabel = 'دسته ها';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\Card::make()->schema([
-                    SpatieMediaLibraryFileUpload::make('images')
-                        ->multiple()
-                        ->collection('product')
-                        ->enableReordering()
-                        ->maxSize(2048)
+
+                    SpatieMediaLibraryFileUpload::make('image')
+                        ->collection('category')
+                        ->maxSize(1024)
                         ->translateLabel(),
+
+                    // TextInput::make('parent_id')
+                    //     ->translateLabel(),
 
                     TextInput::make('name')
                         ->required()
@@ -43,35 +45,30 @@ class ProductResource extends Resource
                         ->translateLabel(),
 
                     TextInput::make('title')
+                        ->required()
                         ->maxLength(50)
                         ->translateLabel(),
 
                     TextInput::make('slug')
                         ->required()
-                        ->maxLength(30)
                         ->unique(ignoreRecord: true)
+                        ->maxLength(30)
                         ->translateLabel(),
 
                     RichEditor::make('description')
+                        ->required()
                         ->maxLength(65535)
                         ->translateLabel(),
 
                     RichEditor::make('meta_description')
+                        ->required()
                         ->maxLength(65535)
                         ->translateLabel(),
 
-                    TextInput::make('code')
-                        ->maxLength(30)
-                        ->unique(ignoreRecord: true)
+                    TextInput::make('order')
                         ->translateLabel(),
 
-                    TextInput::make('price')
-                        ->numeric()
-                        ->maxValue(16000000)
-                        ->required()
-                        ->translateLabel(),
-
-                    Toggle::make('is_available')
+                    Toggle::make('in_menu')
                         ->required()
                         ->translateLabel(),
                 ]),
@@ -82,15 +79,10 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-
-                SpatieMediaLibraryImageColumn::make('images')->collection('product')->conversion('thumb')->translateLabel(),
-                Tables\Columns\TextColumn::make('name')->sortable()->translateLabel(),
-                Tables\Columns\TextColumn::make('price')->sortable()->translateLabel(),
-                Tables\Columns\IconColumn::make('is_available')->boolean()->sortable()->translateLabel(),
-                // Tables\Columns\IconColumn::make('is_active')->boolean()->sortable()->label('نمایش'),
-                Tables\Columns\TextColumn::make('daily_views')->sortable()->translateLabel(),
-                Tables\Columns\TextColumn::make('views')->sortable()->translateLabel(),
-                Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable()->translateLabel(),
+                SpatieMediaLibraryImageColumn::make('image')->collection('category')->conversion('thumb')->translateLabel(),
+                Tables\Columns\TextColumn::make('name')->translateLabel(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()->translateLabel(),
             ])
             ->filters([
                 //
@@ -103,20 +95,20 @@ class ProductResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-
+    
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-
+    
     public static function getPages(): array
     {
         return [
-            'index'  => Pages\ListProducts::route('/'),
-            'create' => Pages\CreateProduct::route('/create'),
-            'edit'   => Pages\EditProduct::route('/{record}/edit'),
+            'index' => Pages\ListCategories::route('/'),
+            'create' => Pages\CreateCategory::route('/create'),
+            'edit' => Pages\EditCategory::route('/{record}/edit'),
         ];
-    }
+    }    
 }

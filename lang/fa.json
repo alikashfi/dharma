@@ -11,5 +11,10 @@
   "Is active": "نمایش در سایت",
   "Daily views": "بازدید روزانه",
   "Views": "بازدید کل",
-  "Created at": "تاریخ"
+  "Created at": "تاریخ",
+
+  "Image": "عکس",
+  "Parent id": "دسته والد",
+  "Order": "ترتیب",
+  "In menu": "نمایش در منو"
 }
