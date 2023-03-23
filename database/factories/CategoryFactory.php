@@ -20,6 +20,7 @@ final class CategoryFactory extends Factory
             'name'             => fake('fa_IR')->name,
             'title'            => fake()->title,
             'slug'             => \Str::limit(fake()->slug, 30, ''),
+            'color'            => fake()->hexColor,
             'description'      => fake('fa_IR')->realText(rand(100, 300)),
             'meta_description' => fake('fa_IR')->realText(rand(100, 300)),
         ];

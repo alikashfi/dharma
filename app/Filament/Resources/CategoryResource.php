@@ -6,6 +6,7 @@ use App\Filament\Resources\CategoryResource\Pages;
 use App\Filament\Resources\CategoryResource\RelationManagers;
 use App\Models\Category;
 use Filament\Forms;
+use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
@@ -59,6 +60,9 @@ class CategoryResource extends Resource
                         ->maxLength(30)
                         ->translateLabel(),
 
+                    ColorPicker::make('color')
+                        ->translateLabel(),
+
                     RichEditor::make('description')
                         ->required()
                         ->maxLength(65535)
@@ -73,6 +77,10 @@ class CategoryResource extends Resource
                         ->translateLabel(),
 
                     Toggle::make('in_menu')
+                        ->required()
+                        ->translateLabel(),
+
+                    Toggle::make('in_page')
                         ->required()
                         ->translateLabel(),
                 ]),

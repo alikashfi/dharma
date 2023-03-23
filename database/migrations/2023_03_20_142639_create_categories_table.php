@@ -14,12 +14,13 @@ return new class extends Migration
             $table->string('name', 30);
             $table->string('title', 50);
             $table->string('slug', 30)->unique();
-            // $table->string('icon', 30);
+            $table->string('color', 7)->default('#FFFFFF');
             // $table->string('image', 30);
             $table->text('description');
             $table->text('meta_description');
             $table->unsignedTinyInteger('order')->nullable();
             $table->boolean('in_menu')->default(true);
+            $table->boolean('in_page')->default(true);
             $table->timestamps();
         });
     }

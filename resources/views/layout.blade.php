@@ -12,7 +12,7 @@
     <meta name="author" content="codecarnival" />
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="./assets/images/favicon.webp">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.webp">
 
     <!-- CSS (Font, Vendor, Icon, Plugins & Style CSS files) -->
 
@@ -22,17 +22,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS (Bootstrap & Icon Font) -->
-    <link rel="stylesheet" href="./assets/css/vendor/bootstrap.min.css">
-    {{-- <link rel="stylesheet" href="./assets/css/vendor/bootstrap.rtl.min.css"> --}}
+    <link rel="stylesheet" href="/assets/css/vendor/bootstrap.min.css">
+    {{-- <link rel="stylesheet" href="/assets/css/vendor/bootstrap.rtl.min.css"> --}}
 
     <!-- Plugins CSS (All Plugins Files) -->
-    <link rel="stylesheet" href="assets/css/plugins/swiper-bundle.min.css">
-    <link rel="stylesheet" href="assets/css/plugins/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/plugins/fancybox.min.css">
-    <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="/assets/css/plugins/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/assets/css/plugins/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/plugins/fancybox.min.css">
+    <link rel="stylesheet" href="/assets/css/plugins/nice-select.css">
 
     <!-- Style CSS -->
-    <link rel="stylesheet" href="./assets/css/style.min.css">
+    <link rel="stylesheet" href="/assets/css/style.min.css">
 
     <style>
         .offcanvas-menu-nav a:not(:only-child):after {
@@ -48,13 +48,13 @@
 <div class="wrapper">
 
     <!--== Start Header Wrapper ==-->
-    <header class="header-area sticky-header header-transparent">
+    <header class="header-area {{ isset($header) && $header === 'sticky' ? 'sticky-header header-transparent' : '' }}">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-5 col-lg-2 col-xl-1">
                     <div class="header-logo">
                         <a href="index.html">
-                            <img class="logo-main" src="assets/images/logo.webp" width="95" height="68" alt="Logo" />
+                            <img class="logo-main" src="/assets/images/logo.webp" width="95" height="68" alt="Logo" />
                         </a>
                     </div>
                 </div>
@@ -149,19 +149,30 @@
                 </span>
                         </button>
 
-                        <a class="header-action-btn" href="account-login.html">
+                        @auth()
+                            <a class="header-action-btn" href="{{ route('user.dashboard') }}">
                                 <span class="icon">
-                  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                    <rect class="icon-rect" width="30" height="30" fill="url(#pattern3)"/>
-                    <defs>
-                      <pattern id="pattern3" patternContentUnits="objectBoundingBox" width="1" height="1">
-                        <use xlink:href="#image0_504:10" transform="scale(0.0333333)"/>
-                      </pattern>
-                      <image id="image0_504:10" width="30" height="30" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAABEUlEQVRIie3UMUoDYRDF8Z8psqUpLBRrBS+gx7ATD6E5iSjeQQ/gJUzEwmChnZZaKZiQ0ljsLkhQM5/5Agr74DX7DfOfgZ1Hoz+qAl30Marcx2H1thCtY4DJN76parKqmAH9DM+6eTcArX2QE3yVAO7lBA8TwMNIw6UgeJI46My+rWCjUQL0LVIUBd8lgEO1UfBZAvg8oXamCuWNRu64nRNMmUo/wReSXLXayoDoKc9miMvqW/ZNG2VRNLla2MYudrCFTvX2intlnl/gGu/zDraGYzyLZ/UTjrD6G2AHpxgnAKc9xgmWo9BNPM4BnPYDNiLg24zQ2oNpyFdZvRKZLlGhnvvKPzXXti/Yy7hEo3+iD9EHtgdqxQnwAAAAAElFTkSuQmCC"/>
-                    </defs>
-                  </svg>
-                </span>
-                        </a>
+                                       <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                         <rect class="icon-rect" width="30" height="30" fill="url(#pattern3)"/>
+                                         <defs>
+                                           <pattern id="pattern3" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                             <use xlink:href="#image0_504:10" transform="scale(0.0333333)"/>
+                                           </pattern>
+                                           <image id="image0_504:10" width="30" height="30"
+                                                  xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAABEUlEQVRIie3UMUoDYRDF8Z8psqUpLBRrBS+gx7ATD6E5iSjeQQ/gJUzEwmChnZZaKZiQ0ljsLkhQM5/5Agr74DX7DfOfgZ1Hoz+qAl30Marcx2H1thCtY4DJN76parKqmAH9DM+6eTcArX2QE3yVAO7lBA8TwMNIw6UgeJI46My+rWCjUQL0LVIUBd8lgEO1UfBZAvg8oXamCuWNRu64nRNMmUo/wReSXLXayoDoKc9miMvqW/ZNG2VRNLla2MYudrCFTvX2intlnl/gGu/zDraGYzyLZ/UTjrD6G2AHpxgnAKc9xgmWo9BNPM4BnPYDNiLg24zQ2oNpyFdZvRKZLlGhnvvKPzXXti/Yy7hEo3+iD9EHtgdqxQnwAAAAAElFTkSuQmCC"/>
+                                         </defs>
+                                       </svg>
+                                </span>
+                            </a>
+                        @endauth
+                        @guest()
+                            <div class="top-header-list">
+                                <span><a href="{{ route('login') }}">ورود</a></span>
+                                <span class="mx-1"> | </span>
+                                <span><a href="{{ route('register') }}">ثبت نام</a></span>
+                            </div>
+                        @endguest
 
                         <button class="header-menu-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#AsideOffcanvasMenu" aria-controls="AsideOffcanvasMenu">
                             <span></span>
@@ -176,728 +187,7 @@
     <!--== End Header Wrapper ==-->
 
     <main class="main-content">
-
-        <!--== Start Hero Area Wrapper ==-->
-        <section class="hero-slider-area position-relative">
-            <div class="swiper hero-slider-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide hero-slide-item">
-                        <div class="container">
-                            <div class="row align-items-center position-relative">
-                                <div class="col-12 col-md-6">
-                                    <div class="hero-slide-content">
-                                        <div class="hero-slide-text-img"><img src="assets/images/slider/text-theme.webp" width="427" height="232" alt="Image"></div>
-                                        <h2 class="hero-slide-title">CLEAN FRESH</h2>
-                                        <p class="hero-slide-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis.</p>
-                                        <a class="btn btn-border-dark" href="product.html">BUY NOW</a>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="hero-slide-thumb">
-                                        <img src="assets/images/slider/slider1.webp" width="841" height="832" alt="Image">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="hero-slide-text-shape"><img src="assets/images/slider/text1.webp" width="70" height="955" alt="Image"></div>
-                        <div class="hero-slide-social-shape"></div>
-                    </div>
-                    <div class="swiper-slide hero-slide-item">
-                        <div class="container">
-                            <div class="row align-items-center position-relative">
-                                <div class="col-12 col-md-6">
-                                    <div class="hero-slide-content">
-                                        <div class="hero-slide-text-img"><img src="assets/images/slider/text-theme.webp" width="427" height="232" alt="Image"></div>
-                                        <h2 class="hero-slide-title">Facial Cream</h2>
-                                        <p class="hero-slide-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis.</p>
-                                        <a class="btn btn-border-dark" href="product.html">BUY NOW</a>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="hero-slide-thumb">
-                                        <img src="assets/images/slider/slider2.webp" width="841" height="832" alt="Image">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="hero-slide-text-shape"><img src="assets/images/slider/text1.webp" width="70" height="955" alt="Image"></div>
-                        <div class="hero-slide-social-shape"></div>
-                    </div>
-                </div>
-                <!--== Add Pagination ==-->
-                <div class="hero-slider-pagination"></div>
-            </div>
-            <div class="hero-slide-social-media">
-                <a href="https://www.pinterest.com/" target="_blank" rel="noopener"><i class="fa fa-pinterest-p"></i></a>
-                <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a>
-                <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
-            </div>
-        </section>
-        <!--== End Hero Area Wrapper ==-->
-
-        <!--== Start Product Category Area Wrapper ==-->
-        <section class="section-space pb-0">
-            <div class="container">
-                <div class="row g-3 g-sm-6">
-                    <div class="col-6 col-lg-4 col-lg-2 col-xl-2">
-                        <!--== Start Product Category Item ==-->
-                        <a href="product.html" class="product-category-item">
-                            <img class="icon" src="assets/images/shop/category/1.webp" width="70" height="80" alt="Image-HasTech">
-                            <h3 class="title">Hare care</h3>
-                            <span class="flag-new">new</span>
-                        </a>
-                        <!--== End Product Category Item ==-->
-                    </div>
-                    <div class="col-6 col-lg-4 col-lg-2 col-xl-2">
-                        <!--== Start Product Category Item ==-->
-                        <a href="product.html" class="product-category-item" data-bg-color="#FFEDB4">
-                            <img class="icon" src="assets/images/shop/category/2.webp" width="80" height="80" alt="Image-HasTech">
-                            <h3 class="title">Skin care</h3>
-                        </a>
-                        <!--== End Product Category Item ==-->
-                    </div>
-                    <div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-lg-0 mt-sm-6 mt-4">
-                        <!--== Start Product Category Item ==-->
-                        <a href="product.html" class="product-category-item" data-bg-color="#DFE4FF">
-                            <img class="icon" src="assets/images/shop/category/3.webp" width="80" height="80" alt="Image-HasTech">
-                            <h3 class="title">Lip stick</h3>
-                        </a>
-                        <!--== End Product Category Item ==-->
-                    </div>
-                    <div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-xl-0 mt-sm-6 mt-4">
-                        <!--== Start Product Category Item ==-->
-                        <a href="product.html" class="product-category-item" data-bg-color="#FFEACC">
-                            <img class="icon" src="assets/images/shop/category/4.webp" width="80" height="80" alt="Image-HasTech">
-                            <h3 class="title">Face skin</h3>
-                            <span data-bg-color="#835BF4" class="flag-new">sale</span>
-                        </a>
-                        <!--== End Product Category Item ==-->
-                    </div>
-                    <div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-xl-0 mt-sm-6 mt-4">
-                        <!--== Start Product Category Item ==-->
-                        <a href="product.html" class="product-category-item" data-bg-color="#FFDAE0">
-                            <img class="icon" src="assets/images/shop/category/5.webp" width="80" height="80" alt="Image-HasTech">
-                            <h3 class="title">Blusher</h3>
-                        </a>
-                        <!--== End Product Category Item ==-->
-                    </div>
-                    <div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-xl-0 mt-sm-6 mt-4">
-                        <!--== Start Product Category Item ==-->
-                        <a href="product.html" class="product-category-item" data-bg-color="#FFF3DA">
-                            <img class="icon" src="assets/images/shop/category/6.webp" width="80" height="80" alt="Image-HasTech">
-                            <h3 class="title">Natural</h3>
-                        </a>
-                        <!--== End Product Category Item ==-->
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--== End Product Category Area Wrapper ==-->
-
-        <!--== Start Product Area Wrapper ==-->
-        <section class="section-space">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="section-title text-center">
-                            <h2 class="title">Top sale</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-n4 mb-sm-n10 g-3 g-sm-6">
-                    <div class="col-6 col-lg-4 mb-4 mb-sm-9">
-                        <!--== Start Product Item ==-->
-                        <div class="product-item">
-                            <div class="product-thumb">
-                                <a class="d-block" href="product-details.html">
-                                    <img src="assets/images/shop/1.webp" width="370" height="450" alt="Image-HasTech">
-                                </a>
-                                <span class="flag-new">new</span>
-                                <div class="product-action">
-                                    <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                        <i class="fa fa-expand"></i>
-                                    </button>
-                                    <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
-                                        <span>Add to cart</span>
-                                    </button>
-                                    <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                        <i class="fa fa-heart-o"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-rating">
-                                    <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-half-o"></i>
-                                    </div>
-                                    <div class="reviews">150 reviews</div>
-                                </div>
-                                <h4 class="title"><a href="product-details.html">Readable content DX22</a></h4>
-                                <div class="prices">
-                                    <span class="price">$210.00</span>
-                                    <span class="price-old">300.00</span>
-                                </div>
-                            </div>
-                            <div class="product-action-bottom">
-                                <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                    <i class="fa fa-expand"></i>
-                                </button>
-                                <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                    <i class="fa fa-heart-o"></i>
-                                </button>
-                                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
-                                    <span>Add to cart</span>
-                                </button>
-                            </div>
-                        </div>
-                        <!--== End prPduct Item ==-->
-                    </div>
-                    <div class="col-6 col-lg-4 mb-4 mb-sm-9">
-                        <!--== Start Product Item ==-->
-                        <div class="product-item">
-                            <div class="product-thumb">
-                                <a class="d-block" href="product-details.html">
-                                    <img src="assets/images/shop/2.webp" width="370" height="450" alt="Image-HasTech">
-                                </a>
-                                <span class="flag-new">new</span>
-                                <div class="product-action">
-                                    <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                        <i class="fa fa-expand"></i>
-                                    </button>
-                                    <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
-                                        <span>Add to cart</span>
-                                    </button>
-                                    <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                        <i class="fa fa-heart-o"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-rating">
-                                    <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-half-o"></i>
-                                    </div>
-                                    <div class="reviews">150 reviews</div>
-                                </div>
-                                <h4 class="title"><a href="product-details.html">Modern Eye Brush</a></h4>
-                                <div class="prices">
-                                    <span class="price">$210.00</span>
-                                    <span class="price-old">300.00</span>
-                                </div>
-                            </div>
-                            <div class="product-action-bottom">
-                                <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                    <i class="fa fa-expand"></i>
-                                </button>
-                                <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                    <i class="fa fa-heart-o"></i>
-                                </button>
-                                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
-                                    <span>Add to cart</span>
-                                </button>
-                            </div>
-                        </div>
-                        <!--== End prPduct Item ==-->
-                    </div>
-                    <div class="col-6 col-lg-4 mb-4 mb-sm-9">
-                        <!--== Start Product Item ==-->
-                        <div class="product-item">
-                            <div class="product-thumb">
-                                <a class="d-block" href="product-details.html">
-                                    <img src="assets/images/shop/3.webp" width="370" height="450" alt="Image-HasTech">
-                                </a>
-                                <span class="flag-new">new</span>
-                                <div class="product-action">
-                                    <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                        <i class="fa fa-expand"></i>
-                                    </button>
-                                    <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
-                                        <span>Add to cart</span>
-                                    </button>
-                                    <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                        <i class="fa fa-heart-o"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-rating">
-                                    <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-half-o"></i>
-                                    </div>
-                                    <div class="reviews">150 reviews</div>
-                                </div>
-                                <h4 class="title"><a href="product-details.html">Voyage face cleaner</a></h4>
-                                <div class="prices">
-                                    <span class="price">$210.00</span>
-                                    <span class="price-old">300.00</span>
-                                </div>
-                            </div>
-                            <div class="product-action-bottom">
-                                <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                    <i class="fa fa-expand"></i>
-                                </button>
-                                <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                    <i class="fa fa-heart-o"></i>
-                                </button>
-                                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
-                                    <span>Add to cart</span>
-                                </button>
-                            </div>
-                        </div>
-                        <!--== End prPduct Item ==-->
-                    </div>
-                    <div class="col-6 col-lg-4 mb-4 mb-sm-9">
-                        <!--== Start Product Item ==-->
-                        <div class="product-item">
-                            <div class="product-thumb">
-                                <a class="d-block" href="product-details.html">
-                                    <img src="assets/images/shop/4.webp" width="370" height="450" alt="Image-HasTech">
-                                </a>
-                                <span class="flag-new">new</span>
-                                <div class="product-action">
-                                    <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                        <i class="fa fa-expand"></i>
-                                    </button>
-                                    <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
-                                        <span>Add to cart</span>
-                                    </button>
-                                    <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                        <i class="fa fa-heart-o"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-rating">
-                                    <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-half-o"></i>
-                                    </div>
-                                    <div class="reviews">150 reviews</div>
-                                </div>
-                                <h4 class="title"><a href="product-details.html">Impulse Duffle</a></h4>
-                                <div class="prices">
-                                    <span class="price">$210.00</span>
-                                    <span class="price-old">300.00</span>
-                                </div>
-                            </div>
-                            <div class="product-action-bottom">
-                                <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                    <i class="fa fa-expand"></i>
-                                </button>
-                                <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                    <i class="fa fa-heart-o"></i>
-                                </button>
-                                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
-                                    <span>Add to cart</span>
-                                </button>
-                            </div>
-                        </div>
-                        <!--== End prPduct Item ==-->
-                    </div>
-                    <div class="col-6 col-lg-4 mb-4 mb-sm-9">
-                        <!--== Start Product Item ==-->
-                        <div class="product-item">
-                            <div class="product-thumb">
-                                <a class="d-block" href="product-details.html">
-                                    <img src="assets/images/shop/5.webp" width="370" height="450" alt="Image-HasTech">
-                                </a>
-                                <span class="flag-new">new</span>
-                                <div class="product-action">
-                                    <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                        <i class="fa fa-expand"></i>
-                                    </button>
-                                    <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
-                                        <span>Add to cart</span>
-                                    </button>
-                                    <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                        <i class="fa fa-heart-o"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-rating">
-                                    <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-half-o"></i>
-                                    </div>
-                                    <div class="reviews">150 reviews</div>
-                                </div>
-                                <h4 class="title"><a href="product-details.html">Sprite Yoga Straps1</a></h4>
-                                <div class="prices">
-                                    <span class="price">$210.00</span>
-                                    <span class="price-old">300.00</span>
-                                </div>
-                            </div>
-                            <div class="product-action-bottom">
-                                <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                    <i class="fa fa-expand"></i>
-                                </button>
-                                <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                    <i class="fa fa-heart-o"></i>
-                                </button>
-                                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
-                                    <span>Add to cart</span>
-                                </button>
-                            </div>
-                        </div>
-                        <!--== End prPduct Item ==-->
-                    </div>
-                    <div class="col-6 col-lg-4 mb-4 mb-sm-9">
-                        <!--== Start Product Item ==-->
-                        <div class="product-item">
-                            <div class="product-thumb">
-                                <a class="d-block" href="product-details.html">
-                                    <img src="assets/images/shop/6.webp" width="370" height="450" alt="Image-HasTech">
-                                </a>
-                                <span class="flag-new">new</span>
-                                <div class="product-action">
-                                    <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                        <i class="fa fa-expand"></i>
-                                    </button>
-                                    <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
-                                        <span>Add to cart</span>
-                                    </button>
-                                    <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                        <i class="fa fa-heart-o"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-rating">
-                                    <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-half-o"></i>
-                                    </div>
-                                    <div class="reviews">150 reviews</div>
-                                </div>
-                                <h4 class="title"><a href="product-details.html">Fusion facial cream</a></h4>
-                                <div class="prices">
-                                    <span class="price">$210.00</span>
-                                    <span class="price-old">300.00</span>
-                                </div>
-                            </div>
-                            <div class="product-action-bottom">
-                                <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                    <i class="fa fa-expand"></i>
-                                </button>
-                                <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                    <i class="fa fa-heart-o"></i>
-                                </button>
-                                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
-                                    <span>Add to cart</span>
-                                </button>
-                            </div>
-                        </div>
-                        <!--== End prPduct Item ==-->
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--== End Product Area Wrapper ==-->
-
-        <!--== Start Product Banner Area Wrapper ==-->
-        <section>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-lg-4">
-                        <!--== Start Product Category Item ==-->
-                        <a href="product.html" class="product-banner-item">
-                            <img src="assets/images/shop/banner/1.webp" width="370" height="370" alt="Image-HasTech">
-                        </a>
-                        <!--== End Product Category Item ==-->
-                    </div>
-                    <div class="col-sm-6 col-lg-4 mt-sm-0 mt-6">
-                        <!--== Start Product Category Item ==-->
-                        <a href="product.html" class="product-banner-item">
-                            <img src="assets/images/shop/banner/2.webp" width="370" height="370" alt="Image-HasTech">
-                        </a>
-                        <!--== End Product Category Item ==-->
-                    </div>
-                    <div class="col-sm-6 col-lg-4 mt-lg-0 mt-6">
-                        <!--== Start Product Category Item ==-->
-                        <a href="product.html" class="product-banner-item">
-                            <img src="assets/images/shop/banner/3.webp" width="370" height="370" alt="Image-HasTech">
-                        </a>
-                        <!--== End Product Category Item ==-->
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--== End Product Banner Area Wrapper ==-->
-
-        <!--== Start Product Area Wrapper ==-->
-        <section class="section-space pb-0">
-            <div class="container">
-                <div class="row mb-n4 mb-sm-n10 g-3 g-sm-6">
-                    <div class="col-6 col-lg-4 mb-4 mb-sm-8">
-                        <!--== Start Product Item ==-->
-                        <div class="product-item">
-                            <div class="product-thumb">
-                                <a class="d-block" href="product-details.html">
-                                    <img src="assets/images/shop/4.webp" width="370" height="450" alt="Image-HasTech">
-                                </a>
-                                <span class="flag-new">new</span>
-                                <div class="product-action">
-                                    <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                        <i class="fa fa-expand"></i>
-                                    </button>
-                                    <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
-                                        <span>Add to cart</span>
-                                    </button>
-                                    <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                        <i class="fa fa-heart-o"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-rating">
-                                    <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-half-o"></i>
-                                    </div>
-                                    <div class="reviews">150 reviews</div>
-                                </div>
-                                <h4 class="title"><a href="product-details.html">Readable content DX22</a></h4>
-                                <div class="prices">
-                                    <span class="price">$210.00</span>
-                                    <span class="price-old">300.00</span>
-                                </div>
-                            </div>
-                            <div class="product-action-bottom">
-                                <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                    <i class="fa fa-expand"></i>
-                                </button>
-                                <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                    <i class="fa fa-heart-o"></i>
-                                </button>
-                                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
-                                    <span>Add to cart</span>
-                                </button>
-                            </div>
-                        </div>
-                        <!--== End prPduct Item ==-->
-                    </div>
-                    <div class="col-6 col-lg-4 mb-4 mb-sm-8">
-                        <!--== Start Product Item ==-->
-                        <div class="product-item">
-                            <div class="product-thumb">
-                                <a class="d-block" href="product-details.html">
-                                    <img src="assets/images/shop/5.webp" width="370" height="450" alt="Image-HasTech">
-                                </a>
-                                <span class="flag-new">new</span>
-                                <div class="product-action">
-                                    <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                        <i class="fa fa-expand"></i>
-                                    </button>
-                                    <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
-                                        <span>Add to cart</span>
-                                    </button>
-                                    <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                        <i class="fa fa-heart-o"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-rating">
-                                    <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-half-o"></i>
-                                    </div>
-                                    <div class="reviews">150 reviews</div>
-                                </div>
-                                <h4 class="title"><a href="product-details.html">Voyage face cleaner</a></h4>
-                                <div class="prices">
-                                    <span class="price">$210.00</span>
-                                    <span class="price-old">300.00</span>
-                                </div>
-                            </div>
-                            <div class="product-action-bottom">
-                                <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                    <i class="fa fa-expand"></i>
-                                </button>
-                                <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                    <i class="fa fa-heart-o"></i>
-                                </button>
-                                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
-                                    <span>Add to cart</span>
-                                </button>
-                            </div>
-                        </div>
-                        <!--== End prPduct Item ==-->
-                    </div>
-                    <div class="col-6 col-lg-4 mb-4 mb-sm-8">
-                        <!--== Start Product Item ==-->
-                        <div class="product-item">
-                            <div class="product-thumb">
-                                <a class="d-block" href="product-details.html">
-                                    <img src="assets/images/shop/6.webp" width="370" height="450" alt="Image-HasTech">
-                                </a>
-                                <span class="flag-new">new</span>
-                                <div class="product-action">
-                                    <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                        <i class="fa fa-expand"></i>
-                                    </button>
-                                    <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
-                                        <span>Add to cart</span>
-                                    </button>
-                                    <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                        <i class="fa fa-heart-o"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-rating">
-                                    <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-half-o"></i>
-                                    </div>
-                                    <div class="reviews">150 reviews</div>
-                                </div>
-                                <h4 class="title"><a href="product-details.html">Impulse Duffle</a></h4>
-                                <div class="prices">
-                                    <span class="price">$210.00</span>
-                                    <span class="price-old">300.00</span>
-                                </div>
-                            </div>
-                            <div class="product-action-bottom">
-                                <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                    <i class="fa fa-expand"></i>
-                                </button>
-                                <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                    <i class="fa fa-heart-o"></i>
-                                </button>
-                                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
-                                    <span>Add to cart</span>
-                                </button>
-                            </div>
-                        </div>
-                        <!--== End prPduct Item ==-->
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--== End Product Area Wrapper ==-->
-
-        <!--== Start Blog Area Wrapper ==-->
-        <section class="section-space">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="section-title text-center">
-                            <h2 class="title">Blog posts</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-n9">
-                    <div class="col-sm-6 col-lg-4 mb-8">
-                        <!--== Start Blog Item ==-->
-                        <div class="post-item">
-                            <a href="blog-details.html" class="thumb">
-                                <img src="assets/images/blog/1.webp" width="370" height="320" alt="Image-HasTech">
-                            </a>
-                            <div class="content">
-                                <a class="post-category" href="blog.html">beauty</a>
-                                <h4 class="title"><a href="blog-details.html">Lorem ipsum dolor sit amet consectetur adipiscing.</a></h4>
-                                <ul class="meta">
-                                    <li class="author-info"><span>By:</span> <a href="blog.html">Tomas De Momen</a></li>
-                                    <li class="post-date">February 13, 2022</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!--== End Blog Item ==-->
-                    </div>
-                    <div class="col-sm-6 col-lg-4 mb-8">
-                        <!--== Start Blog Item ==-->
-                        <div class="post-item">
-                            <a href="blog-details.html" class="thumb">
-                                <img src="assets/images/blog/2.webp" width="370" height="320" alt="Image-HasTech">
-                            </a>
-                            <div class="content">
-                                <a class="post-category post-category-two" data-bg-color="#A49CFF" href="blog.html">beauty</a>
-                                <h4 class="title"><a href="blog-details.html">Facial Scrub is natural treatment for face.</a></h4>
-                                <ul class="meta">
-                                    <li class="author-info"><span>By:</span> <a href="blog.html">Tomas De Momen</a></li>
-                                    <li class="post-date">February 13, 2022</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!--== End Blog Item ==-->
-                    </div>
-                    <div class="col-sm-6 col-lg-4 mb-8">
-                        <!--== Start Blog Item ==-->
-                        <div class="post-item">
-                            <a href="blog-details.html" class="thumb">
-                                <img src="assets/images/blog/3.webp" width="370" height="320" alt="Image-HasTech">
-                            </a>
-                            <div class="content">
-                                <a class="post-category post-category-three" data-bg-color="#9CDBFF" href="blog.html">beauty</a>
-                                <h4 class="title"><a href="blog-details.html">Benefit of Hot Ston Spa for your health & life.</a></h4>
-                                <ul class="meta">
-                                    <li class="author-info"><span>By:</span> <a href="blog.html">Tomas De Momen</a></li>
-                                    <li class="post-date">February 13, 2022</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!--== End Blog Item ==-->
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--== End Blog Area Wrapper ==-->
-
-        <!--== Start News Letter Area Wrapper ==-->
-        <section class="section-space pt-0">
-            <div class="container">
-                <div class="newsletter-content-wrap" data-bg-img="assets/images/photos/bg1.webp">
-                    <div class="newsletter-content">
-                        <div class="section-title mb-0">
-                            <h2 class="title">Join with us</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam.</p>
-                        </div>
-                    </div>
-                    <div class="newsletter-form">
-                        <form>
-                            <input type="email" class="form-control" placeholder="enter your email">
-                            <button class="btn-submit" type="submit"><i class="fa fa-paper-plane"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--== End News Letter Area Wrapper ==-->
-
+        @yield('content')
     </main>
 
     <!--== Start Footer Area Wrapper ==-->
@@ -910,7 +200,7 @@
                         <div class="widget-item">
                             <div class="widget-about">
                                 <a class="widget-logo" href="index.html">
-                                    <img src="assets/images/logo.webp" width="95" height="68" alt="Logo">
+                                    <img src="/assets/images/logo.webp" width="95" height="68" alt="Logo">
                                 </a>
                                 <p class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</p>
                             </div>
@@ -975,7 +265,7 @@
                         </div>
                         <div class="modal-action-product">
                             <div class="thumb">
-                                <img src="assets/images/shop/modal1.webp" alt="Organic Food Juice" width="466" height="320">
+                                <img src="/assets/images/shop/modal1.webp" alt="Organic Food Juice" width="466" height="320">
                             </div>
                             <h4 class="product-name"><a href="product-details.html">Readable content DX22</a></h4>
                         </div>
@@ -1000,7 +290,7 @@
                         </div>
                         <div class="modal-action-product">
                             <div class="thumb">
-                                <img src="assets/images/shop/modal1.webp" alt="Organic Food Juice" width="466" height="320">
+                                <img src="/assets/images/shop/modal1.webp" alt="Organic Food Juice" width="466" height="320">
                             </div>
                             <h4 class="product-name"><a href="product-details.html">Readable content DX22</a></h4>
                         </div>
@@ -1050,7 +340,7 @@
                                 <div class="col-lg-6">
                                     <!--== Start Product Thumbnail Area ==-->
                                     <div class="product-single-thumb">
-                                        <img src="assets/images/shop/quick-view1.webp" width="544" height="560" alt="Image-HasTech">
+                                        <img src="/assets/images/shop/quick-view1.webp" width="544" height="560" alt="Image-HasTech">
                                     </div>
                                     <!--== End Product Thumbnail Area ==-->
                                 </div>
@@ -1104,7 +394,7 @@
                 <li class="aside-product-list-item">
                     <a href="#/" class="remove">×</a>
                     <a href="product-details.html">
-                        <img src="assets/images/shop/cart1.webp" width="68" height="84" alt="Image">
+                        <img src="/assets/images/shop/cart1.webp" width="68" height="84" alt="Image">
                         <span class="product-title">Leather Mens Slipper</span>
                     </a>
                     <span class="product-price">1 × £69.99</span>
@@ -1112,7 +402,7 @@
                 <li class="aside-product-list-item">
                     <a href="#/" class="remove">×</a>
                     <a href="product-details.html">
-                        <img src="assets/images/shop/cart2.webp" width="68" height="84" alt="Image">
+                        <img src="/assets/images/shop/cart2.webp" width="68" height="84" alt="Image">
                         <span class="product-title">Quickiin Mens shoes</span>
                     </a>
                     <span class="product-price">1 × £20.00</span>
@@ -1201,18 +491,18 @@
 <!-- JS Vendor, Plugins & Activation Script Files -->
 
 <!-- Vendors JS -->
-<script src="./assets/js/vendor/modernizr-3.11.7.min.js"></script>
-<script src="./assets/js/vendor/jquery-3.6.0.min.js"></script>
-<script src="./assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
-<script src="./assets/js/vendor/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/vendor/modernizr-3.11.7.min.js"></script>
+<script src="/assets/js/vendor/jquery-3.6.0.min.js"></script>
+<script src="/assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+<script src="/assets/js/vendor/bootstrap.bundle.min.js"></script>
 
 <!-- Plugins JS -->
-<script src="./assets/js/plugins/swiper-bundle.min.js"></script>
-<script src="./assets/js/plugins/fancybox.min.js"></script>
-<script src="./assets/js/plugins/jquery.nice-select.min.js"></script>
+<script src="/assets/js/plugins/swiper-bundle.min.js"></script>
+<script src="/assets/js/plugins/fancybox.min.js"></script>
+<script src="/assets/js/plugins/jquery.nice-select.min.js"></script>
 
 <!-- Custom Main JS -->
-<script src="./assets/js/main.js"></script>
+<script src="/assets/js/main.js"></script>
 
 </body>
 
