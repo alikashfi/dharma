@@ -8,16 +8,16 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('statuses', function (Blueprint $table) {
+        Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 30);
-            $table->string('badge', 30)->default('info');
+            $table->foreignId('order_id')->constrained()->cascadeOnUpdate()->restrictOnDelete();
+            $table->foreignId('product_id')->constrained()->cascadeOnUpdate()->restrictOnDelete();
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('statuses');
+        Schema::dropIfExists('order_items');
     }
 };
