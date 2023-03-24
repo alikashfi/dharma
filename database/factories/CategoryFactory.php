@@ -18,7 +18,7 @@ final class CategoryFactory extends Factory
     {
         return [
             'name'             => fake('fa_IR')->name,
-            'title'            => fake()->title,
+            'title'            => fake('fa_IR')->realText(rand(20, 50)),
             'slug'             => \Str::limit(fake()->slug, 30, ''),
             'color'            => fake()->hexColor,
             'description'      => fake('fa_IR')->realText(rand(100, 300)),

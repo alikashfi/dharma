@@ -8,7 +8,7 @@
     ])
 
     <!--== Start Product Details Area Wrapper ==-->
-    <section class="section-space">
+    <section class="section-space pt-3">
         <div class="container">
             <div class="row product-details">
                 <div class="col-lg-6">
@@ -26,7 +26,6 @@
                                         <div class="swiper-zoom-container">
                                             <img src="{{ $image->getUrl() }}">
                                         </div>
-                                        <div>Image 1</div>
                                     </div>
                                 @endforeach
                             </div>
@@ -41,7 +40,6 @@
                                 @foreach($product->media as $image)
                                     <div class="swiper-slide">
                                         <img src="{{ $image->getUrl() }}">
-                                        <div>thumbs 1</div>
                                     </div>
                                 @endforeach
                             </div>
@@ -50,25 +48,25 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="product-details-content">
+                    <div class="product-details-content ps-0">
                         <h5 class="product-details-collection">some text</h5>
                         <h3 class="product-details-title">{{ $product->name }}</h3>
-                        <div class="product-details-review mb-7">
-                            <div class="product-review-icon">
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-half-o"></i>
-                            </div>
-                            <button type="button" class="product-review-show">150 reviews</button>
-                        </div>
+                        {{-- <div class="product-details-review mb-7"> --}}
+                        {{--     <div class="product-review-icon"> --}}
+                        {{--         <i class="fa fa-star-o"></i> --}}
+                        {{--         <i class="fa fa-star-o"></i> --}}
+                        {{--         <i class="fa fa-star-o"></i> --}}
+                        {{--         <i class="fa fa-star-o"></i> --}}
+                        {{--         <i class="fa fa-star-half-o"></i> --}}
+                        {{--     </div> --}}
+                        {{--     <button type="button" class="product-review-show">150 reviews</button> --}}
+                        {{-- </div> --}}
                         <p class="mb-7">{{ $product->description }}</p>
                         <div class="product-details-action">
-                            <h4 class="price">{{ $product->priceFormatted }}</h4>
+                            <h4 class="price">{{ $product->priceFormatted }} تومان</h4>
                             <div class="product-details-cart-wishlist">
                                 {{-- <button type="button" class="btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal"><i class="fa fa-heart-o"></i></button> --}}
-                                <button type="button" class="btn ps-5 me-4" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">Buy Now</button>
+                                <button type="button" class="btn ps-5 me-4" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">افزودن به سبد خرید</button>
                             </div>
                         </div>
                     </div>

@@ -18,7 +18,7 @@ final class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'category_id'      => Category::factory()->create()->id,
+            'category_id'      => fn() => Category::factory()->create()->id,
             'name'             => fake('fa_IR')->name,
             'title'            => fake('fa_IR')->name,
             'slug'             => \Str::limit(fake()->unique()->slug(), 30, ''),
