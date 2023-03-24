@@ -15,6 +15,11 @@ class Category extends Model implements HasMedia
 
     public $guarded = [];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function parent()
     {
         return $this->belongsTo(Category::class, 'parent_id', 'id');

@@ -29,6 +29,7 @@ Route::view('/', 'home')->name('home');
 
 Route::get('shop', [IndexController::class, 'shop'])->name('shop');
 Route::get('product/{product}', [IndexController::class, 'product'])->name('product');
+Route::get('category/{category}', [IndexController::class, 'category'])->name('category');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -17,10 +17,16 @@ class IndexController extends Controller
         return view('shop', compact('products', 'pageCategories'));
     }
 
-    public function product(Product $product)
+    public function product(Product $product): View
     {
-        // increase view
+        $product->load('category');
+        // todo: increase view
 
         return view('product', compact('product'));
+    }
+
+    public function category(Category $category)
+    {
+        // return view('category', compact('category'));
     }
 }
