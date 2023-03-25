@@ -9,12 +9,17 @@ use Illuminate\View\View;
 
 class IndexController extends Controller
 {
+    public function home(): View
+    {
+        return view('pages.home');
+    }
+
     public function shop(): View
     {
         $products = Product::paginate();
         $pageCategories = Category::where('in_page', true)->get();
 
-        return view('shop', compact('products', 'pageCategories'));
+        return view('pages.shop', compact('products', 'pageCategories'));
     }
 
     public function product(Product $product): View
@@ -22,7 +27,7 @@ class IndexController extends Controller
         $product->load('category');
         // todo: increase view
 
-        return view('product', compact('product'));
+        return view('pages.product', compact('product'));
     }
 
     public function category(Category $category)

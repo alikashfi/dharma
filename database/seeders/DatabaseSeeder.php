@@ -44,7 +44,11 @@ class DatabaseSeeder extends Seeder
     private function seedCategories(): void
     {
         foreach (Category::factory(25)->create() as $category) {
+            if ($category->id > 6)
+                $category->update(['in_page' => false]);
+
             if ($category->id <= 8) continue;
+
             $category->update(['parent_id' => rand(1,8)]);
         }
     }

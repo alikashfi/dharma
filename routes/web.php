@@ -25,7 +25,7 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 |
 */
 
-Route::view('/', 'home')->name('home');
+Route::get('', [IndexController::class, 'home'])->name('home');
 
 Route::get('shop', [IndexController::class, 'shop'])->name('shop');
 Route::get('product/{product}', [IndexController::class, 'product'])->name('product');

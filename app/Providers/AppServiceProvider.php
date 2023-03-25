@@ -8,21 +8,19 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
-        View::composer('header',
-            fn ($view) => $view->with('headerCategories', Category::where('in_menu', true)->orderBy('order')->get())
-        );
+        View::composer('pages.*', function ($view) {
+            $categories = Category::with('media')->orderBy('order')->get();
+            $view->with([
+                'headerCategories' => $categories->where('in_menu', true),
+                'pageCategories' => $categories->where('in_page', true),
+            ]);
+        });
     }
 }

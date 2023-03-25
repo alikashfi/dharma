@@ -32,7 +32,7 @@ class Product extends Model implements HasMedia
     protected function image(): Attribute
     {
         return Attribute::make(
-            get: fn() => $this->media->first()?->getUrl() ?? '/images/default.jpg'
+            get: fn() => $this->media->first()?->getUrl() ?? '/images/default-product.jpg'
         );
     }
     protected function priceFormatted(): Attribute

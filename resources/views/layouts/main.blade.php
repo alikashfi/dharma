@@ -5,11 +5,12 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Brancy - Cosmetic & Beauty Salon Website Template</title>
-    <meta name="robots" content="noindex, follow" />
+    <meta name="robots" content="noindex, follow"/>
     <meta name="description" content="Brancy - Cosmetic & Beauty Salon Website Template">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="keywords" content="bootstrap, ecommerce, ecommerce html, beauty, cosmetic shop, beauty products, cosmetic, beauty shop, cosmetic store, shop, beauty store, spa, cosmetic, cosmetics, beauty salon" />
-    <meta name="author" content="codecarnival" />
+    <meta name="keywords"
+          content="bootstrap, ecommerce, ecommerce html, beauty, cosmetic shop, beauty products, cosmetic, beauty shop, cosmetic store, shop, beauty store, spa, cosmetic, cosmetics, beauty salon"/>
+    <meta name="author" content="codecarnival"/>
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.webp">
@@ -50,7 +51,7 @@
 <!--== Wrapper Start ==-->
 <div class="wrapper">
 
-    @include('header')
+    @include('partials.header')
 
     <main class="main-content">
         @yield('content')
@@ -68,7 +69,8 @@
                                 <a class="widget-logo" href="index.html">
                                     <img src="/assets/images/logo.webp" width="95" height="68" alt="Logo">
                                 </a>
-                                <p class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</p>
+                                <p class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                                    been.</p>
                             </div>
                         </div>
                     </div>
@@ -106,7 +108,9 @@
         <div class="footer-bottom">
             <div class="container pt-0 pb-0">
                 <div class="footer-bottom-content">
-                    <p class="copyright">© 2022 Brancy. Made with <i class="fa fa-heart"></i> by <a target="_blank" href="https://themeforest.net/user/codecarnival">Codecarnival.</a></p>
+                    <p class="copyright">© 2022 Brancy. Made with <i class="fa fa-heart"></i> by <a target="_blank"
+                                                                                                    href="https://themeforest.net/user/codecarnival">Codecarnival.</a>
+                    </p>
                 </div>
             </div>
         </div>
@@ -168,7 +172,8 @@
     <!--== End Product Quick Add Cart Modal ==-->
 
     <!--== Start Aside Search Form ==-->
-    <aside class="aside-search-box-wrapper offcanvas offcanvas-top" tabindex="-1" id="AsideOffcanvasSearch" aria-labelledby="offcanvasTopLabel">
+    <aside class="aside-search-box-wrapper offcanvas offcanvas-top" tabindex="-1" id="AsideOffcanvasSearch"
+           aria-labelledby="offcanvasTopLabel">
         <div class="offcanvas-header">
             <h5 class="d-none" id="offcanvasTopLabel">Aside Search</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"><i class="fa fa-close"></i></button>
@@ -253,7 +258,8 @@
     <aside class="aside-cart-wrapper offcanvas offcanvas-end" tabindex="-1" id="AsideOffcanvasCart" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
             <h1 class="d-none" id="offcanvasRightLabel">Shopping Cart</h1>
-            <button class="btn-aside-cart-close" data-bs-dismiss="offcanvas" aria-label="Close">Shopping Cart <i class="fa fa-chevron-right"></i></button>
+            <button class="btn-aside-cart-close" data-bs-dismiss="offcanvas" aria-label="Close">Shopping Cart <i
+                        class="fa fa-chevron-right"></i></button>
         </div>
         <div class="offcanvas-body">
             <ul class="aside-cart-product-list">
@@ -282,7 +288,8 @@
     <!--== End Aside Cart ==-->
 
     <!--== Start Aside Menu ==-->
-    <aside class="off-canvas-wrapper offcanvas offcanvas-start" tabindex="-1" id="AsideOffcanvasMenu" aria-labelledby="offcanvasExampleLabel">
+    <aside class="off-canvas-wrapper offcanvas offcanvas-start" tabindex="-1" id="AsideOffcanvasMenu"
+           aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header">
             <h1 class="d-none" id="offcanvasExampleLabel">Aside Menu</h1>
             <button class="btn-menu-close" data-bs-dismiss="offcanvas" aria-label="Close">menu <i class="fa fa-chevron-left"></i></button>

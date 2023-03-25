@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Image\Manipulations;
@@ -14,6 +15,8 @@ class Category extends Model implements HasMedia
     use HasFactory, InteractsWithMedia;
 
     public $guarded = [];
+    protected $appends = ['image'];
+    protected $with = ['media'];
 
     public function getRouteKeyName()
     {
@@ -33,6 +36,13 @@ class Category extends Model implements HasMedia
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    protected function image(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->media->first()?->getUrl() ?? '/images/default-category.jpg'
+        );
     }
 
     public function registerMediaConversions(Media $media = null): void

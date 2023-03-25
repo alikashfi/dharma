@@ -1,8 +1,8 @@
-@extends('layout')
+@extends('layouts.main')
 
 @section('content')
 
-    @include('breadcrumbs', [
+    @include('partials.breadcrumb', [
         'links' => [$product->category->name, $product->name],
         'title' => $product->name
     ])
@@ -66,7 +66,9 @@
                             <h4 class="price">{{ $product->priceFormatted }} تومان</h4>
                             <div class="product-details-cart-wishlist">
                                 {{-- <button type="button" class="btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal"><i class="fa fa-heart-o"></i></button> --}}
-                                <button type="button" class="btn ps-5 me-4" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">افزودن به سبد خرید</button>
+                                <button type="button" class="btn ps-5 me-4" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                    افزودن به سبد خرید
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -75,8 +77,12 @@
             <div class="row">
                 <div class="col-lg-7">
                     <div class="nav product-details-nav" id="product-details-nav-tab" role="tablist">
-                        <button class="nav-link" id="specification-tab" data-bs-toggle="tab" data-bs-target="#specification" type="button" role="tab" aria-controls="specification" aria-selected="false">Specification</button>
-                        <button class="nav-link active" id="review-tab" data-bs-toggle="tab" data-bs-target="#review" type="button" role="tab" aria-controls="review" aria-selected="true">Review</button>
+                        <button class="nav-link" id="specification-tab" data-bs-toggle="tab" data-bs-target="#specification" type="button"
+                                role="tab" aria-controls="specification" aria-selected="false">Specification
+                        </button>
+                        <button class="nav-link active" id="review-tab" data-bs-toggle="tab" data-bs-target="#review" type="button"
+                                role="tab" aria-controls="review" aria-selected="true">Review
+                        </button>
                     </div>
                     <div class="tab-content" id="product-details-nav-tabContent">
                         <div class="tab-pane" id="specification" role="tabpanel" aria-labelledby="specification-tab">
@@ -95,7 +101,9 @@
                                 </li>
                             </ul>
 
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius velit corporis quo voluptate culpa soluta, esse accusamus, sunt quia omnis amet temporibus sapiente harum quam itaque libero tempore. Ipsum, ducimus. lorem</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius velit corporis quo voluptate culpa soluta, esse
+                                accusamus, sunt quia omnis amet temporibus sapiente harum quam itaque libero tempore. Ipsum, ducimus.
+                                lorem</p>
                         </div>
 
                         <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
@@ -117,7 +125,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra amet, sodales faucibus nibh. Vivamus amet potenti ultricies nunc gravida duis. Nascetur scelerisque massa sodales.</p>
+                                <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra amet, sodales faucibus
+                                    nibh. Vivamus amet potenti ultricies nunc gravida duis. Nascetur scelerisque massa sodales.</p>
                                 <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
                             </div>
                             <!--== End Reviews Content Item ==-->
@@ -140,7 +149,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra amet, sodales faucibus nibh. Vivamus amet potenti ultricies nunc gravida duis. Nascetur scelerisque massa sodales.</p>
+                                <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra amet, sodales faucibus
+                                    nibh. Vivamus amet potenti ultricies nunc gravida duis. Nascetur scelerisque massa sodales.</p>
                                 <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
                             </div>
                             <!--== End Reviews Content Item ==-->
@@ -163,7 +173,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra amet, sodales faucibus nibh. Vivamus amet potenti ultricies nunc gravida duis. Nascetur scelerisque massa sodales.</p>
+                                <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra amet, sodales faucibus
+                                    nibh. Vivamus amet potenti ultricies nunc gravida duis. Nascetur scelerisque massa sodales.</p>
                                 <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
                             </div>
                             <!--== End Reviews Content Item ==-->
@@ -245,7 +256,8 @@
                 <div class="col-12">
                     <div class="section-title">
                         <h2 class="title">Related Products</h2>
-                        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis</p>
+                        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus
+                            venenatis</p>
                     </div>
                 </div>
             </div>
@@ -279,13 +291,16 @@
                                             <span class="price-old">300.00</span>
                                         </div>
                                         <div class="product-action">
-                                            <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                            <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal"
+                                                    data-bs-target="#action-CartAddModal">
                                                 <span>Add to cart</span>
                                             </button>
-                                            <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                            <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal"
+                                                    data-bs-target="#action-QuickViewModal">
                                                 <i class="fa fa-expand"></i>
                                             </button>
-                                            <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                            <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal"
+                                                    data-bs-target="#action-WishlistModal">
                                                 <i class="fa fa-heart-o"></i>
                                             </button>
                                         </div>
@@ -319,13 +334,16 @@
                                             <span class="price-old">300.00</span>
                                         </div>
                                         <div class="product-action">
-                                            <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                            <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal"
+                                                    data-bs-target="#action-CartAddModal">
                                                 <span>Add to cart</span>
                                             </button>
-                                            <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                            <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal"
+                                                    data-bs-target="#action-QuickViewModal">
                                                 <i class="fa fa-expand"></i>
                                             </button>
-                                            <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                            <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal"
+                                                    data-bs-target="#action-WishlistModal">
                                                 <i class="fa fa-heart-o"></i>
                                             </button>
                                         </div>
@@ -359,13 +377,16 @@
                                             <span class="price-old">300.00</span>
                                         </div>
                                         <div class="product-action">
-                                            <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                            <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal"
+                                                    data-bs-target="#action-CartAddModal">
                                                 <span>Add to cart</span>
                                             </button>
-                                            <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                            <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal"
+                                                    data-bs-target="#action-QuickViewModal">
                                                 <i class="fa fa-expand"></i>
                                             </button>
-                                            <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                            <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal"
+                                                    data-bs-target="#action-WishlistModal">
                                                 <i class="fa fa-heart-o"></i>
                                             </button>
                                         </div>
@@ -387,9 +408,11 @@
     .swiper.gallery {
         height: max-content !important;
     }
+
     .gallery .swiper-slide {
         cursor: pointer;
     }
+
     .gallery img {
         width: 100%;
         height: auto;
@@ -399,6 +422,7 @@
     .swiper.gallery-thumbs {
         height: max-content !important;
     }
+
     .gallery-thumbs .swiper-slide {
         width: auto;
         border-radius: 10px;
@@ -406,6 +430,7 @@
         -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
         filter: grayscale(100%);
     }
+
     .gallery-thumbs .swiper-slide-active {
         opacity: 1;
         -webkit-filter: initial; /* Safari 6.0 - 9.0 */
@@ -443,26 +468,24 @@
         transition: opacity 0.6s;
     }
 
-    .swiper-button-prev:hover, .swiper-button-next:hover{
+    .swiper-button-prev:hover, .swiper-button-next:hover {
         opacity: 1;
     }
 
-    .swiper-button-next:after, .swiper-container-rtl .swiper-button-next:after{
+    .swiper-button-next:after, .swiper-container-rtl .swiper-button-next:after {
         margin-left: auto;
     }
 
-    .swiper-button-prev:after, .swiper-container-rtl .swiper-button-next:after{
+    .swiper-button-prev:after, .swiper-container-rtl .swiper-button-next:after {
         margin-right: auto;
     }
 
 
-    @media (hover:none), (pointer:coarse){
-        .swiper-button-prev, .swiper-button-next{
+    @media (hover: none), (pointer: coarse) {
+        .swiper-button-prev, .swiper-button-next {
             display: none;
         }
     }
-
-
 
 
 </style>
@@ -482,7 +505,7 @@
         // },
         // other parameters
         on: {
-            click: function() {
+            click: function () {
                 /* do something */
             }
         },
@@ -511,7 +534,6 @@
     galleryThumbs.controller.control = galleryTop;
 
 </script>
-
 
 
 {{-- <section class="section-space"> --}}

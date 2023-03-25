@@ -12,7 +12,7 @@
             <div class="col-lg-7 col-xl-7 d-none d-lg-block">
                 <div class="header-navigation ps-7">
                     <ul class="main-nav justify-content-start">
-                        <li class="has-submenu"><a href="index.html">home</a>
+                        <li class="has-submenu"><a href="{{ route('home') }}">home</a>
                             <ul class="submenu-nav">
                                 <li><a href="index.html">Home One</a></li>
                                 <li><a href="index-two.html">Home Two</a></li>
