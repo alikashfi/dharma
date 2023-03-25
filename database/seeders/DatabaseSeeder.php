@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->seedCategories();
 
-        Product::factory(10)->create(['category_id' => 1]);
+        Product::factory(30)->create(['category_id' => 1]);
         $this->assignFiles();
 
         Status::factory(4)->create();
@@ -32,13 +32,16 @@ class DatabaseSeeder extends Seeder
 
     private function assignFiles(): void
     {
-        $images = ['images/one.jpg', 'images/two.jpg', 'images/three.jpg'];
-        foreach (Product::get() as $product)
+        $images = ['images/one.jpg', 'images/two.jpg', 'images/three.jpg', 'images/hijab.jpg', 'images/cute.jpg'];
+        foreach (Product::get() as $product) {
+            shuffle($images);
             foreach ($images as $image)
-                rand(0, 1) ?: $product->addMedia(public_path($image))
+                rand(0, 1)
+                    ?: $product->addMedia(public_path($image))
                     ->usingFileName(Str::random() . '.jpg')
                     ->preservingOriginal()
                     ->toMediaCollection('product');
+        }
     }
 
     private function seedCategories(): void

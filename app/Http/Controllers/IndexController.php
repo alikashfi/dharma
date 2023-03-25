@@ -16,7 +16,7 @@ class IndexController extends Controller
 
     public function shop(): View
     {
-        $products = Product::paginate();
+        $products = Product::paginate(10);
         $pageCategories = Category::where('in_page', true)->get();
 
         return view('pages.shop', compact('products', 'pageCategories'));

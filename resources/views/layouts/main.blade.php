@@ -23,8 +23,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS (Bootstrap & Icon Font) -->
-    <link rel="stylesheet" href="/assets/css/vendor/bootstrap.min.css">
-    {{-- <link rel="stylesheet" href="/assets/css/vendor/bootstrap.rtl.min.css"> --}}
+     <link rel="stylesheet" href="/assets/css/vendor/bootstrap.min.css">
+     {{-- <link rel="stylesheet" href="/assets/css/vendor/bootstrap.rtl.min.css"> --}}
 
     <!-- Plugins CSS (All Plugins Files) -->
     <link rel="stylesheet" href="/assets/css/plugins/swiper-bundle.min.css">
@@ -42,6 +42,13 @@
         .offcanvas-menu-nav a:not(:only-child):after {
             left: 0;
             right: unset;
+        }
+        .breadcrumb-item+.breadcrumb-item:before {
+            float: right;
+            padding-left: 0.5rem;
+        }
+        .breadcrumb-item+.breadcrumb-item {
+            padding-left: 0;
         }
     </style>
 </head>

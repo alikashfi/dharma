@@ -1,19 +1,39 @@
 <!--== Start Page Header Area Wrapper ==-->
-{{-- <section class="page-header-area pt-10 pb-9" data-bg-color="#FFF3DA"> --}}
-{{--     <div class="container"> --}}
-{{--         <div class="row"> --}}
-{{--             <div class="col-md-5"> --}}
-{{--                 <div class="page-header-st3-content text-center text-md-start"> --}}
-{{--                     <ol class="breadcrumb justify-content-center justify-content-md-start"> --}}
-{{--                         <li class="breadcrumb-item"><a class="text-dark" href="{{ route('home') }}">خانه</a></li> --}}
-{{--                         @foreach($links ?? [] as $link) --}}
-{{--                             <li class="breadcrumb-item active text-dark" aria-current="page">{{ $link }}</li> --}}
-{{--                         @endforeach --}}
-{{--                     </ol> --}}
-{{--                     <h2 class="page-header-title">{{ $title }}</h2> --}}
-{{--                 </div> --}}
-{{--             </div> --}}
-{{--         </div> --}}
-{{--     </div> --}}
-{{-- </section> --}}
+ <section class="page-header-area pt-5 pb-5" data-bg-color="#FFF3DA">
+     <div class="container">
+         <div class="row">
+             <div class="col-md-5">
+                 <div class="page-header-st3-content text-center text-md-end">
+                      <ol class="breadcrumb justify-content-center justify-content-md-start">
+                          <li class="breadcrumb-item"><a href="{{ route('home') }}">خانه</a></li>
+                          @foreach($links ?? [] as $link)
+                              <li class="breadcrumb-item active text-dark" aria-current="page">{{ $link }}</li>
+                          @endforeach
+                      </ol>
+
+                     {{-- <nav aria-label="breadcrumb"> --}}
+                     {{--     <ol class="breadcrumb"> --}}
+                     {{--         <li class="breadcrumb-item active" aria-current="page">Home</li> --}}
+                     {{--     </ol> --}}
+                     {{-- </nav> --}}
+
+                     {{-- <nav aria-label="breadcrumb"> --}}
+                     {{--     <ol class="breadcrumb"> --}}
+                     {{--         <li class="breadcrumb-item"><a href="#">Home</a></li> --}}
+                     {{--         <li class="breadcrumb-item"><a href="#">Library</a></li> --}}
+                     {{--         <li class="breadcrumb-item active" aria-current="page">Data</li> --}}
+                     {{--     </ol> --}}
+                     {{-- </nav> --}}
+
+                     <h2 class="page-header-title">{{ $title }}</h2>
+                 </div>
+             </div>
+             @isset($count)
+                 <div class="col-md-7">
+                     <h5 class="showing-pagination-results mt-5 mt-md-9 text-center text-md-start">{{ __('results') . ": " .  $count }}</h5>
+                 </div>
+             @endisset
+         </div>
+     </div>
+ </section>
 <!--== End Page Header Area Wrapper ==-->

@@ -35,6 +35,14 @@ class Product extends Model implements HasMedia
             get: fn() => $this->media->first()?->getUrl() ?? '/images/default-product.jpg'
         );
     }
+
+    protected function thumbImage(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->media->first()?->getUrl('thumb') ?? '/images/default-product.jpg'
+        );
+    }
+
     protected function priceFormatted(): Attribute
     {
         return new Attribute(
@@ -45,7 +53,7 @@ class Product extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')
-            ->fit(Manipulations::FIT_CROP, 100, 100)
+            ->fit(Manipulations::FIT_CONTAIN, 200, 200)
             ->nonQueued();
     }
 }

@@ -12,14 +12,14 @@
             <div class="col-lg-7 col-xl-7 d-none d-lg-block">
                 <div class="header-navigation ps-7">
                     <ul class="main-nav justify-content-start">
-                        <li class="has-submenu"><a href="{{ route('home') }}">home</a>
+                        <li class="has-submenu"><a href="{{ route('home') }}">@lang('home')</a>
                             <ul class="submenu-nav">
                                 <li><a href="index.html">Home One</a></li>
                                 <li><a href="index-two.html">Home Two</a></li>
                             </ul>
                         </li>
                         <li><a href="about-us.html">about</a></li>
-                        <li class="has-submenu position-static"><a href="{{ route('shop') }}">محصولات</a>
+                        <li class="has-submenu position-static"><a href="{{ route('shop') }}">@lang('shop')</a>
                             <ul class="submenu-nav-mega">
                                 @foreach($headerCategories->where('parent_id', null) as $category)
                                     <li><a href="{{ route('category', $category->slug) }}" class="mega-title">{{ $category->name }}</a>
