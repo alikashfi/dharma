@@ -10,10 +10,7 @@
                 {{-- <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal"> --}}
                 {{--     <i class="fa fa-expand"></i> --}}
                 {{-- </button> --}}
-                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal"
-                        data-bs-target="#action-CartAddModal">
-                    <span>افزودن به سبد</span>
-                </button>
+                @livewire('add-to-cart', ['productId' => $product->id])
                 {{-- <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal"> --}}
                 {{--     <i class="fa fa-heart-o"></i> --}}
                 {{-- </button> --}}

@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        View::composer('pages.*', function ($view) {
+        View::composer(['pages.*', 'user.*'], function ($view) {
             $categories = Category::with('media')->orderBy('order')->get();
             $view->with([
                 'headerCategories' => $categories->where('in_menu', true),

@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    @include('partials.breadcrumbs', [
+    @include('partials.breadcrumb', [
         'links' => ['حساب کاربری'],
         'title' => 'حساب کاربری'
     ])

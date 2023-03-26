@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="/assets/css/plugins/fancybox.min.css">
     <link rel="stylesheet" href="/assets/css/plugins/nice-select.css">
 
+    @livewireStyles
     @stack('style')
 
     <!-- Style CSS -->
@@ -50,6 +51,9 @@
         .breadcrumb-item+.breadcrumb-item {
             padding-left: 0;
         }
+        .remove {
+            right: unset !important;
+        }
     </style>
 </head>
 
@@ -64,66 +68,7 @@
         @yield('content')
     </main>
 
-    <!--== Start Footer Area Wrapper ==-->
-    <footer class="footer-area">
-        <!--== Start Footer Main ==-->
-        <div class="footer-main">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-lg-4">
-                        <div class="widget-item">
-                            <div class="widget-about">
-                                <a class="widget-logo" href="index.html">
-                                    <img src="/assets/images/logo.webp" width="95" height="68" alt="Logo">
-                                </a>
-                                <p class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                                    been.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-5 mt-md-0 mt-9">
-                        <div class="widget-item">
-                            <h4 class="widget-title">Information</h4>
-                            <ul class="widget-nav">
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="about-us.html">About us</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                                <li><a href="faq.html">Privacy</a></li>
-                                <li><a href="account-login.html">Login</a></li>
-                                <li><a href="product.html">Shop</a></li>
-                                <li><a href="my-account.html">My Account</a></li>
-                                <li><a href="faq.html">FAQs</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 mt-lg-0 mt-6">
-                        <div class="widget-item">
-                            <h4 class="widget-title">Social Info</h4>
-                            <div class="widget-social">
-                                <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a>
-                                <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
-                                <a href="https://www.pinterest.com/" target="_blank" rel="noopener"><i class="fa fa-pinterest-p"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--== End Footer Main ==-->
-
-        <!--== Start Footer Bottom ==-->
-        <div class="footer-bottom">
-            <div class="container pt-0 pb-0">
-                <div class="footer-bottom-content">
-                    <p class="copyright">© 2022 Brancy. Made with <i class="fa fa-heart"></i> by <a target="_blank"
-                                                                                                    href="https://themeforest.net/user/codecarnival">Codecarnival.</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!--== End Footer Bottom ==-->
-    </footer>
-    <!--== End Footer Area Wrapper ==-->
+    @include('partials.footer')
 
     <!--== Scroll Top Button ==-->
     <div id="scroll-to-top" class="scroll-to-top"><span class="fa fa-angle-up"></span></div>
@@ -159,17 +104,17 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="product-action-view-content">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        <button type="button" class="btn-close bg-success" data-bs-dismiss="modal">
                             <i class="fa fa-times"></i>
                         </button>
-                        <div class="modal-action-messages">
-                            <i class="fa fa-check-square-o"></i> Added to cart successfully!
+                        <div class="modal-action-messages d-flex justify-content-center">
+                            <i class="fa fa-check-square-o ms-1"></i> به سبد خرید اضافه شد!
                         </div>
                         <div class="modal-action-product">
                             <div class="thumb">
-                                <img src="/assets/images/shop/modal1.webp" alt="Organic Food Juice" width="466" height="320">
+                                {{-- <img src="/assets/images/shop/modal1.webp" alt="Organic Food Juice" width="466" height="320"> --}}
                             </div>
-                            <h4 class="product-name"><a href="product-details.html">Readable content DX22</a></h4>
+                            {{-- <h4 class="product-name"><a href="product-details.html">Readable content DX22</a></h4> --}}
                         </div>
                     </div>
                 </div>
@@ -177,6 +122,7 @@
         </div>
     </aside>
     <!--== End Product Quick Add Cart Modal ==-->
+
 
     <!--== Start Aside Search Form ==-->
     <aside class="aside-search-box-wrapper offcanvas offcanvas-top" tabindex="-1" id="AsideOffcanvasSearch"
@@ -204,63 +150,6 @@
     </aside>
     <!--== End Aside Search Form ==-->
 
-    <!--== Start Product Quick View Modal ==-->
-    {{-- <aside class="product-cart-view-modal modal fade" id="action-QuickViewModal" tabindex="-1" aria-hidden="true"> --}}
-    {{--     <div class="modal-dialog modal-dialog-centered"> --}}
-    {{--         <div class="modal-content"> --}}
-    {{--             <div class="modal-body"> --}}
-    {{--                 <div class="product-quick-view-content"> --}}
-    {{--                     <button type="button" class="btn-close" data-bs-dismiss="modal"> --}}
-    {{--                         <span class="fa fa-close"></span> --}}
-    {{--                     </button> --}}
-    {{--                     <div class="container"> --}}
-    {{--                         <div class="row"> --}}
-    {{--                             <div class="col-lg-6"> --}}
-    {{--                                 <!--== Start Product Thumbnail Area ==--> --}}
-    {{--                                 <div class="product-single-thumb"> --}}
-    {{--                                     <img src="/assets/images/shop/quick-view1.webp" width="544" height="560" alt="Image-HasTech"> --}}
-    {{--                                 </div> --}}
-    {{--                                 <!--== End Product Thumbnail Area ==--> --}}
-    {{--                             </div> --}}
-    {{--                             <div class="col-lg-6"> --}}
-    {{--                                 <!--== Start Product Info Area ==--> --}}
-    {{--                                 <div class="product-details-content"> --}}
-    {{--                                     <h5 class="product-details-collection">Premioum collection</h5> --}}
-    {{--                                     <h3 class="product-details-title">Offbline Instant Age Rewind Eraser.</h3> --}}
-    {{--                                     <div class="product-details-review mb-5"> --}}
-    {{--                                         <div class="product-review-icon"> --}}
-    {{--                                             <i class="fa fa-star-o"></i> --}}
-    {{--                                             <i class="fa fa-star-o"></i> --}}
-    {{--                                             <i class="fa fa-star-o"></i> --}}
-    {{--                                             <i class="fa fa-star-o"></i> --}}
-    {{--                                             <i class="fa fa-star-half-o"></i> --}}
-    {{--                                         </div> --}}
-    {{--                                         <button type="button" class="product-review-show">150 reviews</button> --}}
-    {{--                                     </div> --}}
-    {{--                                     <p class="mb-6">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus, repellendus. Nam voluptate illo ut quia non sapiente provident alias quos laborum incidunt, earum accusamus, natus. Vero pariatur ut veniam sequi amet consectetur.</p> --}}
-    {{--                                     <div class="product-details-pro-qty"> --}}
-    {{--                                         <div class="pro-qty"> --}}
-    {{--                                             <input type="text" title="Quantity" value="01"> --}}
-    {{--                                         </div> --}}
-    {{--                                     </div> --}}
-    {{--                                     <div class="product-details-action"> --}}
-    {{--                                         <h4 class="price">$254.22</h4> --}}
-    {{--                                         <div class="product-details-cart-wishlist"> --}}
-    {{--                                             <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">Add to cart</button> --}}
-    {{--                                         </div> --}}
-    {{--                                     </div> --}}
-    {{--                                 </div> --}}
-    {{--                                 <!--== End Product Info Area ==--> --}}
-    {{--                             </div> --}}
-    {{--                         </div> --}}
-    {{--                     </div> --}}
-    {{--                 </div> --}}
-    {{--             </div> --}}
-    {{--         </div> --}}
-    {{--     </div> --}}
-    {{-- </aside> --}}
-    <!--== End Product Quick View Modal ==-->
-
     <!--== Start Aside Cart ==-->
     <aside class="aside-cart-wrapper offcanvas offcanvas-end" tabindex="-1" id="AsideOffcanvasCart" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
@@ -269,25 +158,7 @@
                         class="fa fa-chevron-right"></i></button>
         </div>
         <div class="offcanvas-body">
-            <ul class="aside-cart-product-list">
-                <li class="aside-product-list-item">
-                    <a href="#/" class="remove">×</a>
-                    <a href="product-details.html">
-                        <img src="/assets/images/shop/cart1.webp" width="68" height="84" alt="Image">
-                        <span class="product-title">Leather Mens Slipper</span>
-                    </a>
-                    <span class="product-price">1 × £69.99</span>
-                </li>
-                <li class="aside-product-list-item">
-                    <a href="#/" class="remove">×</a>
-                    <a href="product-details.html">
-                        <img src="/assets/images/shop/cart2.webp" width="68" height="84" alt="Image">
-                        <span class="product-title">Quickiin Mens shoes</span>
-                    </a>
-                    <span class="product-price">1 × £20.00</span>
-                </li>
-            </ul>
-            <p class="cart-total"><span>Subtotal:</span><span class="amount">£89.99</span></p>
+            @livewire('shopping-cart')
             <a class="btn-total" href="product-cart.html">View cart</a>
             <a class="btn-total" href="product-checkout.html">Checkout</a>
         </div>
@@ -381,6 +252,7 @@
 <script src="/assets/js/plugins/fancybox.min.js"></script>
 <script src="/assets/js/plugins/jquery.nice-select.min.js"></script>
 
+@livewireScripts
 @stack('script')
 
 <!-- Custom Main JS -->
