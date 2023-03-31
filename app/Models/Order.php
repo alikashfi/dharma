@@ -10,4 +10,13 @@ class Order extends Model
     use HasFactory;
 
     public $guarded = [];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
 }
