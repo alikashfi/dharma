@@ -8,35 +8,36 @@
                     <div class="widget-item">
                         <div class="widget-about">
                             <a class="widget-logo" href="index.html">
-                                <img src="/assets/images/logo.webp" width="95" height="68" alt="Logo">
+                                <img src="{{ url('images/logo.jpg') }}" width="95" height="68" alt="Logo">
                             </a>
-                            <p class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                                been.</p>
+                            <p class="desc">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-5 mt-md-0 mt-9">
                     <div class="widget-item">
-                        <h4 class="widget-title">Information</h4>
+                        <h4 class="widget-title">لینک ها</h4>
                         <ul class="widget-nav">
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="about-us.html">About us</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="faq.html">Privacy</a></li>
-                            <li><a href="account-login.html">Login</a></li>
-                            <li><a href="product.html">Shop</a></li>
-                            <li><a href="my-account.html">My Account</a></li>
-                            <li><a href="faq.html">FAQs</a></li>
+                            <li><a href="{{ route('home') }}">خانه</a></li>
+                            <li><a href="{{ route('shop') }}">فروشگاه</a></li>
+                            <li><a href="{{ route('cart') }}">سبد خرید</a></li>
+                            @auth
+                                <li><a href="{{ route('user.dashboard') }}">{{ __('user-panel') }}</a></li>
+                                @if (auth()->user()->isAdmin())
+                                    <li><a href="{{ route('filament.pages.dashboard') }}">داشبورد ادمین</a></li>
+                                @endif
+                            @endauth
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 mt-lg-0 mt-6">
                     <div class="widget-item">
-                        <h4 class="widget-title">Social Info</h4>
+                        <h4 class="widget-title">شبکه های اجتماعی</h4>
                         <div class="widget-social">
-                            <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a>
-                            <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
-                            <a href="https://www.pinterest.com/" target="_blank" rel="noopener"><i class="fa fa-pinterest-p"></i></a>
+                            <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fa fs-2 fa-twitter"></i></a>
+                            <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fa fs-2 fa-facebook"></i></a>
+                            <a href="https://www.pinterest.com/" target="_blank" rel="noopener"><i class="fa fs-2 fa-pinterest-p"></i></a>
+                            <a href="https://www.pinterest.com/" target="_blank" rel="noopener"><i class="fa fs-2 fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
@@ -49,8 +50,8 @@
     <div class="footer-bottom">
         <div class="container pt-0 pb-0">
             <div class="footer-bottom-content">
-                <p class="copyright">© 2022 Brancy. Made with <i class="fa fa-heart"></i> by <a target="_blank"
-                                                                                                href="https://themeforest.net/user/codecarnival">Codecarnival.</a>
+                <p class="copyright">
+                    © ساخته شده با <i class="fa fa-heart"></i> تمامی حقوق برای <b><a target="_blank" href="https://themeforest.net/user/codecarnival">{{ env('APP_NAME') }} </a></b> محفوظ است.
                 </p>
             </div>
         </div>
@@ -58,3 +59,9 @@
     <!--== End Footer Bottom ==-->
 </footer>
 <!--== End Footer Area Wrapper ==-->
+
+<style>
+    .footer-main .widget-social a {
+        margin-left: 2rem !important;
+    }
+</style>

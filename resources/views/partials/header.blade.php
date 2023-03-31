@@ -5,7 +5,7 @@
             <div class="col-5 col-lg-2 col-xl-1">
                 <div class="header-logo">
                     <a href="index.html">
-                        <img class="logo-main" src="/assets/images/logo.webp" width="95" height="68" alt="Logo" />
+                        <img class="logo-main" src="{{ url('images/logo.jpg') }}" width="95" alt="Logo" />
                     </a>
                 </div>
             </div>

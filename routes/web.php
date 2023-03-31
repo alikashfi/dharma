@@ -30,6 +30,7 @@ Route::get('', [IndexController::class, 'home'])->name('home');
 Route::get('shop', [IndexController::class, 'shop'])->name('shop');
 Route::get('product/{product}', [IndexController::class, 'product'])->name('product');
 Route::get('category/{category}', [IndexController::class, 'category'])->name('category');
+Route::get('cart', [IndexController::class, 'shop'])->name('cart');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -75,4 +76,12 @@ Route::middleware('auth')->group(function () {
 //     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 //
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+});
+
+Route::controller(UserController::class)->middleware('auth')->prefix('user')->name('user.')->group(function () {
+    Route::redirect('', 'user/dashboard');
+    Route::get('dashboard', 'dashboard')->name('dashboard');
+    Route::get('orders', 'orders')->name('orders');
+    Route::get('payments', 'payments')->name('payments');
+    Route::get('settings', 'settings')->name('settings');
 });

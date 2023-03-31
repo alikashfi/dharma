@@ -17,9 +17,8 @@ class IndexController extends Controller
     public function shop(): View
     {
         $products = Product::paginate(10);
-        $pageCategories = Category::where('in_page', true)->get();
 
-        return view('pages.shop', compact('products', 'pageCategories'));
+        return view('pages.shop', compact('products'));
     }
 
     public function product(Product $product): View
@@ -32,6 +31,8 @@ class IndexController extends Controller
 
     public function category(Category $category)
     {
-        // return view('category', compact('category'));
+        $products = $category->products()->paginate(10);
+
+        return view('pages.category', compact('products', 'category'));
     }
 }

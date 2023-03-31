@@ -1,0 +1,33 @@
+@extends('layouts.user-panel')
+
+@section('panel')
+
+    <div class="tab-pane fade show active">
+        <div class="myaccount-content">
+            <h3>پرداخت ها</h3>
+            <div class="myaccount-table table-responsive text-center">
+                <table class="table table-bordered">
+                    <thead class="thead-light">
+                    <tr>
+                        <th>شناسه</th>
+                        {{-- <th>تاریخ</th> --}}
+                        {{-- <th>وضعیت</th> --}}
+                        {{-- <th>قیمت</th> --}}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($payments as $payment)
+                        <tr>
+                            <td>{{ $payment->id }}</td>
+                            {{-- <td>{{ $payment->created_at }}</td> --}}
+                            {{-- <td>{{ $payment->id }}</td> --}}
+                            {{-- <td>{{ $payment->price }}</td> --}}
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+@endsection

@@ -6,8 +6,12 @@
                  <div class="page-header-st3-content text-center text-md-end">
                       <ol class="breadcrumb justify-content-center justify-content-md-start">
                           <li class="breadcrumb-item"><a href="{{ route('home') }}">خانه</a></li>
-                          @foreach($links ?? [] as $link)
-                              <li class="breadcrumb-item active text-dark" aria-current="page">{{ $link }}</li>
+                          @foreach($links ?? [] as $title => $link)
+                              @if(is_numeric($title))
+                                <li class="breadcrumb-item active text-dark" aria-current="page">{{ $link }}</li>
+                              @else
+                                <li class="breadcrumb-item"><a href="{{ $link }}">{{ $title }}</a></li>
+                              @endif
                           @endforeach
                       </ol>
 
@@ -25,7 +29,7 @@
                      {{--     </ol> --}}
                      {{-- </nav> --}}
 
-                     <h2 class="page-header-title">{{ $title }}</h2>
+                     <h2 class="page-header-title">{{ $links[array_key_last($links)] }}</h2>
                  </div>
              </div>
              @isset($count)
