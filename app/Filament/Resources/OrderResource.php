@@ -26,46 +26,32 @@ class OrderResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Card::make()->schema([
-                Select::make('user_id')
-                    ->relationship('user', 'fname')
-                    ->preload()
-                    ->translateLabel(),
+                    Forms\Components\Toggle::make('is_paid')
+                        ->required()
+                        ->translateLabel(),
 
-                Select::make('status_id')
-                    ->relationship('status', 'name')
-                    ->preload()
-                    ->translateLabel(),
+                    Select::make('user_id')
+                        ->relationship('user', 'fname')
+                        ->preload()
+                        ->translateLabel(),
 
-                Forms\Components\Toggle::make('is_paid')
-                    ->required()
-                    ->translateLabel(),
+                    Select::make('status_id')
+                        ->relationship('status', 'name')
+                        ->preload()
+                        ->translateLabel(),
 
-                Forms\Components\TextInput::make('transaction')
-                    ->maxLength(255)
-                    ->translateLabel(),
+                    Forms\Components\TextInput::make('price')
+                        ->required()
+                        ->translateLabel(),
 
-                Forms\Components\Textarea::make('result')
-                    ->maxLength(65535)
-                    ->translateLabel(),
+                    Forms\Components\TextInput::make('ip')
+                        ->required()
+                        ->maxLength(45)
+                        ->translateLabel(),
 
-                Forms\Components\TextInput::make('price')
-                    ->required()
-                    ->translateLabel(),
-
-                Forms\Components\TextInput::make('ip')
-                    ->required()
-                    ->maxLength(45)
-                    ->translateLabel(),
-
-                Forms\Components\Textarea::make('comment')
-                    ->maxLength(255)
-                    ->translateLabel(),
-
-                Forms\Components\TextInput::make('uuid')
-                    ->required()
-                    ->maxLength(36)
-                    ->translateLabel(),
-
+                    Forms\Components\Textarea::make('comment')
+                        ->maxLength(255)
+                        ->translateLabel(),
                 ]),
             ]);
     }

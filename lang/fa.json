@@ -34,5 +34,9 @@
 
   "home": "خانه",
   "shop": "فروشگاه",
-  "results": "نتایج"
+  "results": "نتایج",
+
+  "payments": {
+    "order": "FOOOOOOOOO"
+  }
 }
