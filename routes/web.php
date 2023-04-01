@@ -30,7 +30,8 @@ Route::get('', [IndexController::class, 'home'])->name('home');
 Route::get('shop', [IndexController::class, 'shop'])->name('shop');
 Route::get('product/{product}', [IndexController::class, 'product'])->name('product');
 Route::get('category/{category}', [IndexController::class, 'category'])->name('category');
-Route::get('cart', [IndexController::class, 'shop'])->name('cart');
+Route::get('cart', [IndexController::class, 'cart'])->name('cart');
+Route::get('checkout', [IndexController::class, 'checkout'])->name('checkout');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

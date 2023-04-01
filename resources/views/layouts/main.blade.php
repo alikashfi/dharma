@@ -159,8 +159,8 @@
         </div>
         <div class="offcanvas-body">
             @livewire('shopping-cart')
-            <a class="btn-total" href="product-cart.html">View cart</a>
-            <a class="btn-total" href="product-checkout.html">Checkout</a>
+            <a class="btn-total" href="{{ route('cart') }}">دیدن سبد خرید</a>
+            <a class="btn-total" href="{{ route('checkout') }}">پرداخت نهایی</a>
         </div>
     </aside>
     <!--== End Aside Cart ==-->

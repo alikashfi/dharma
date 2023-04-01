@@ -4,7 +4,6 @@
 
     @include('partials.breadcrumb', [
         'links' => [__('shop')],
-        'title' => __('shop'),
         'count' => $products->total()
     ])
 

@@ -35,4 +35,14 @@ class IndexController extends Controller
 
         return view('pages.category', compact('products', 'category'));
     }
+
+    public function cart()
+    {
+        return view('pages.cart');
+    }
+
+    public function checkout()
+    {
+        return view('pages.checkout');
+    }
 }

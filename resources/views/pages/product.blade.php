@@ -69,7 +69,7 @@
                             <h4 class="price">{{ $product->priceFormatted }} تومان</h4>
                             <div class="product-details-cart-wishlist">
                                 {{-- <button type="button" class="btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal"><i class="fa fa-heart-o"></i></button> --}}
-                                <button type="button" class="btn ps-5 me-4" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                <button onclick="Livewire.emit('addToCart', {{ $product->id }})" class="btn ps-5 me-4"  data-bs-toggle="modal" data-bs-target="#action-CartAddModal" >
                                     افزودن به سبد خرید
                                 </button>
                             </div>

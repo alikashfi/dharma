@@ -3,17 +3,17 @@
 namespace App\Http\Livewire;
 
 use App\Models\Product;
+use Cart;
 use Illuminate\Support\Collection;
 use Livewire\Component;
-use Cart;
 
-class ShoppingCart extends Component
+class CartPage extends Component
 {
     public Collection $products;
-    public int $productId;
-    protected $listeners = ['productRemoved' => 'mount', 'productAdded' => 'mount', 'addToCart', 'removeFromCart'];
 
-    public function mount()
+    protected $listeners = ['removeFromCart'];
+
+    public function render()
     {
         $this->products = Cart::getContent() ?? [];
         if (count($this->products)) {
@@ -22,26 +22,13 @@ class ShoppingCart extends Component
 
             $this->products = Product::whereIn('id', $ids)->orderByRaw("FIELD(id, $sortedIds)")->get();
         }
-    }
 
-    public function render()
-    {
-        return view('livewire.shopping-cart');
+        return view('livewire.cart-page');
     }
 
     public function removeFromCart($productId)
     {
         Cart::remove($productId);
-        $this->mount();
         $this->emit('productRemoved', $productId);
-    }
-
-    public function addToCart($productId)
-    {
-        $product = Product::FindOrFail($productId);
-
-        Cart::add($product->id, $product->name, $product->price, 1);
-
-        $this->emit('productAdded');
     }
 }
