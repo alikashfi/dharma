@@ -54,6 +54,9 @@
         .remove {
             right: unset !important;
         }
+        .shopping-checkout-wrap .title:before {
+            left: unset;
+        }
     </style>
 </head>
 

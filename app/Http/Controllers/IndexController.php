@@ -43,6 +43,14 @@ class IndexController extends Controller
 
     public function checkout()
     {
-        return view('pages.checkout');
+        $products = \Cart::getContent() ?? [];
+        if (count($products)) {
+            $ids = $products->pluck('id')->toArray();
+            $sortedIds = implode(',', $ids);
+
+            $products = Product::whereIn('id', $ids)->orderByRaw("FIELD(id, $sortedIds)")->get();
+        }
+
+        return view('pages.checkout', compact('products'));
     }
 }
