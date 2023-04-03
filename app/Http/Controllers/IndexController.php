@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Shipping;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\View\View;
 
 class IndexController extends Controller
@@ -43,6 +46,15 @@ class IndexController extends Controller
 
     public function checkout()
     {
+        $products = $this->getProductsFromCart();
+
+        $shipping = $this->getShippingFromCookie();
+
+        return view('pages.checkout', compact('products', 'shipping'));
+    }
+
+    public static function getProductsFromCart(): Collection|array
+    {
         $products = \Cart::getContent() ?? [];
         if (count($products)) {
             $ids = $products->pluck('id')->toArray();
@@ -50,7 +62,15 @@ class IndexController extends Controller
 
             $products = Product::whereIn('id', $ids)->orderByRaw("FIELD(id, $sortedIds)")->get();
         }
+        return $products;
+    }
 
-        return view('pages.checkout', compact('products'));
+    public static function getShippingFromCookie(): Shipping
+    {
+        if ($shippingId = Cookie::get('selectedShippingId'))
+            $shipping = Shipping::firstWhere('id', $shippingId);
+        else
+            $shipping = Shipping::first();
+        return $shipping;
     }
 }

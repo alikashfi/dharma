@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,10 @@ Route::get('product/{product}', [IndexController::class, 'product'])->name('prod
 Route::get('category/{category}', [IndexController::class, 'category'])->name('category');
 Route::get('cart', [IndexController::class, 'cart'])->name('cart');
 Route::get('checkout', [IndexController::class, 'checkout'])->name('checkout')->middleware('auth');
+
+Route::resources([
+    'order' => OrderController::class,
+]);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

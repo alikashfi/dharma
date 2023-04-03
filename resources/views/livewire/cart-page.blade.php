@@ -59,19 +59,20 @@
                         <tr class="shipping-totals">
                             <th class="text-end">هزینه ارسال</th>
                             <td>
-                                <ul class="shipping-list">
-                                    <li class="radio">
-                                        <input type="radio" name="shipping" id="radio1" checked>
-                                        <label for="radio1">تمامی نقاط ایران: <span>20,000 تومان</span></label>
-                                    </li>
-                                </ul>
-                                {{-- <a href="javascript:void(0)" class="btn-shipping-address">تغییر آدرس</a> --}}
+                                @foreach($shippings as $shipping)
+                                    <ul class="shipping-list">
+                                        <li class="radio">
+                                            <input wire:model="shippingId" type="radio" name="shippingId" id="radio{{ $shipping->id }}" value="{{ $shipping->id }}" checked>
+                                            <label for="radio{{ $shipping->id }}">{{ $shipping->name }}: <span>{{ $shipping->price }} تومان</span></label>
+                                        </li>
+                                    </ul>
+                                @endforeach
                             </td>
                         </tr>
                         <tr class="order-total">
                             <th class="text-end">قیمت کل</th>
                             <td>
-                                <span class="amount">{{ number_format($products->sum('price') + 20000) }} تومان</span>
+                                <span class="amount">{{ number_format($products->sum('price') + $selectedShipping->price) }} تومان</span>
                             </td>
                         </tr>
                         </tbody>

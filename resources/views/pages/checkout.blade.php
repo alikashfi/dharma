@@ -19,7 +19,8 @@
                     <div class="checkout-billing-details-wrap">
                         <h2 class="title">مشخصات</h2>
                         <div class="billing-form-wrap">
-                            <form action="#" method="post">
+                            <form action="{{ route('order.store') }}" method="post" id="checkout-form">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -57,7 +58,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group mb-0">
                                             <label for="order-notes">یادداشت خرید</label>
-                                            <textarea id="order-notes" class="form-control" placeholder="توضیحات درباره خرید یا ارسال؟"></textarea>
+                                            <textarea name="comment" id="order-notes" class="form-control" placeholder="توضیحات درباره خرید یا ارسال؟"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -93,11 +94,11 @@
                                     </tr>
                                     <tr class="shipping">
                                         <th>هزینه ارسال</th>
-                                        <td>{{ number_format(20000) }}</td>
+                                        <td>{{ number_format($shipping->price) }}</td>
                                     </tr>
                                     <tr class="order-total">
                                         <th>جمع کل</th>
-                                        <td>{{ number_format($products->sum('price') + 20000) }} تومان</td>
+                                        <td>{{ number_format($products->sum('price') + $shipping->price) }} تومان</td>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -114,14 +115,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p class="p-text">از اطلاعات شما فقط در جهت ارسال کالا برای شما استفاده خواهد شد. برای توضیحات بیشتر، <a href="#/">قوانین حریم خصوصی</a> را بخوانید.</p>
+                                <p class="p-text">از اطلاعات شما فقط در جهت ارسال محصولات برایتان استفاده خواهد شد. برای توضیحات بیشتر، <a href="#/">قوانین حریم خصوصی</a> را بخوانید.</p>
                                 <div class="agree-policy">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" id="privacy" class="custom-control-input visually-hidden">
-                                        <label for="privacy" class="custom-control-label">قوانین سایت را خواندم و با آن موافقم <span class="required">*</span></label>
+                                        <label for="privacy" class="custom-control-label">قوانین را مطالعه کردم و با آن موافقم <span class="required">*</span></label>
                                     </div>
                                 </div>
-                                <a href="account.html" class="btn-place-order">پرداخت و ثبت سفارش</a>
+                                <button onclick="document.querySelector('#checkout-form').submit()" class="btn-place-order btn-order">پرداخت و ثبت سفارش</button>
                             </div>
                         </div>
                     </div>

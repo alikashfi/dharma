@@ -57,6 +57,10 @@
         .shopping-checkout-wrap .title:before {
             left: unset;
         }
+        .btn-order {
+            border-style: solid;
+            width: 100%;
+        }
     </style>
 </head>
 

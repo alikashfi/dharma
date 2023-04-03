@@ -29,6 +29,11 @@ class Product extends Model implements HasMedia
         return $this->belongsTo(Category::class);
     }
 
+    public function shipping()
+    {
+        return $this->belongsTo(Shipping::class);
+    }
+
     protected function image(): Attribute
     {
         return Attribute::make(
