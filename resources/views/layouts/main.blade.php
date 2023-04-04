@@ -61,6 +61,9 @@
             border-style: solid;
             width: 100%;
         }
+        .myaccount-content .account-details-form .single-input-item label {
+            font-size: inherit;
+        }
     </style>
 </head>
 

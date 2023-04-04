@@ -41,4 +41,9 @@ class User extends Authenticatable implements FilamentUser, HasName
     {
         return "{$this->fname} {$this->lname}";
     }
+
+    public function hasDetails(): bool
+    {
+        return count(array_filter($this->only('fname', 'lname', 'address', 'postal_code', 'phone'))) === 5;
+    }
 }

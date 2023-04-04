@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('result')->nullable();
             $table->boolean('is_paid')->default(false);
             $table->uuid()->default(DB::raw('(UUID())'))->unique();
+            $table->ipAddress('ip');
             $table->timestamps();
         });
     }

@@ -89,5 +89,8 @@ Route::controller(UserController::class)->middleware('auth')->prefix('user')->na
     Route::get('dashboard', 'dashboard')->name('dashboard');
     Route::get('orders', 'orders')->name('orders');
     Route::get('payments', 'payments')->name('payments');
+    Route::get('details', 'details')->name('details');
+    Route::post('details', 'detailsForm');
     Route::get('settings', 'settings')->name('settings');
+    Route::post('settings', 'settingsForm');
 });

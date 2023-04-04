@@ -13,8 +13,8 @@ return new class extends Migration
             $table->string('fname', 30);
             $table->string('lname', 30)->nullable();
             $table->string('address', 255);
-            $table->string('postal_code', 30);
-            $table->string('phone', 13);
+            $table->string('postal_code', 10);
+            $table->string('phone', 11);
             $table->string('email', 100)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

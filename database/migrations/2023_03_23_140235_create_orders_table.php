@@ -11,12 +11,11 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->restrictOnDelete();
-            $table->foreignId('status_id')->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
+            $table->foreignId('status_id')->constrained()->cascadeOnUpdate()->restrictOnDelete();
             $table->foreignId('shipping_id')->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
             $table->boolean('is_paid')->default(false);
             $table->unsignedMediumInteger('price');
             $table->unsignedMediumInteger('shipping_price')->nullable();
-            $table->ipAddress('ip');
             $table->string('comment', 255)->nullable();
             $table->softDeletes();
             $table->timestamps();

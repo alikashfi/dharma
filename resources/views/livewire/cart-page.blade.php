@@ -63,7 +63,7 @@
                                     <ul class="shipping-list">
                                         <li class="radio">
                                             <input wire:model="shippingId" type="radio" name="shippingId" id="radio{{ $shipping->id }}" value="{{ $shipping->id }}" checked>
-                                            <label for="radio{{ $shipping->id }}">{{ $shipping->name }}: <span>{{ $shipping->price }} تومان</span></label>
+                                            <label for="radio{{ $shipping->id }}">{{ $shipping->name }}: <span>{{ number_format($shipping->price) }} تومان</span></label>
                                         </li>
                                     </ul>
                                 @endforeach

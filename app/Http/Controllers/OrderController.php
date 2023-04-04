@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CheckoutPageRequest;
 use App\Models\Order;
+use App\Models\Payment;
+use App\Models\Status;
+use Cart;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -17,26 +21,22 @@ class OrderController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(CheckoutPageRequest $request)
     {
-        // $this->createOrder();
-        $products = IndexController::getProductsFromCart();
-        $shipping = IndexController::getShippingFromCookie();
+        $order = $this->createOrder($request);
 
-        $order = Order::create([
-            'user_id' => auth()->id,
-            'status_id' => null,
-            'shipping_id' => $shipping->id,
-            'price' => $products->sum('price') + $shipping->price,
-            'shipping_price' => $products->sum('price') + $shipping->price,
-            'ip' => $request->ip(),
-            'comment' => $request->comment,
+        // todo: notify
+        // paymenting...
+        Payment::create([
+            'user_id'  => auth()->id(),
+            'order_id' => $order->id,
+            'ip'       => $request->ip(),
         ]);
 
-        $order->items()->sync($products->pluck()->toArray());
+        // call bank
+        // redirect user to gateway
 
-        // notify
-        //
+        Cart::clear();
     }
 
     public function show(string $id)
@@ -57,5 +57,24 @@ class OrderController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    private function createOrder($request)
+    {
+        $products = IndexController::getProductsFromCart();
+        $shipping = IndexController::getShippingFromCookie();
+
+        $order = Order::create([
+            'user_id'        => auth()->id(),
+            'status_id'      => Status::firstWhere('is_default', true)->id,
+            'shipping_id'    => $shipping->id,
+            'price'          => $products->sum('price') + $shipping->price,
+            'shipping_price' => $shipping->price,
+            'comment'        => $request->comment,
+        ]);
+
+        $order->items()->sync($products->pluck('id')->toArray());
+
+        return $order;
     }
 }

@@ -14,6 +14,7 @@
     <section class="shopping-checkout-wrap section-space">
         <div class="container">
             <div class="row">
+                @include('partials.flash')
                 <div class="col-lg-6">
                     <!--== Start Billing Accordion ==-->
                     <div class="checkout-billing-details-wrap">
@@ -24,41 +25,44 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="f_name">نام <abbr class="required" title="required">*</abbr></label>
-                                            <input id="f_name" type="text" class="form-control">
+                                            <label for="fname">نام <abbr class="required" title="required">*</abbr></label>
+                                            <input name="fname" id="fname" type="text" class="form-control" value="{{ auth()->user()->fname }}" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="l_name">نام خانوادگی <abbr class="required" title="required">*</abbr></label>
-                                            <input id="l_name" type="text" class="form-control">
+                                            <label for="lname">نام خانوادگی <abbr class="required" title="required">*</abbr></label>
+                                            <input name="lname" id="lname" type="text" class="form-control" value="{{ auth()->user()->lname }}" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="com_name">آدرس <abbr class="required" title="required">*</abbr></label>
-                                            <input id="com_name" type="text" class="form-control">
+                                            <label for="address">آدرس <abbr class="required" title="required">*</abbr></label>
+                                            <input name="address" id="address" type="text" class="form-control" value="{{ auth()->user()->address }}" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="pz-code">کد پستی <abbr class="required" title="required">*</abbr></label>
-                                            <input id="pz-code" type="text" class="form-control">
+                                            <label for="postal_code">کد پستی <abbr class="required" title="required">*</abbr></label>
+                                            <input name="postal_code" id="postal_code" type="text" class="form-control" value="{{ auth()->user()->postal_code }}" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="phone">شماره تلفن <abbr class="required" title="required">*</abbr></label>
-                                            <input id="phone" type="text" class="form-control">
+                                            <input name="phone" id="phone" type="text" class="form-control" value="{{ auth()->user()->phone }}" readonly>
                                         </div>
                                     </div>
-                                    <p>میتوانید مشخصات را از
-                                        <a href="{{ route('user.settings') }}" class="text-primary">تنظیمات {{ __('user-panel') }}</a>
-                                        تغییر دهید.</p>
+                                    @if(auth()->user()->hasDetails())
+                                        <p>میتوانید مشخصات را از
+                                            <a href="{{ route('user.details') }}" class="text-primary">تنظیمات {{ __('user-panel') }}</a>
+                                            تغییر دهید.
+                                        </p>
+                                    @endif
                                     <div class="col-md-12">
                                         <div class="form-group mb-0">
-                                            <label for="order-notes">یادداشت خرید</label>
-                                            <textarea name="comment" id="order-notes" class="form-control" placeholder="توضیحات درباره خرید یا ارسال؟"></textarea>
+                                            <label for="comments">یادداشت خرید</label>
+                                            <textarea name="comment" id="comments" class="form-control" placeholder="توضیحات درباره خرید یا ارسال؟"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -118,8 +122,8 @@
                                 <p class="p-text">از اطلاعات شما فقط در جهت ارسال محصولات برایتان استفاده خواهد شد. برای توضیحات بیشتر، <a href="#/">قوانین حریم خصوصی</a> را بخوانید.</p>
                                 <div class="agree-policy">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" id="privacy" class="custom-control-input visually-hidden">
-                                        <label for="privacy" class="custom-control-label">قوانین را مطالعه کردم و با آن موافقم <span class="required">*</span></label>
+                                        <input name="privacy_policy" type="checkbox" form="checkout-form" id="privacy_policy" class="custom-control-input visually-hidden" required>
+                                        <label for="privacy_policy" class="custom-control-label">قوانین را مطالعه کردم و با آن موافقم <span class="required">*</span></label>
                                     </div>
                                 </div>
                                 <button onclick="document.querySelector('#checkout-form').submit()" class="btn-place-order btn-order">پرداخت و ثبت سفارش</button>

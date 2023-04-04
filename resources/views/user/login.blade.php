@@ -13,6 +13,7 @@
                 <div class="col-lg-6 mb-8">
                     <!--== Start Login Area Wrapper ==-->
                     <div class="my-account-item-wrap">
+                        @include('partials.flash')
                         <h3 class="title">ورود</h3>
                         <div class="my-account-form">
                             <form method="POST" action="{{ route('login') }}">
@@ -23,7 +24,7 @@
                                 </div>
 
                                 <div class="form-group mb-6">
-                                    <label for="login_pwsd">پسورد <sup>*</sup></label>
+                                    <label for="login_pwsd">{{ __('password') }} <sup>*</sup></label>
                                     <input type="password" name="password" id="login_pwsd">
                                 </div>
 

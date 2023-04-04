@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Shipping;
 use App\Models\Status;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -19,7 +20,9 @@ class DatabaseSeeder extends Seeder
         Product::factory(30)->create(['category_id' => 1]);
         $this->assignFiles();
 
-        Status::factory(4)->create();
+        Status::factory(4)->create()->first()->update(['name' => 'در انتظار بررسی', 'is_default' => true]);
+
+        Shipping::insert([['name' => 'ارسال پستی به تمامی نقاط کشور', 'price' => 20000], ['name' => 'پست پیشتاز', 'price' => 50000]]);
 
         User::factory()->create([
             'fname'    => 'ادمین',

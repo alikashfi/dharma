@@ -52,6 +52,11 @@ class PaymentResource extends Resource
                     ->required()
                     ->maxLength(36)
                     ->translateLabel(),
+
+                Forms\Components\TextInput::make('ip')
+                    ->required()
+                    ->maxLength(45)
+                    ->translateLabel(),
                 ]),
             ]);
     }

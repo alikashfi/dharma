@@ -41,6 +41,7 @@ class OrderResource extends Resource
                     Select::make('status_id')
                         ->relationship('status', 'name')
                         ->preload()
+                        ->required()
                         ->translateLabel(),
 
                     Forms\Components\TextInput::make('price')
@@ -48,11 +49,6 @@ class OrderResource extends Resource
                         ->translateLabel(),
 
                     Forms\Components\TextInput::make('shipping_price')
-                        ->translateLabel(),
-
-                    Forms\Components\TextInput::make('ip')
-                        ->required()
-                        ->maxLength(45)
                         ->translateLabel(),
 
                     Forms\Components\Textarea::make('comment')

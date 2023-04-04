@@ -25,4 +25,14 @@ class Order extends Model
     {
         return $this->belongsToMany(Product::class, 'order_items');
     }
+
+    private function foo()
+    {
+        static $bar;
+
+        if ($bar == null) { // first time come inside this
+            $bar = Status::firstWhere('is_default', true);
+        }
+        return $bar;
+    }
 }

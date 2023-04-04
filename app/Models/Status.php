@@ -11,5 +11,5 @@ class Status extends Model
 
     public $guarded = [];
 
-    const badges = ['info', 'danger'];
+    const badges = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark'];
 }
