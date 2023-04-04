@@ -13,6 +13,8 @@ return new class extends Migration
             $table->foreignId('order_id')->constrained()->cascadeOnUpdate()->restrictOnDelete();
             $table->foreignId('product_id')->constrained()->cascadeOnUpdate()->restrictOnDelete();
             $table->timestamps();
+
+            $table->unique(['order_id', 'product_id']);
         });
     }
 

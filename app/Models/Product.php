@@ -34,6 +34,11 @@ class Product extends Model implements HasMedia
         return $this->belongsTo(Shipping::class);
     }
 
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_items');
+    }
+
     protected function image(): Attribute
     {
         return Attribute::make(

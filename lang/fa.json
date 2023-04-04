@@ -23,11 +23,13 @@
   "In page": "نمایش در صفحه",
 
   "Badge": "حالت",
+
   "User": "کاربر",
   "Status": "وضعیت",
   "Is paid": "پرداخت شده",
   "Transaction": "کد رهگیری بانک",
   "Result": "نتیجه بانک",
+  "Shipping price": "هزینه ارسال",
   "Ip": "آی پی",
   "Comment": "توضیحات کاربر",
   "Uuid": "uuid",

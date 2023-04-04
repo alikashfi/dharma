@@ -28,6 +28,7 @@ class OrderController extends Controller
             'status_id' => null,
             'shipping_id' => $shipping->id,
             'price' => $products->sum('price') + $shipping->price,
+            'shipping_price' => $products->sum('price') + $shipping->price,
             'ip' => $request->ip(),
             'comment' => $request->comment,
         ]);

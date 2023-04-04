@@ -15,7 +15,7 @@ return new class extends Migration
             $table->foreignId('shipping_id')->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
             $table->boolean('is_paid')->default(false);
             $table->unsignedMediumInteger('price');
-            $table->unsignedMediumInteger('shipping_price');
+            $table->unsignedMediumInteger('shipping_price')->nullable();
             $table->ipAddress('ip');
             $table->string('comment', 255)->nullable();
             $table->softDeletes();

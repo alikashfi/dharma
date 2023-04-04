@@ -4,8 +4,11 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\OrderResource\Pages;
 use App\Filament\Resources\OrderResource\RelationManagers;
+use App\Filament\Resources\OrderResource\RelationManagers\ProductsRelationManager;
 use App\Models\Order;
+use App\Models\Product;
 use Filament\Forms;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -44,6 +47,9 @@ class OrderResource extends Resource
                         ->required()
                         ->translateLabel(),
 
+                    Forms\Components\TextInput::make('shipping_price')
+                        ->translateLabel(),
+
                     Forms\Components\TextInput::make('ip')
                         ->required()
                         ->maxLength(45)
@@ -67,7 +73,8 @@ class OrderResource extends Resource
                 // Tables\Columns\TextColumn::make('result')->translateLabel(),
                 Tables\Columns\TextColumn::make('price')->sortable()->translateLabel(),
                 // Tables\Columns\TextColumn::make('ip')->translateLabel(),
-                Tables\Columns\IconColumn::make('comment')->translateLabel(),
+                Tables\Columns\IconColumn::make('comment')
+                    ->options(['heroicon-o-pencil' => fn($state): bool => !! $state,])->colors(['success' => fn($state): bool => !! $state,])->translateLabel(),
                 // Tables\Columns\TextColumn::make('uuid')->translateLabel(),
                 // Tables\Columns\TextColumn::make('deleted_at')->dateTime()->translateLabel(),
                 Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable()->translateLabel(),
@@ -78,6 +85,7 @@ class OrderResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -87,7 +95,7 @@ class OrderResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ProductsRelationManager::class
         ];
     }
     
