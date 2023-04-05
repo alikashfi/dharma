@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
     {
         \File::deleteDirectory(public_path('images/product'));
 
-        $images = ['images/one.jpg', 'images/two.jpg', 'images/three.jpg', 'images/hijab.jpg', 'images/cute.jpg'];
+        $images = ['images/one.jpg', 'images/two.jpg', 'images/three.jpg', 'images/four.jpg', 'images/five.jpg'];
         foreach (Product::get() as $product) {
             shuffle($images);
             foreach ($images as $image)

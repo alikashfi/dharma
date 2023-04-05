@@ -70,7 +70,7 @@
         .product-item-image-inavailable {
             opacity: .5;
         }
-        .product-item:hover .product-item-image {
+        .product-item:hover .product-item-image-inavailable {
             opacity: 1;
         }
     </style>

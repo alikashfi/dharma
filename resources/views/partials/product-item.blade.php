@@ -12,7 +12,14 @@
                 {{-- <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal"> --}}
                 {{--     <i class="fa fa-expand"></i> --}}
                 {{-- </button> --}}
-                @livewire('add-to-cart', ['productId' => $product->id])
+
+                {{-- @livewire('add-to-cart', ['productId' => $product->id]) --}}
+
+                <div class="product-action-btn action-btn-cart" data-bs-toggle="modal"
+                     data-bs-target="#action-CartAddModal">
+                    <span onclick="Livewire.emit('addToCart', {{ $product->id }})">افزودن به سبد</span>
+                </div>
+
                 {{-- <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal"> --}}
                 {{--     <i class="fa fa-heart-o"></i> --}}
                 {{-- </button> --}}
@@ -37,17 +44,17 @@
             </div>
         </div>
         <div class="product-action-bottom">
-            <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal"
-                    data-bs-target="#action-QuickViewModal">
-                <i class="fa fa-expand"></i>
-            </button>
-            <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal"
-                    data-bs-target="#action-WishlistModal">
-                <i class="fa fa-heart-o"></i>
-            </button>
-            <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal"
+            {{-- <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" --}}
+            {{--         data-bs-target="#action-QuickViewModal"> --}}
+            {{--     <i class="fa fa-expand"></i> --}}
+            {{-- </button> --}}
+            {{-- <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" --}}
+            {{--         data-bs-target="#action-WishlistModal"> --}}
+            {{--     <i class="fa fa-heart-o"></i> --}}
+            {{-- </button> --}}
+            <button onclick="Livewire.emit('addToCart', {{ $product->id }})" type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal"
                     data-bs-target="#action-CartAddModal">
-                <span>Add to cart</span>
+                <span>افزودن به سبد</span>
             </button>
         </div>
     </div>
