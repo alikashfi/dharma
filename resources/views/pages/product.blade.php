@@ -1,15 +1,12 @@
-@extends('layouts.main')
+@extends('layouts.main', ['breadcrumb' => [
+    'links' => [
+        $product->category->name => route('category', $product->category->slug),
+        $product->name
+    ],
+    'title' => $product->name
+]])
 
 @section('content')
-
-    @include('partials.breadcrumb', [
-        'links' => [
-            $product->category->name => route('category', $product->category->slug),
-            $product->name
-        ],
-        'title' => $product->name
-    ])
-
     <!--== Start Product Details Area Wrapper ==-->
     <section class="section-space pt-3">
         <div class="container">

@@ -1,4 +1,9 @@
-@extends('layouts.user-panel')
+@extends('layouts.user-panel', ['breadcrumb' => [
+    'links' => [
+        __('user-panel') => route('user.dashboard'),
+        'سفارشات',
+    ]
+]])
 
 @section('panel')
 

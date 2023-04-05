@@ -64,6 +64,9 @@
         .myaccount-content .account-details-form .single-input-item label {
             font-size: inherit;
         }
+        .mega-title {
+            cursor: pointer !important;
+        }
     </style>
 </head>
 
@@ -75,6 +78,8 @@
     @include('partials.header')
 
     <main class="main-content">
+        @includeWhen(isset($breadcrumb), 'partials.breadcrumb', $breadcrumb ?? null)
+        @include('partials.flash')
         @yield('content')
     </main>
 

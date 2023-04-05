@@ -12,7 +12,6 @@ return new class extends Migration
             $table->id();
             $table->string('name', 30);
             $table->string('badge', 30)->default('info');
-            $table->boolean('is_default')->default(false);
             $table->timestamps();
         });
     }

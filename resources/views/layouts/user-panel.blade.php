@@ -1,20 +1,12 @@
-@extends('layouts.main')
+@extends('layouts.main', ['breadcrumb' => $breadcrumb])
 
 @section('content')
-
-    @include('partials.breadcrumb', [
-        'links' => [
-            __('user-panel'),
-            'داشبورد',
-        ]
-    ])
 
     <!--== Start My Account Area Wrapper ==-->
     <section class="my-account-area section-space">
         <div class="container">
             <div class="row">
                 @include('partials.user-panel-nav')
-
                 <div class="col-lg-9 col-md-8">
                     <div class="tab-content" id="nav-tabContent">
                         @yield('panel')
@@ -24,4 +16,5 @@
         </div>
     </section>
     <!--== End My Account Area Wrapper ==-->
+
 @endsection

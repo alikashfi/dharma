@@ -1,4 +1,9 @@
-@extends('layouts.user-panel')
+@extends('layouts.user-panel', ['breadcrumb' => [
+    'links' => [
+        __('user-panel') => route('user.dashboard'),
+        'تنظیمات',
+    ]
+]])
 
 @section('panel')
 
@@ -11,7 +16,7 @@
                     @csrf
                     <div class="single-input-item">
                         <label for="email" class="required">ایمیل</label>
-                        <input dir="ltr" name="email" type="email" id="email" value="{{ auth()->user()->email }}"/>
+                        <input dir="ltr" name="email" type="email" id="email" value="{{ old('email', auth()->user()->email) }}"/>
                     </div>
                     <fieldset>
                         <legend>Password change</legend>

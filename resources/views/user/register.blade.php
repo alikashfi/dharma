@@ -1,11 +1,9 @@
-@extends('layouts.main')
-
-@section('content')
-    @include('partials.breadcrumbs', [
+@extends('layouts.main', ['breadcrumb' => [
         'links' => ['حساب کاربری'],
         'title' => 'حساب کاربری'
-    ])
+    ]])
 
+@section('content')
     <!--== Start Account Area Wrapper ==-->
     <section class="section-space">
         <div class="container">

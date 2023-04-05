@@ -16,6 +16,11 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
     public function status()
     {
         return $this->belongsTo(Status::class);
@@ -24,15 +29,5 @@ class Order extends Model
     public function items()
     {
         return $this->belongsToMany(Product::class, 'order_items');
-    }
-
-    private function foo()
-    {
-        static $bar;
-
-        if ($bar == null) { // first time come inside this
-            $bar = Status::firstWhere('is_default', true);
-        }
-        return $bar;
     }
 }

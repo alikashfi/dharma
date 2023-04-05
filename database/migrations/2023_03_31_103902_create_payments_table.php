@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->restrictOnDelete();
             $table->foreignId('order_id')->constrained()->cascadeOnUpdate()->restrictOnDelete();
-            $table->string('transaction', 255)->nullable();
+            $table->string('trans1', 255)->nullable();
+            $table->string('trans2', 255)->nullable();
             $table->text('result')->nullable();
             $table->boolean('is_paid')->default(false);
             $table->uuid()->default(DB::raw('(UUID())'))->unique();

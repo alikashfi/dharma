@@ -15,6 +15,7 @@ final class StatusFactory extends Factory
     {
         return [
             'name' => fake('fa_IR')->name,
+            'badge' => 'success',
         ];
     }
 }

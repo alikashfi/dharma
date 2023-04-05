@@ -1,12 +1,9 @@
-@extends('layouts.main')
+@extends('layouts.main', ['breadcrumb' => [
+    'links' => [__('shop')],
+    'count' => $products->total()
+]])
 
 @section('content')
-
-    @include('partials.breadcrumb', [
-        'links' => [__('shop')],
-        'count' => $products->total()
-    ])
-
     @include('partials.page-categories')
 
     <!--== Start Product Area Wrapper ==-->

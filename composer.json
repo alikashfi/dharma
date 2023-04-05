@@ -12,6 +12,7 @@
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
+        "shetabit/payment": "^5.2",
         "ultrono/laravelshoppingcart-1": "4.3.1"
     },
     "require-dev": {

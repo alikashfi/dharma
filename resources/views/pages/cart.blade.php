@@ -1,11 +1,8 @@
-@extends('layouts.main')
+@extends('layouts.main', ['breadcrumb' => [
+    'links' => ['سبد خرید']
+]])
 
 @section('content')
-
-    @include('partials.breadcrumb', [
-        'links' => ['سبد خرید']
-    ])
-
     <!--== Start Product Area Wrapper ==-->
     @livewire('cart-page')
     <!--== End Product Area Wrapper ==-->

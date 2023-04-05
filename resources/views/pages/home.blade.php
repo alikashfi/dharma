@@ -1,4 +1,4 @@
-@extends('layouts.main', ['partials.header' => 'sticky'])
+@extends('layouts.main'/*, ['header' => 'sticky']*/)
 
 @section('content')
 

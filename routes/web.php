@@ -34,9 +34,8 @@ Route::get('category/{category}', [IndexController::class, 'category'])->name('c
 Route::get('cart', [IndexController::class, 'cart'])->name('cart');
 Route::get('checkout', [IndexController::class, 'checkout'])->name('checkout')->middleware('auth');
 
-Route::resources([
-    'order' => OrderController::class,
-]);
+Route::post('order', [OrderController::class, 'order'])->name('order')->middleware('auth');
+Route::get('payment-callback/{uuid}', [OrderController::class, 'paymentCallback'])->name('paymentCallback')->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

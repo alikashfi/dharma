@@ -1,4 +1,8 @@
-@extends('layouts.user-panel')
+@extends('layouts.user-panel', ['breadcrumb' => [
+    'links' => [
+        __('user-panel'),
+    ]
+]])
 
 @section('panel')
 

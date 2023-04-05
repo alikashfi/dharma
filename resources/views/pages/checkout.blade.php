@@ -1,15 +1,11 @@
-@extends('layouts.main')
+@extends('layouts.main', [
+    'links' => [
+        'سبد خرید' => route('cart'),
+        'پرداخت'
+    ]
+])
 
 @section('content')
-
-    @include('partials.breadcrumb', [
-        'links' => [
-            'سبد خرید' => route('cart'),
-            'پرداخت'
-        ]
-    ])
-
-
     <!--== Start Shopping Checkout Area Wrapper ==-->
     <section class="shopping-checkout-wrap section-space">
         <div class="container">
@@ -20,7 +16,7 @@
                     <div class="checkout-billing-details-wrap">
                         <h2 class="title">مشخصات</h2>
                         <div class="billing-form-wrap">
-                            <form action="{{ route('order.store') }}" method="post" id="checkout-form">
+                            <form action="{{ route('order') }}" method="post" id="checkout-form">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6">

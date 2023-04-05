@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         Product::factory(30)->create(['category_id' => 1]);
         $this->assignFiles();
 
-        Status::factory(4)->create()->first()->update(['name' => 'در انتظار بررسی', 'is_default' => true]);
+        Status::factory(4)->create()->first()->update(['name' => 'در انتظار پرداخت']);
 
         Shipping::insert([['name' => 'ارسال پستی به تمامی نقاط کشور', 'price' => 20000], ['name' => 'پست پیشتاز', 'price' => 50000]]);
 
@@ -35,6 +35,8 @@ class DatabaseSeeder extends Seeder
 
     private function assignFiles(): void
     {
+        \File::deleteDirectory(public_path('images/product'));
+
         $images = ['images/one.jpg', 'images/two.jpg', 'images/three.jpg', 'images/hijab.jpg', 'images/cute.jpg'];
         foreach (Product::get() as $product) {
             shuffle($images);

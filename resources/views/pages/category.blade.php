@@ -1,14 +1,12 @@
-@extends('layouts.main')
+@extends('layouts.main', ['breadcrumb' => [
+    'links' => [
+        __('shop') => route('shop'),
+        $category->name
+    ],
+    'count' => $products->total()
+]])
 
 @section('content')
-
-    @include('partials.breadcrumb', [
-        'links' => [
-            __('shop') => route('shop'),
-            $category->name
-        ],
-        'count' => $products->total()
-    ])
 
     @include('partials.page-categories')
 

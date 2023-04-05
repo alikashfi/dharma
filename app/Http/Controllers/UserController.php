@@ -20,12 +20,6 @@ class UserController extends Controller
     {
         $orders = Order::where('user_id', auth()->id())->with('status')->paginate(10);
 
-        // if (! $orders->first()->status) {
-        //     $orders->map(function ($order) {
-        //         $order->status = Status::firstWhere('is_default', true);
-        //     });
-        // }
-
         return view('user.orders', compact('orders'));
     }
 

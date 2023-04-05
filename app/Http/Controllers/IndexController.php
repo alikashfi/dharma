@@ -47,6 +47,8 @@ class IndexController extends Controller
     public function checkout()
     {
         $products = $this->getProductsFromCart();
+        if ( ! count($products))
+            return redirect()->route('cart')->withErrors('سبد خرید خالیست!');
 
         $shipping = $this->getShippingFromCookie();
 
