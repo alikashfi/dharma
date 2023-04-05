@@ -14,7 +14,9 @@ class IndexController extends Controller
 {
     public function home(): View
     {
-        return view('pages.home');
+        $products = Product::latest()->limit(6)->get();
+
+        return view('pages.home', compact('products'));
     }
 
     public function shop(): View

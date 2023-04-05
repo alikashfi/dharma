@@ -19,7 +19,8 @@ class AddToCart extends Component
     {
         $product = Product::FindOrFail($this->productId);
 
-        Cart::add($product->id, $product->name, $product->price, 1);
+        if ($product->is_available)
+            Cart::add($product->id, $product->name, $product->price, 1);
 
         $this->emit('productAdded');
     }

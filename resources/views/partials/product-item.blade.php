@@ -1,11 +1,13 @@
-<div class="col-6 col-lg-4 col-xl-3 mb-4 mb-sm-8">
+<div class="{{ $classes ?? 'col-6 col-lg-4 col-xl-3 mb-4 mb-sm-8' }}">
     <!--== Start Product Item ==-->
     <div class="product-item product-st3-item">
         <div class="product-thumb">
             <a class="d-block" href="{{ route('product', $product->slug) }}">
-                <img src="{{ $product->thumbImage }}" width="370" height="450" alt="Image-HasTech">
+                <img src="{{ $product->thumbImage }}" class="{{ $product->is_available ?: 'product-item-image-inavailable' }}" width="370" height="450" alt="Image-HasTech">
             </a>
-            {{-- <span class="flag-new">new</span> --}}
+            @if ( ! $product->is_available)
+                <span class="flag-new">ناموجود</span>
+            @endif
             <div class="product-action">
                 {{-- <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal"> --}}
                 {{--     <i class="fa fa-expand"></i> --}}

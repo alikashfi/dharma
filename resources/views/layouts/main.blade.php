@@ -67,6 +67,12 @@
         .mega-title {
             cursor: pointer !important;
         }
+        .product-item-image-inavailable {
+            opacity: .5;
+        }
+        .product-item:hover .product-item-image {
+            opacity: 1;
+        }
     </style>
 </head>
 

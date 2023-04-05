@@ -39,6 +39,11 @@ class Product extends Model implements HasMedia
         return $this->belongsToMany(Order::class, 'order_items');
     }
 
+    public function scopeAvailable($q)
+    {
+        return $q->where('is_available', 1);
+    }
+
     protected function image(): Attribute
     {
         return Attribute::make(
