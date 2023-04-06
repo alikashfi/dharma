@@ -28,6 +28,12 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 
 Route::get('', [IndexController::class, 'home'])->name('home');
 
+
+Route::get('about', [IndexController::class, 'about'])->name('about');
+Route::get('contact', [IndexController::class, 'contact'])->name('contact');
+Route::get('faq', [IndexController::class, 'faq'])->name('faq');
+Route::get('privacy-policy', [IndexController::class, 'privacyPolicy'])->name('privacy-policy');
+
 Route::get('shop', [IndexController::class, 'shop'])->name('shop');
 Route::get('product/{product}', [IndexController::class, 'product'])->name('product');
 Route::get('category/{category}', [IndexController::class, 'category'])->name('category');
@@ -35,7 +41,7 @@ Route::get('cart', [IndexController::class, 'cart'])->name('cart');
 Route::get('checkout', [IndexController::class, 'checkout'])->name('checkout')->middleware('auth');
 
 Route::post('order', [OrderController::class, 'order'])->name('order')->middleware('auth');
-Route::get('payment-callback/{uuid}', [OrderController::class, 'paymentCallback'])->name('paymentCallback')->middleware('auth');
+Route::get('payment-callback/{uuid}', [OrderController::class, 'paymentCallback'])->name('payment-callback')->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -12,12 +12,7 @@
             <div class="col-lg-7 col-xl-7 d-none d-lg-block">
                 <div class="header-navigation ps-7">
                     <ul class="main-nav justify-content-start">
-                        <li class="has-submenu"><a href="{{ route('home') }}">@lang('home')</a>
-                            <ul class="submenu-nav">
-                                <li><a href="index.html">Home One</a></li>
-                                <li><a href="index-two.html">Home Two</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="{{ route('home') }}">@lang('home')</a></li>
                         <li><a href="about-us.html">about</a></li>
                         <li class="has-submenu position-static"><a href="{{ route('shop') }}">@lang('shop')</a>
                             <ul class="submenu-nav-mega">
@@ -32,16 +27,12 @@
                                 @endforeach
                             </ul>
                         </li>
-                        <li class="has-submenu"><a href="blog.html">Blog</a>
+                        <li class="has-submenu"><a>درباره ما</a>
                             <ul class="submenu-nav">
-                                <li class="has-submenu"><a href="#/">Blog Layout</a>
-                                    <ul class="submenu-nav">
-                                        <li><a href="blog.html">Blog Grid</a></li>
-                                        <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                                        <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="blog-details.html">Blog Details</a></li>
+                                <li><a href="{{ route('about') }}">درباره ما</a></li>
+                                <li><a href="{{ route('contact') }}">تماس با ما</a></li>
+                                <li><a href="{{ route('faq') }}">سوالات متداول</a></li>
+                                <li><a href="{{ route('privacy-policy') }}">قوانین</a></li>
                             </ul>
                         </li>
                         <li class="has-submenu"><a href="account-login.html">Pages</a>

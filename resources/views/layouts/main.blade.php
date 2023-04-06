@@ -73,6 +73,26 @@
         .product-item:hover .product-item-image-inavailable {
             opacity: 1;
         }
+        .main-nav>li:first-child>a {
+            padding-right: 0;
+            padding-left: 12px;
+        }
+        .main-nav>li:first-child {
+            margin-right: 0;
+            margin-left: 20px;
+        }
+        .main-nav>li:last-child>a {
+            padding-right: 12px;
+            padding-left: 0;
+        }
+        .main-nav>li:last-child {
+            margin-right: 20px;
+            margin-left: 0;
+        }
+        .offcanvas-menu-nav li ul li a {
+            padding-top: 8px !important;
+            padding-bottom: 8px !important;
+        }
     </style>
 </head>
 
@@ -175,7 +195,7 @@
     <aside class="aside-cart-wrapper offcanvas offcanvas-end" tabindex="-1" id="AsideOffcanvasCart" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
             <h1 class="d-none" id="offcanvasRightLabel">Shopping Cart</h1>
-            <button class="btn-aside-cart-close" data-bs-dismiss="offcanvas" aria-label="Close">Shopping Cart <i
+            <button class="btn-aside-cart-close" data-bs-dismiss="offcanvas" aria-label="Close">سبد خرید <i
                         class="fa fa-chevron-right"></i></button>
         </div>
         <div class="offcanvas-body">
@@ -191,58 +211,47 @@
            aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header">
             <h1 class="d-none" id="offcanvasExampleLabel">Aside Menu</h1>
-            <button class="btn-menu-close" data-bs-dismiss="offcanvas" aria-label="Close">menu <i class="fa fa-chevron-left"></i></button>
+            <button class="btn-menu-close" data-bs-dismiss="offcanvas" aria-label="Close">{{ __('menu') }} <i class="fa fa-chevron-left"></i></button>
         </div>
         <div class="offcanvas-body">
             <div id="offcanvasNav" class="offcanvas-menu-nav">
                 <ul>
-                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">home</a>
-                        <ul>
-                            <li><a href="index.html">Home One</a></li>
-                            <li><a href="index-two.html">Home Two</a></li>
-                        </ul>
-                    </li>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="{{ route('home') }}">خانه</a></li>
                     <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="about-us.html">about</a></li>
-                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">shop</a>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item">{{ __('shop') }}</a>
                         <ul>
-                            <li><a href="#" class="offcanvas-nav-item">Shop Layout</a>
-                                <ul>
-                                    <li><a href="product.html">Shop 3 Column</a></li>
-                                    <li><a href="product-four-columns.html">Shop 4 Column</a></li>
-                                    <li><a href="product-left-sidebar.html">Shop Left Sidebar</a></li>
-                                    <li><a href="product-right-sidebar.html">Shop Right Sidebar</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#" class="offcanvas-nav-item">Single Product</a>
-                                <ul>
-                                    <li><a href="product-details-normal.html">Single Product Normal</a></li>
-                                    <li><a href="product-details.html">Single Product Variable</a></li>
-                                    <li><a href="product-details-group.html">Single Product Group</a></li>
-                                    <li><a href="product-details-affiliate.html">Single Product Affiliate</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#" class="offcanvas-nav-item">Others Pages</a>
-                                <ul>
-                                    <li><a href="product-cart.html">Shopping Cart</a></li>
-                                    <li><a href="product-checkout.html">Checkout</a></li>
-                                    <li><a href="product-wishlist.html">Wishlist</a></li>
-                                    <li><a href="product-compare.html">Compare</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="{{ route('shop') }}">{{ __('همه محصولات') }}</a></li>
+                            @foreach($headerCategories->where('parent_id', null) as $category)
+                                <li><a href="{{ route('category', $category->slug) }}" class="offcanvas-nav-item">{{ $category->name }}</a>
+                                    <ul>
+                                        @foreach($headerCategories->where('parent_id', $category->id) as $category)
+                                            <li><a href="{{ route('category', $category->slug) }}">{{ $category->name }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            @endforeach
                         </ul>
                     </li>
-                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">Blog</a>
-                        <ul>
-                            <li><a class="offcanvas-nav-item" href="#">Blog Layout</a>
-                                <ul>
-                                    <li><a href="blog.html">Blog Grid</a></li>
-                                    <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                                    <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="blog-details.html">Blog Details</a></li>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item">درباره ما</a>
+                        <ul class="submenu-nav">
+                            <li><a href="{{ route('about') }}">درباره ما</a></li>
+                            <li><a href="{{ route('contact') }}">تماس با ما</a></li>
+                            <li><a href="{{ route('faq') }}">سوالات متداول</a></li>
+                            <li><a href="{{ route('privacy-policy') }}">قوانین</a></li>
                         </ul>
                     </li>
+                    {{-- <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">Blog</a> --}}
+                    {{--     <ul> --}}
+                    {{--         <li><a class="offcanvas-nav-item" href="#">Blog Layout</a> --}}
+                    {{--             <ul> --}}
+                    {{--                 <li><a href="blog.html">Blog Grid</a></li> --}}
+                    {{--                 <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li> --}}
+                    {{--                 <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li> --}}
+                    {{--             </ul> --}}
+                    {{--         </li> --}}
+                    {{--         <li><a href="blog-details.html">Blog Details</a></li> --}}
+                    {{--     </ul> --}}
+                    {{-- </li> --}}
                     <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">Pages</a>
                         <ul>
                             <li><a href="account-login.html">My Account</a></li>

@@ -80,7 +80,7 @@ class OrderController extends Controller
 
         try {
             // request gateway and redirect user to it.
-            return ShetabitPayment::callbackUrl(route('paymentCallback', ['uuid' => $payment->uuid]))->purchase(
+            return ShetabitPayment::callbackUrl(route('payment-callback', ['uuid' => $payment->uuid]))->purchase(
                 $invoice,
                 function($driver, $transactionId) use ($payment) {
                     $payment->trans1 = $transactionId;
