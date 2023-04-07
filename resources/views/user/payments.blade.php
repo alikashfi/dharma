@@ -5,6 +5,8 @@
     ]
 ]])
 
+@section('title', 'پرداخت ها')
+
 @section('panel')
 
     <div class="tab-pane fade show active">

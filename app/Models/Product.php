@@ -46,23 +46,27 @@ class Product extends Model implements HasMedia
 
     protected function image(): Attribute
     {
-        return Attribute::make(
-            get: fn() => $this->media->first()?->getUrl() ?? '/images/default-product.jpg'
-        );
+        return Attribute::make(get: fn() => $this->media->first()?->getUrl() ?? '/images/default-product.jpg');
     }
 
     protected function thumbImage(): Attribute
     {
-        return Attribute::make(
-            get: fn() => $this->media->first()?->getUrl('thumb') ?? '/images/default-product.jpg'
-        );
+        return Attribute::make(get: fn() => $this->media->first()?->getUrl('thumb') ?? '/images/default-product.jpg');
     }
 
     protected function priceFormatted(): Attribute
     {
-        return new Attribute(
-            get: fn($price) => number_format($this->price)
-        );
+        return Attribute::make(get: fn($price) => number_format($this->price));
+    }
+
+    protected function title(): Attribute
+    {
+        return Attribute::make(get: fn() => $this->title ?? $this->name);
+    }
+
+    protected function metaDescription(): Attribute
+    {
+        return Attribute::make(get: fn() => $this->meta_description ?? $this->description);
     }
 
     public function registerMediaConversions(Media $media = null): void

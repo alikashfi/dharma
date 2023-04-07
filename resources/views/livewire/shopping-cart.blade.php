@@ -11,5 +11,7 @@
     @empty
         <span class="product-price">سبد خرید شما خالیست!</span>
     @endforelse
-    <p class="cart-total"><span>قیمت کل:</span><span>{{ number_format($products->sum('price')) }} تومان</span></p>
+    @if (count($products))
+        <p class="cart-total"><span>قیمت کل:</span><span class="me-2">{{ number_format($products->sum('price')) }} تومان</span></p>
+    @endif
 </ul>

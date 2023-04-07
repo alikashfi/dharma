@@ -1,5 +1,8 @@
 @extends('layouts.main'/*, ['header' => 'sticky']*/)
 
+@section('title', $settings->homeTitle)
+@section('description', $settings->homeDescription)
+
 @section('content')
 
     @include('partials.page-categories')
@@ -133,9 +136,9 @@
                     </div>
                 </div>
                 <div class="newsletter-form">
-                    <a class="btn d-flex align-items-center justify-content-center" style="width: 400px; letter-spacing: inherit;" type="submit">
+                    <a href="{{ $settings->instagramLink }}" class="btn d-flex align-items-center justify-content-center" style="width: 400px; letter-spacing: inherit;" type="submit">
                         <i class="fa fa-instagram fs-3 ms-3"></i>
-                        <span>لورم ایپسوم متن ساختگی</span>
+                        <span>دیدن {{ $settings->instagramTitle }}</span>
                     </a>
                     <form>
                         {{-- <input type="email" class="form-control" placeholder="enter your email"> --}}

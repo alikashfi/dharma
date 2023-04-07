@@ -2,6 +2,8 @@
     'links' => ['سبد خرید']
 ]])
 
+@section('title', 'سبد خرید')
+
 @section('content')
     <!--== Start Product Area Wrapper ==-->
     @livewire('cart-page')

@@ -51,7 +51,7 @@
         <div class="container pt-0 pb-0">
             <div class="footer-bottom-content">
                 <p class="copyright">
-                    © ساخته شده با <i class="fa fa-heart"></i> تمامی حقوق برای <b><a target="_blank" href="https://themeforest.net/user/codecarnival">{{ env('APP_NAME') }} </a></b> محفوظ است.
+                    © ساخته شده با <i class="fa fa-heart"></i> تمامی حقوق برای <b><a target="_blank" href="https://themeforest.net/user/codecarnival">{{ config('app.name') }} </a></b> محفوظ است.
                 </p>
             </div>
         </div>

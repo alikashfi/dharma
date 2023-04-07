@@ -69,7 +69,7 @@ class OrderController extends Controller
     private function createPaymentAndPay(Order $order)
     {
         $invoice = (new Invoice)->amount($order->price);
-        $invoice->detail('Title', 'خرید از ' . env('APP_NAME'));
+        $invoice->detail('Title', 'خرید از ' . config('app.name'));
 
         $payment = new Payment;
         $payment->user_id = auth()->id();

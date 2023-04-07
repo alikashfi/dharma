@@ -16,7 +16,7 @@
   "Updated at": "تاریخ بروزرسانی",
 
   "Image": "عکس",
-  "Parent id": "دسته والد",
+  "Parent": "دسته والد",
   "Color": "رنگ",
   "Order": "ترتیب",
   "In menu": "نمایش در منو",
@@ -34,14 +34,15 @@
   "Comment": "توضیحات کاربر",
   "Uuid": "uuid",
 
+  "Home title": "عنوان صفحه خانه",
+  "Home description": "توضیحات صفحه خانه",
+  "Instagram title": "عنوان اینستاگرام",
+  "Instagram link": "آدرس اینستاگرام",
+
   "home": "خانه",
   "shop": "فروشگاه",
   "user-panel": "پنل کاربری",
   "results": "نتایج",
   "password": "پسورد",
-  "menu": "منو",
-
-  "payments": {
-    "order": "FOOOOOOOOO"
-  }
+  "menu": "منو"
 }

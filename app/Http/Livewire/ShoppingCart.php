@@ -40,6 +40,9 @@ class ShoppingCart extends Component
     {
         $product = Product::FindOrFail($productId);
 
+        if ( ! $product->is_available)
+            return;
+
         Cart::add($product->id, $product->name, $product->price, 1);
 
         $this->emit('productAdded');

@@ -6,6 +6,9 @@
     'title' => $product->name
 ]])
 
+@section('title', $product->title)
+@section('description', $product->metaDescription)
+
 @section('content')
     <!--== Start Product Details Area Wrapper ==-->
     <section class="section-space pt-3">
@@ -49,7 +52,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="product-details-content ps-0">
-                        <h5 class="product-details-collection"><a href="{{ route('category', $product->category->slug) }}">{{ $product->category->name }}</a></h5>
+                        <h5 class="product-details-collection mt-3"><a href="{{ route('category', $product->category->slug) }}">{{ $product->category->name }}</a></h5>
                         <h3 class="product-details-title">{{ $product->name }}</h3>
                         {{-- <div class="product-details-review mb-7"> --}}
                         {{--     <div class="product-review-icon"> --}}
@@ -67,7 +70,7 @@
                             <div class="product-details-cart-wishlist">
                                 {{-- <button type="button" class="btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal"><i class="fa fa-heart-o"></i></button> --}}
                                 <button onclick="Livewire.emit('addToCart', {{ $product->id }})" class="btn ps-5 me-4"  data-bs-toggle="modal" data-bs-target="#action-CartAddModal" >
-                                    افزودن به سبد خرید
+                                    {{ $product->is_available ? 'افزودن به سبد خرید' : 'ناموجود' }}
                                 </button>
                             </div>
                         </div>

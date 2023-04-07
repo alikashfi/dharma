@@ -5,6 +5,8 @@
     ]
 ])
 
+@section('title', 'صفحه پرداخت')
+
 @section('content')
     <!--== Start Shopping Checkout Area Wrapper ==-->
     <section class="shopping-checkout-wrap section-space">

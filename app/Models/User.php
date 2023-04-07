@@ -22,9 +22,7 @@ class User extends Authenticatable implements FilamentUser, HasName
 
     protected function fullname(): Attribute
     {
-        return Attribute::make(
-            get: fn() => "$this->fname $this->lname"
-        );
+        return Attribute::make(get: fn() => "$this->fname $this->lname");
     }
 
     public function isAdmin(): bool
@@ -33,6 +31,10 @@ class User extends Authenticatable implements FilamentUser, HasName
     }
 
     public function canAccessFilament(): bool
+    {
+        return $this->isAdmin();
+    }
+    public function canManageSettings(): bool
     {
         return $this->isAdmin();
     }

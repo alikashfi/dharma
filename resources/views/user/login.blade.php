@@ -3,6 +3,8 @@
     'title' => 'حساب کاربری'
 ]])
 
+@section('title', 'ورود')
+
 @section('content')
 
     <!--== Start Account Area Wrapper ==-->

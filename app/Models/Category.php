@@ -30,7 +30,7 @@ class Category extends Model implements HasMedia
 
     public function subCategories()
     {
-        return $this->hasMany(Category::class, 'id', 'parent_id');
+        return $this->hasMany(Category::class, 'parent_id', 'id');
     }
 
     public function products()
@@ -40,9 +40,17 @@ class Category extends Model implements HasMedia
 
     protected function image(): Attribute
     {
-        return Attribute::make(
-            get: fn() => $this->media->first()?->getUrl() ?? '/images/default-category.jpg'
-        );
+        return Attribute::make(get: fn() => $this->media->first()?->getUrl() ?? '/images/default-category.jpg');
+    }
+
+    protected function title(): Attribute
+    {
+        return Attribute::make(get: fn() => $this->title ?? $this->name);
+    }
+
+    protected function metaDescription(): Attribute
+    {
+        return Attribute::make(get: fn() => $this->meta_description ?? $this->description);
     }
 
     public function registerMediaConversions(Media $media = null): void

@@ -3,6 +3,9 @@
     'count' => $products->total()
 ]])
 
+@section('title', $settings->shopTitle)
+@section('description', $settings->shopDescription)
+
 @section('content')
     @include('partials.page-categories')
 

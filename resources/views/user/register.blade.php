@@ -1,7 +1,9 @@
 @extends('layouts.main', ['breadcrumb' => [
-        'links' => ['حساب کاربری'],
-        'title' => 'حساب کاربری'
-    ]])
+    'links' => ['حساب کاربری'],
+    'title' => 'حساب کاربری'
+]])
+
+@section('title', 'ثبت نام')
 
 @section('content')
     <!--== Start Account Area Wrapper ==-->

@@ -4,16 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Brancy - Cosmetic & Beauty Salon Website Template</title>
-    <meta name="robots" content="noindex, follow"/>
+    <title>@yield('title') - {{ config('app.name') }}</title>
     <meta name="description" content="Brancy - Cosmetic & Beauty Salon Website Template">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="keywords"
-          content="bootstrap, ecommerce, ecommerce html, beauty, cosmetic shop, beauty products, cosmetic, beauty shop, cosmetic store, shop, beauty store, spa, cosmetic, cosmetics, beauty salon"/>
-    <meta name="author" content="codecarnival"/>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.webp">
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png">
 
     <!-- CSS (Font, Vendor, Icon, Plugins & Style CSS files) -->
 
@@ -92,6 +88,12 @@
         .offcanvas-menu-nav li ul li a {
             padding-top: 8px !important;
             padding-bottom: 8px !important;
+        }
+        .submenu-nav-mega, .submenu-nav {
+            border-radius: 10px !important;
+        }
+        a.mega-title {
+            height: 100px;
         }
     </style>
 </head>
@@ -176,12 +178,13 @@
             <div class="container pt--0 pb--0">
                 <div class="search-box-form-wrap">
                     <div class="search-note">
-                        <p>Start typing and press Enter to search</p>
+                        <p class="text-danger">قابلیت جستجو بزودی اضافه خواهد شد.</p>
+                        <p>جستجو در بین تمام محصولات سایت</p>
                     </div>
-                    <form action="#" method="post">
+                    <form action="#" {{-- method="post" --}}>
                         <div class="aside-search-form position-relative">
                             <label for="SearchInput" class="visually-hidden">Search</label>
-                            <input id="SearchInput" type="search" class="form-control" placeholder="Search entire store…">
+                            <input id="SearchInput" type="search" class="form-control" placeholder="دنبال چی میگردی؟">
                             <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
                         </div>
                     </form>
@@ -217,13 +220,13 @@
             <div id="offcanvasNav" class="offcanvas-menu-nav">
                 <ul>
                     <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="{{ route('home') }}">خانه</a></li>
-                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="about-us.html">about</a></li>
                     <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item">{{ __('shop') }}</a>
                         <ul>
-                            <li><a href="{{ route('shop') }}">{{ __('همه محصولات') }}</a></li>
+                            <li><a href="{{ route('shop') }}">همه محصولات</a></li>
                             @foreach($headerCategories->where('parent_id', null) as $category)
-                                <li><a href="{{ route('category', $category->slug) }}" class="offcanvas-nav-item">{{ $category->name }}</a>
+                                <li><a class="offcanvas-nav-item">{{ $category->name }}</a>
                                     <ul>
+                                        <li><a href="{{ route('category', $category->slug) }}">همه {{ $category->name }} ها</a></li>
                                         @foreach($headerCategories->where('parent_id', $category->id) as $category)
                                             <li><a href="{{ route('category', $category->slug) }}">{{ $category->name }}</a></li>
                                         @endforeach
@@ -240,26 +243,7 @@
                             <li><a href="{{ route('privacy-policy') }}">قوانین</a></li>
                         </ul>
                     </li>
-                    {{-- <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">Blog</a> --}}
-                    {{--     <ul> --}}
-                    {{--         <li><a class="offcanvas-nav-item" href="#">Blog Layout</a> --}}
-                    {{--             <ul> --}}
-                    {{--                 <li><a href="blog.html">Blog Grid</a></li> --}}
-                    {{--                 <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li> --}}
-                    {{--                 <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li> --}}
-                    {{--             </ul> --}}
-                    {{--         </li> --}}
-                    {{--         <li><a href="blog-details.html">Blog Details</a></li> --}}
-                    {{--     </ul> --}}
-                    {{-- </li> --}}
-                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">Pages</a>
-                        <ul>
-                            <li><a href="account-login.html">My Account</a></li>
-                            <li><a href="faq.html">Frequently Questions</a></li>
-                            <li><a href="page-not-found.html">Page Not Found</a></li>
-                        </ul>
-                    </li>
-                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="contact.html">Contact</a></li>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="{{ $settings->instagramLink }}">{{ $settings->instagramTitle }}</a></li>
                 </ul>
             </div>
         </div>

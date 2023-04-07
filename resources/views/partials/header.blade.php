@@ -13,7 +13,6 @@
                 <div class="header-navigation ps-7">
                     <ul class="main-nav justify-content-start">
                         <li><a href="{{ route('home') }}">@lang('home')</a></li>
-                        <li><a href="about-us.html">about</a></li>
                         <li class="has-submenu position-static"><a href="{{ route('shop') }}">@lang('shop')</a>
                             <ul class="submenu-nav-mega">
                                 @foreach($headerCategories->where('parent_id', null) as $category)
@@ -35,14 +34,7 @@
                                 <li><a href="{{ route('privacy-policy') }}">قوانین</a></li>
                             </ul>
                         </li>
-                        <li class="has-submenu"><a href="account-login.html">Pages</a>
-                            <ul class="submenu-nav">
-                                <li><a href="account-login.html">My Account</a></li>
-                                <li><a href="faq.html">Frequently Questions</a></li>
-                                <li><a href="page-not-found.html">Page Not Found</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="{{ $settings->instagramLink }}">{{ $settings->instagramTitle }}</a></li>
                     </ul>
                 </div>
             </div>
