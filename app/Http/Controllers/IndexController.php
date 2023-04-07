@@ -29,8 +29,7 @@ class IndexController extends Controller
 
     public function product(Product $product): View
     {
-        $product->load('category');
-        // todo: increase view
+        $product->load('category')->increaseView();
 
         return view('pages.product', compact('product'));
     }

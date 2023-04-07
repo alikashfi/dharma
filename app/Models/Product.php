@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DB;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,9 +20,22 @@ class Product extends Model implements HasMedia
     protected $appends = ['image'];
     protected $with = ['media'];
 
+    public function increaseView()
+    {
+        if (DailyIp::alreadyVisited($this))
+            return;
+        $this->withoutTimestamps(fn () => $this->update(['views' => DB::raw('views + 1'), 'daily_views' => DB::raw('daily_views + 1')]));
+        $this->dailyIps()->create(['ip' => request()->ip()]);
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function dailyIps()
+    {
+        return $this->hasMany(DailyIp::class);
     }
 
     public function category()
