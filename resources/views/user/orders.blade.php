@@ -28,7 +28,15 @@
                             <tr>
                                 <td>{{ $order->id }}</td>
                                 <td>{{ $order->created_at }}</td>
-                                <td><span class="badge rounded-pill bg-{{ $order->status->badge }} {{ ! in_array($order->status->badge, ['warning', 'info', 'light']) ?: 'text-dark' }}">{{ $order->status->name }}</span></td>
+                                <td>
+                                    <span class="badge rounded-pill bg-{{ $order->status->badge }} {{ ! in_array($order->status->badge, ['warning', 'light']) ?: 'text-dark' }}">
+                                        @if (in_array($order->status->slug, ['pending', 'failed']))
+                                            <a href="{{ route('pay-order', $order->id) }}" style="color: inherit !important;">{{ $order->status->name }}</a>
+                                        @else
+                                            {{ $order->status->name }}
+                                        @endif
+                                    </span>
+                                </td>
                                 <td>{{ $order->price }}</td>
                                 <td><a href="shop-cart.html" class="check-btn sqr-btn ">View</a></td>
                             </tr>

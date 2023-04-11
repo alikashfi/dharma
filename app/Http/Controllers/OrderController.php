@@ -39,11 +39,12 @@ class OrderController extends Controller
             $payment->trans2 = $receipt->getReferenceId();
             $payment->is_paid = 1;
             $payment->save();
-            $payment->order()->update(['is_paid' => 1, 'status_id' => 2]);
+            $payment->order()->update(['is_paid' => 1, 'status_id' => Status::firstWhere('slug', 'processing')->id]);
 
             return redirect()->route('user.orders')->with('flash', 'پرداخت با موفقیت انجام شد.');
         } catch (InvalidPaymentException $e) {
             $payment->result = $e->getMessage();
+            $payment->order()->update(['status_id' => Status::firstWhere('slug', 'failed')->id]);
             $payment->save();
             return redirect()->route('user.payments')->withErrors($e->getMessage());
         } catch (\Exception $e) {
@@ -52,21 +53,7 @@ class OrderController extends Controller
         }
     }
 
-    private function createOrder($request): Order
-    {
-        $products = IndexController::getProductsFromCart();
-        $shipping = IndexController::getShippingFromCookie();
-
-        return tap(Order::create([
-            'user_id'        => auth()->id(),
-            'shipping_id'    => $shipping->id,
-            'price'          => $products->sum('price') + $shipping->price,
-            'shipping_price' => $shipping->price,
-            'comment'        => $request->comment,
-        ]), fn($order) => $order->items()->sync($products->pluck('id')->toArray()));
-    }
-
-    private function createPaymentAndPay(Order $order)
+    public function createPaymentAndPay(Order $order)
     {
         $invoice = (new Invoice)->amount($order->price);
         $invoice->detail('Title', 'خرید از ' . config('app.name'));
@@ -91,5 +78,19 @@ class OrderController extends Controller
             report($e);
             return redirect()->route('cart')->withErrors('مشکلی در ارتباط با درگاه پرداخت پیش آمده. لطفا بعدا مجددا تلاش کنید.');
         }
+    }
+
+    private function createOrder($request): Order
+    {
+        $products = IndexController::getProductsFromCart();
+        $shipping = IndexController::getShippingFromCookie();
+
+        return tap(Order::create([
+            'user_id'        => auth()->id(),
+            'shipping_id'    => $shipping->id,
+            'price'          => $products->sum('price') + $shipping->price,
+            'shipping_price' => $shipping->price,
+            'comment'        => $request->comment,
+        ]), fn($order) => $order->items()->sync($products->pluck('id')->toArray()));
     }
 }

@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         Product::factory(30)->create(['category_id' => 1]);
         $this->assignFiles();
 
-        Status::factory(4)->create()->first()->update(['name' => 'در انتظار پرداخت']);
+        $this->seedStatuses();
 
         Shipping::insert([['name' => 'ارسال پستی به تمامی نقاط کشور', 'price' => 20000], ['name' => 'پست پیشتاز', 'price' => 50000]]);
 
@@ -55,9 +55,47 @@ class DatabaseSeeder extends Seeder
             if ($category->id > 6)
                 $category->update(['in_page' => false]);
 
-            if ($category->id <= 8) continue;
+            if ($category->id <= 8)
+                continue;
 
-            $category->update(['parent_id' => rand(1,8)]);
+            $category->update(['parent_id' => rand(1, 8)]);
         }
+    }
+
+    private function seedStatuses()
+    {
+        $statuses = [
+            [
+                'name'  => 'در انتظار پرداخت',
+                'badge' => 'secondary',
+                'slug' => 'pending',
+            ],
+            [
+                'name'  => 'پرداخت ناموفق',
+                'badge' => 'danger',
+                'slug' => 'failed',
+            ],
+            [
+                'name'  => 'در حال انجام',
+                'badge' => 'info',
+                'slug' => 'processing',
+            ],
+            [
+                'name'  => 'تحویل به پست',
+                'badge' => 'info',
+                'slug' => 'shipped',
+            ],
+            [
+                'name'  => 'تکمیل شده',
+                'badge' => 'success',
+                'slug' => 'completed',
+            ],
+            [
+                'name'  => 'لغو شده',
+                'badge' => 'light',
+                'slug' => 'cancelled',
+            ]
+        ];
+        Status::insert($statuses);
     }
 }
