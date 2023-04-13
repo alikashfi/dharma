@@ -18,18 +18,19 @@ class OrderController extends Controller
 {
     public function order(CheckoutPageRequest $request)
     {
+        if ( ! auth()->user()->hasDetails()) {
+            auth()->user()->update($request->validated());
+        }
+
         $order = $this->createOrder($request);
 
         // todo: notify
 
-        // paymenting & gateway
-        return $this->createPaymentAndPay($order);
+        return tap($this->createPaymentAndPay($order), fn() => Cart::clear());
     }
 
     public function paymentCallback(Request $request, $uuid)
     {
-        Cart::clear();
-
         // todo: notify
         try {
             $payment = Payment::whereUuid($uuid)->firstOrFail();

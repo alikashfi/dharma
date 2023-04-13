@@ -19,13 +19,13 @@
                             </td>
                             <td class="product-thumbnail">
                                 <div class="thumb">
-                                    <a href="single-product.html">
+                                    <a href="{{ route('product', $product->slug) }}">
                                         <img src="{{ $product->image }}" width="68" height="84" alt="Image-HasTech">
                                     </a>
                                 </div>
                             </td>
                             <td class="product-name">
-                                <a class="title" href="single-product.html">{{ $product->name }}</a>
+                                <a class="title" href="{{ route('product', $product->slug) }}">{{ $product->name }}</a>
                             </td>
                             <td class="product-price">
                                 <span class="price">{{ $product->priceFormatted }} تومان</span>

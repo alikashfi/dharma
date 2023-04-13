@@ -22,34 +22,19 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="fname">نام <abbr class="required" title="required">*</abbr></label>
-                                            <input name="fname" id="fname" type="text" class="form-control" value="{{ auth()->user()->fname }}" readonly>
-                                        </div>
+                                        <x-checkout-input label="نام" name="fname"/>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="lname">نام خانوادگی <abbr class="required" title="required">*</abbr></label>
-                                            <input name="lname" id="lname" type="text" class="form-control" value="{{ auth()->user()->lname }}" readonly>
-                                        </div>
+                                        <x-checkout-input label="نام خانوادگی" name="lname"/>
                                     </div>
                                     <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="address">آدرس <abbr class="required" title="required">*</abbr></label>
-                                            <input name="address" id="address" type="text" class="form-control" value="{{ auth()->user()->address }}" readonly>
-                                        </div>
+                                        <x-checkout-input label="آدرس" name="address"/>
                                     </div>
                                     <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="postal_code">کد پستی <abbr class="required" title="required">*</abbr></label>
-                                            <input name="postal_code" id="postal_code" type="text" class="form-control" value="{{ auth()->user()->postal_code }}" readonly>
-                                        </div>
+                                        <x-checkout-input label="کد پستی" name="postal_code"/>
                                     </div>
                                     <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="phone">شماره تلفن <abbr class="required" title="required">*</abbr></label>
-                                            <input name="phone" id="phone" type="text" class="form-control" value="{{ auth()->user()->phone }}" readonly>
-                                        </div>
+                                        <x-checkout-input label="شماره تلفن" name="phone"/>
                                     </div>
                                     @if(auth()->user()->hasDetails())
                                         <p>میتوانید مشخصات را از
@@ -59,8 +44,8 @@
                                     @endif
                                     <div class="col-md-12">
                                         <div class="form-group mb-0">
-                                            <label for="comments">یادداشت خرید</label>
-                                            <textarea name="comment" id="comments" class="form-control" placeholder="توضیحات درباره خرید یا ارسال؟"></textarea>
+                                            <label for="comment">یادداشت خرید</label>
+                                            <textarea name="comment" id="comment" class="form-control" placeholder="توضیحات درباره خرید یا ارسال؟">{{ old('comment') }}</textarea>
                                         </div>
                                     </div>
                                 </div>
