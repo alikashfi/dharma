@@ -36,7 +36,8 @@ class IndexController extends Controller
 
     public function category(Category $category)
     {
-        $products = $category->products()->paginate(10);
+        $categories = array_merge($category->subCategories()->pluck('id')->toArray(), [$category->id]);
+        $products = Product::whereIn('category_id', $categories)->paginate(10);
 
         return view('pages.category', compact('products', 'category'));
     }

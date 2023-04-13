@@ -3,6 +3,11 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use Filament\Forms\Components\Card;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Spatie\Valuestore\Valuestore;
@@ -36,12 +41,39 @@ class AppServiceProvider extends ServiceProvider
     private function defineFilamentSettingsFields()
     {
         \Reworck\FilamentSettings\FilamentSettings::setFormFields([
-            \Filament\Forms\Components\TextInput::make('homeTitle')->translateLabel(),
-            \Filament\Forms\Components\TextInput::make('homeDescription')->translateLabel(),
-            \Filament\Forms\Components\TextInput::make('shopTitle')->translateLabel(),
-            \Filament\Forms\Components\TextInput::make('shopDescription')->translateLabel(),
-            \Filament\Forms\Components\TextInput::make('instagramTitle')->translateLabel(),
-            \Filament\Forms\Components\TextInput::make('instagramLink')->translateLabel(),
+            Card::make()->schema([
+                TextInput::make('homeTitle')->translateLabel(),
+                TextInput::make('homeDescription')->translateLabel(),
+                TextInput::make('shopTitle')->translateLabel(),
+                TextInput::make('shopDescription')->translateLabel(),
+                TextInput::make('instagramTitle')->translateLabel(),
+                TextInput::make('instagramLink')->translateLabel(),
+
+                Repeater::make('socials')->schema([
+                        // FileUpload::make('image')
+                        //     ->disk('images')
+                        //     ->storeFileNamesIn('image')
+                        //     ->image()
+                        //     ->requiredWithout('icon')
+                        //     ->visibility('public')
+                        //     ->translateLabel(),
+                        TextInput::make('image')
+                            ->requiredWithout('icon')
+                            ->placeholder('instagram.png')
+                            ->translateLabel(),
+                        TextInput::make('icon')
+                            ->requiredWithout('image')
+                            ->placeholder('fa-instagram')
+                            ->translateLabel(),
+                        TextInput::make('link')
+                            ->url()
+                            ->required()
+                            ->translateLabel()
+                    ])
+                    ->columns(3)
+                    ->translateLabel()
+
+            ]),
         ]);
     }
 

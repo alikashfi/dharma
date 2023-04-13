@@ -34,10 +34,15 @@
                     <div class="widget-item">
                         <h4 class="widget-title">شبکه های اجتماعی</h4>
                         <div class="widget-social">
-                            <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fa fs-2 fa-twitter"></i></a>
-                            <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fa fs-2 fa-facebook"></i></a>
-                            <a href="https://www.pinterest.com/" target="_blank" rel="noopener"><i class="fa fs-2 fa-pinterest-p"></i></a>
-                            <a href="https://www.pinterest.com/" target="_blank" rel="noopener"><i class="fa fs-2 fa-instagram"></i></a>
+                            @foreach($settings->socials as $social)
+                                <a href="{{ $social['link'] }}" target="_blank" rel="noopener">
+                                    @empty($social['icon'])
+                                        <img src="{{ url("images/social/{$social['image']}") }}" alt="{{ $social['link'] }}" style="width: 28px; max-width: 28px">
+                                    @else
+                                        <i class="fa fs-2 {{ $social['icon'] }}"></i>
+                                    @endif
+                                </a>
+                            @endforeach
                         </div>
                     </div>
                 </div>
