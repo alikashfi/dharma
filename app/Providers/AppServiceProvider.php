@@ -3,10 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Page;
 use Filament\Forms\Components\Card;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -34,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
                 'headerCategories' => $categories->where('in_menu', true),
                 'pageCategories'   => $categories->where('in_page', true),
                 'settings'         => $this->getSettings(),
+                'pages'            => Page::select('slug', 'name', 'deleted_at')->get(),
             ]);
         });
     }
@@ -50,28 +50,28 @@ class AppServiceProvider extends ServiceProvider
                 TextInput::make('instagramLink')->translateLabel(),
 
                 Repeater::make('socials')->schema([
-                        // FileUpload::make('image')
-                        //     ->disk('images')
-                        //     ->storeFileNamesIn('image')
-                        //     ->image()
-                        //     ->requiredWithout('icon')
-                        //     ->visibility('public')
-                        //     ->translateLabel(),
-                        TextInput::make('image')
-                            ->requiredWithout('icon')
-                            ->placeholder('instagram.png')
-                            ->translateLabel(),
-                        TextInput::make('icon')
-                            ->requiredWithout('image')
-                            ->placeholder('fa-instagram')
-                            ->translateLabel(),
-                        TextInput::make('link')
-                            ->url()
-                            ->required()
-                            ->translateLabel()
-                    ])
+                    // FileUpload::make('image')
+                    //     ->disk('images')
+                    //     ->storeFileNamesIn('image')
+                    //     ->image()
+                    //     ->requiredWithout('icon')
+                    //     ->visibility('public')
+                    //     ->translateLabel(),
+                    TextInput::make('image')
+                        ->requiredWithout('icon')
+                        ->placeholder('instagram.png')
+                        ->translateLabel(),
+                    TextInput::make('icon')
+                        ->requiredWithout('image')
+                        ->placeholder('fa-instagram')
+                        ->translateLabel(),
+                    TextInput::make('link')
+                        ->url()
+                        ->required()
+                        ->translateLabel(),
+                ])
                     ->columns(3)
-                    ->translateLabel()
+                    ->translateLabel(),
 
             ]),
         ]);

@@ -25,4 +25,12 @@
                 <priority>0.9</priority>
             </url>
         @endforeach
+        @foreach ($pages as $page)
+            <url>
+                <loc>{{ route('page', $page->slug) }}</loc>
+                <changefreq>monthly</changefreq>
+                <lastmod>{{ $page->updated_at->format('Y-m-d\TH:i:s+03:30') }}</lastmod>
+                <priority>0.9</priority>
+            </url>
+        @endforeach
 </urlset>

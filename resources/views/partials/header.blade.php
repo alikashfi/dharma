@@ -28,10 +28,9 @@
                         </li>
                         <li class="has-submenu"><a>درباره ما</a>
                             <ul class="submenu-nav">
-                                <li><a href="{{ route('about') }}">درباره ما</a></li>
-                                <li><a href="{{ route('contact') }}">تماس با ما</a></li>
-                                <li><a href="{{ route('faq') }}">سوالات متداول</a></li>
-                                <li><a href="{{ route('privacy-policy') }}">قوانین</a></li>
+                                @foreach($pages as $page)
+                                    <li><a href="{{ route('page', $page->slug) }}">{{ $page->name }}</a></li>
+                                @endforeach
                             </ul>
                         </li>
                         <li><a href="{{ $settings->instagramLink }}">{{ $settings->instagramTitle }}</a></li>
@@ -101,3 +100,45 @@
     </div>
 </header>
 <!--== End Header Wrapper ==-->
+
+@push('mobile-menu')
+    <!--== Start Aside Menu ==-->
+    <aside class="off-canvas-wrapper offcanvas offcanvas-start" tabindex="-1" id="AsideOffcanvasMenu"
+           aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h1 class="d-none" id="offcanvasExampleLabel">Aside Menu</h1>
+            <button class="btn-menu-close" data-bs-dismiss="offcanvas" aria-label="Close">{{ __('menu') }} <i class="fa fa-chevron-left"></i></button>
+        </div>
+        <div class="offcanvas-body">
+            <div id="offcanvasNav" class="offcanvas-menu-nav">
+                <ul>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="{{ route('home') }}">خانه</a></li>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item">{{ __('shop') }}</a>
+                        <ul>
+                            <li><a href="{{ route('shop') }}">همه محصولات</a></li>
+                            @foreach($headerCategories->where('parent_id', null) as $category)
+                                <li><a class="offcanvas-nav-item">{{ $category->name }}</a>
+                                    <ul>
+                                        <li><a href="{{ route('category', $category->slug) }}">همه {{ $category->name }} ها</a></li>
+                                        @foreach($headerCategories->where('parent_id', $category->id) as $category)
+                                            <li><a href="{{ route('category', $category->slug) }}">{{ $category->name }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item">درباره ما</a>
+                        <ul class="submenu-nav">
+                            @foreach($pages as $page)
+                                <li><a href="{{ route('page', $page->slug) }}">{{ $page->name }}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="{{ $settings->instagramLink }}">{{ $settings->instagramTitle }}</a></li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+    <!--== End Aside Menu ==-->
+@endpush

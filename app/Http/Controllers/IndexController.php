@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Page;
 use App\Models\Product;
 use App\Models\Shipping;
 use Illuminate\Http\Request;
@@ -56,6 +57,11 @@ class IndexController extends Controller
         $shipping = $this->getShippingFromCookie();
 
         return view('pages.checkout', compact('products', 'shipping'));
+    }
+
+    public function page(Page $page)
+    {
+        return view('pages.page', compact('page'));
     }
 
     public static function getProductsFromCart(): Collection|array

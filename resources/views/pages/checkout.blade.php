@@ -102,7 +102,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p class="p-text">از اطلاعات شما فقط در جهت ارسال محصولات برایتان استفاده خواهد شد. برای توضیحات بیشتر، <a href="#/">قوانین حریم خصوصی</a> را بخوانید.</p>
+                                <p class="p-text">از اطلاعات شما فقط در جهت ارسال محصولات برایتان استفاده خواهد شد. برای توضیحات بیشتر، <a href="{{ route('page', 'privacy-policy') }}">قوانین حریم خصوصی</a> را بخوانید.</p>
                                 <div class="agree-policy">
                                     <div class="custom-control custom-checkbox">
                                         <input name="privacy_policy" type="checkbox" form="checkout-form" id="privacy_policy" class="custom-control-input visually-hidden" required>
