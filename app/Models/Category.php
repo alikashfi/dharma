@@ -15,7 +15,7 @@ class Category extends Model implements HasMedia
     use HasFactory, InteractsWithMedia;
 
     public $guarded = [];
-    protected $appends = ['image'];
+    // protected $appends = ['image'];
     protected $with = ['media'];
 
     public function getRouteKeyName()

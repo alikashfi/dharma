@@ -17,7 +17,7 @@ class Product extends Model implements HasMedia
     use HasFactory, InteractsWithMedia, SoftDeletes;
 
     public $guarded = [];
-    protected $appends = ['image'];
+    // protected $appends = ['image'];
     protected $with = ['media'];
 
     public function increaseView()
