@@ -107,7 +107,9 @@
 
     <main class="main-content">
         @includeWhen(isset($breadcrumb), 'partials.breadcrumb', $breadcrumb ?? null)
-        @include('partials.flash')
+        <div class="container mt-4">
+            @include('partials.flash')
+        </div>
         @yield('content')
     </main>
 

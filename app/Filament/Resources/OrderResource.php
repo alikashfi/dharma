@@ -36,6 +36,7 @@ class OrderResource extends Resource
                     Select::make('user_id')
                         ->relationship('user', 'fname')
                         ->preload()
+                        ->required()
                         ->translateLabel(),
 
                     Select::make('status_id')
@@ -46,9 +47,11 @@ class OrderResource extends Resource
 
                     Forms\Components\TextInput::make('price')
                         ->required()
+                        ->numeric()
                         ->translateLabel(),
 
                     Forms\Components\TextInput::make('shipping_price')
+                        ->numeric()
                         ->translateLabel(),
 
                     Forms\Components\Textarea::make('comment')

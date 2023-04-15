@@ -41,6 +41,7 @@ class ProductResource extends Resource
                     Select::make('category_id')
                         ->relationship('category', 'name')
                         ->preload()
+                        ->required()
                         ->translateLabel(),
 
                     TextInput::make('name')
