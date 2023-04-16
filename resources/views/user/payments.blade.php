@@ -17,18 +17,24 @@
                     <thead class="thead-light">
                     <tr>
                         <th>شناسه</th>
-                        {{-- <th>تاریخ</th> --}}
-                        {{-- <th>وضعیت</th> --}}
-                        {{-- <th>قیمت</th> --}}
+                         <th>وضعیت</th>
+                         <th>قیمت</th>
+                         <th>تاریخ</th>
+                         <th>جزئیات</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($payments as $payment)
                         <tr>
                             <td>{{ $payment->id }}</td>
-                            {{-- <td>{{ $payment->created_at }}</td> --}}
-                            {{-- <td>{{ $payment->id }}</td> --}}
-                            {{-- <td>{{ $payment->price }}</td> --}}
+                             <td>
+                                <span class="badge rounded-pill {{ $payment->is_paid ? 'bg-success' : 'bg-danger' }}">
+                                    {{ $payment->is_paid ? 'موفق' : 'ناموفق' }}
+                                </span>
+                             </td>
+                             <td>{{ number_format($payment->order->fullPrice) }}</td>
+                             <td>{{ $payment->created_at }}</td>
+                            <td><a href="{{ route('user.payment-details', $payment->id) }}" class="check-btn sqr-btn ">جزئیات</a></td>
                         </tr>
                     @endforeach
                     </tbody>

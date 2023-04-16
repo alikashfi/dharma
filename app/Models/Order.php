@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -27,8 +28,13 @@ class Order extends Model
         return $this->belongsTo(Status::class);
     }
 
-    public function items()
+    public function products()
     {
         return $this->belongsToMany(Product::class, 'order_items');
+    }
+
+    public function fullPrice(): Attribute
+    {
+        return Attribute::make(fn() => $this->products->sum('price') + $this->shipping_price);
     }
 }

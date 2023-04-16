@@ -18,16 +18,26 @@ class UserController extends Controller
 
     public function orders()
     {
-        $orders = Order::where('user_id', auth()->id())->with('status')->paginate(10);
-
+        $orders = Order::where('user_id', auth()->id())->with('status')->latest()->paginate(10);
         return view('user.orders', compact('orders'));
+    }
+
+    public function orderDetails(Order $order)
+    {
+        $order->load('products');
+        return view('user.order-details', compact('order'));
     }
 
     public function payments()
     {
-        $payments = Payment::where('user_id', auth()->id())->paginate(10);
-
+        $payments = Payment::where('user_id', auth()->id())->with('order')->latest()->paginate(10);
         return view('user.payments', compact('payments'));
+    }
+
+    public function paymentDetails(Payment $payment)
+    {
+        $payment->load('order');
+        return view('user.payment-details', compact('payment'));
     }
 
     public function details()

@@ -95,6 +95,15 @@
         a.mega-title {
             height: 100px;
         }
+        .my-account-tab-menu.nav-tabs .nav-link {
+            text-align: right;
+        }
+        @media only screen and (max-width: 767px) {
+            .section-space {
+                padding-top: 30px;
+                padding-bottom: 30px;
+            }
+        }
     </style>
 </head>
 
@@ -107,9 +116,11 @@
 
     <main class="main-content">
         @includeWhen(isset($breadcrumb), 'partials.breadcrumb', $breadcrumb ?? null)
+
         <div class="container mt-4">
             @include('partials.flash')
         </div>
+
         @yield('content')
     </main>
 

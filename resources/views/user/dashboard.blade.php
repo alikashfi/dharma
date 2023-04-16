@@ -12,9 +12,9 @@
         <div class="myaccount-content">
             <h3>داشبورد</h3>
             <div class="welcome">
-                <p>سلام, <strong>{{ auth()->user()->fullname }}</strong></p>
+                <p>سلام, <strong class="text-black">{{ auth()->user()->fullname }}</strong></p>
             </div>
-            <p>شما میتوانید از پنل کاربری، وضعیت سفارش های خود را ببینید.</p>
+            <p>شما میتوانید از پنل کاربری، <a href="{{ route('user.orders') }}" class="text-primary">وضعیت سفارش های خود را ببینید.</a></p>
         </div>
     </div>
 

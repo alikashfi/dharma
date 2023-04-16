@@ -38,7 +38,7 @@
                                     </span>
                                 </td>
                                 <td>{{ $order->price }}</td>
-                                <td><a href="shop-cart.html" class="check-btn sqr-btn ">View</a></td>
+                                <td><a href="{{ route('user.order-details', $order->id) }}" class="check-btn sqr-btn ">جزئیات</a></td>
                             </tr>
                         @endforeach
                     </tbody>

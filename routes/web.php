@@ -40,7 +40,9 @@ Route::controller(UserController::class)->middleware('auth')->prefix('user')->na
     Route::redirect('', 'user/dashboard');
     Route::get('dashboard', 'dashboard')->name('dashboard');
     Route::get('orders', 'orders')->name('orders');
+    Route::get('order-details/{order}', 'orderDetails')->name('order-details');
     Route::get('payments', 'payments')->name('payments');
+    Route::get('payment-details/{payment}', 'paymentDetails')->name('payment-details');
     Route::get('details', 'details')->name('details');
     Route::post('details', 'detailsForm');
     Route::get('settings', 'settings')->name('settings');

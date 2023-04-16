@@ -1,9 +1,9 @@
-@extends('layouts.main', [
+@extends('layouts.main', ['breadcrumb' => [
     'links' => [
         'سبد خرید' => route('cart'),
         'پرداخت'
     ]
-])
+]])
 
 @section('title', 'صفحه پرداخت')
 

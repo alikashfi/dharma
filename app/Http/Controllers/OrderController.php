@@ -92,6 +92,6 @@ class OrderController extends Controller
             'price'          => $products->sum('price') + $shipping->price,
             'shipping_price' => $shipping->price,
             'comment'        => $request->comment,
-        ]), fn($order) => $order->items()->sync($products->pluck('id')->toArray()));
+        ]), fn($order) => $order->products()->sync($products->pluck('id')->toArray()));
     }
 }
