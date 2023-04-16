@@ -24,7 +24,7 @@
                     </tr>
                     <tr>
                         <td class="fw-bold">جمع کل:</td>
-                        <td class="fw-bold">{{ number_format($order->products->sum('price') + $order->shipping_price) }}</td>
+                        <td class="fw-bold">{{ number_format($order->price) }}</td>
                     </tr>
                     <tr>
                         <td>وضعیت:</td>

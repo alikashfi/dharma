@@ -32,9 +32,4 @@ class Order extends Model
     {
         return $this->belongsToMany(Product::class, 'order_items');
     }
-
-    public function totalPrice(): Attribute
-    {
-        return Attribute::make(fn() => $this->products->sum('price') + $this->shipping_price);
-    }
 }

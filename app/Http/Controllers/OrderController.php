@@ -48,7 +48,7 @@ class OrderController extends Controller
 
     public function createPaymentAndPay(Order $order)
     {
-        $invoice = (new Invoice)->amount(toRial($order->totalPrice));
+        $invoice = (new Invoice)->amount(toRial($order->price));
         $invoice->detail('Title', 'خرید از ' . config('app.name'));
 
         $payment = new Payment;
@@ -79,7 +79,7 @@ class OrderController extends Controller
         try {
             $payment = Payment::whereUuid($uuid)->whereIsPaid(false)->with('order')->firstOrFail();
 
-            $receipt = ShetabitPayment::amount(toRial($payment->order->totalPrice))->transactionId($request->token)->verify();
+            $receipt = ShetabitPayment::amount(toRial($payment->order->price))->transactionId($request->token)->verify();
 
             $payment->trans2 = $receipt->getReferenceId();
             $payment->is_paid = 1;
