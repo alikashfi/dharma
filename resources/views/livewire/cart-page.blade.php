@@ -12,7 +12,7 @@
                     {{-- </tr> --}}
                     {{-- </thead> --}}
                     <tbody>
-                    @foreach($products as $product)
+                    @forelse($products as $product)
                         <tr class="tbody-item">
                             <td class="product-remove">
                                 <a wire:click.prevent="$emit('removeFromCart', {{ $product->id }})" class="remove" href="javascript:void(0)">×</a>
@@ -31,7 +31,9 @@
                                 <span class="price">{{ $product->priceFormatted }} تومان</span>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <p class="fs-5">سبد خرید شما خالیست! <a href="{{ route('shop') }}" class="text-primary me-1">برو به فروشگاه</a></p>
+                    @endforelse
                     </tbody>
                 </table>
             </form>

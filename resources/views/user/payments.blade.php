@@ -32,7 +32,7 @@
                                     {{ $payment->is_paid ? 'موفق' : 'ناموفق' }}
                                 </span>
                              </td>
-                             <td>{{ number_format($payment->order->fullPrice) }}</td>
+                             <td>{{ number_format($payment->order->totalPrice) }}</td>
                              <td>{{ $payment->created_at }}</td>
                             <td><a href="{{ route('user.payment-details', $payment->id) }}" class="check-btn sqr-btn ">جزئیات</a></td>
                         </tr>

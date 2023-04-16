@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Status;
 use Cart;
+use DB;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Shetabit\Multipay\Exceptions\InvalidPaymentException;
@@ -22,41 +23,32 @@ class OrderController extends Controller
             auth()->user()->update($request->validated());
         }
 
-        $order = $this->createOrder($request);
+        return DB::transaction(function() use ($request){
+            $order = $this->createOrder($request);
 
-        // todo: notify
+            // todo: notify
 
-        return tap($this->createPaymentAndPay($order), fn() => Cart::clear());
+            return tap($this->createPaymentAndPay($order), fn() => Cart::clear());
+        });
     }
 
-    public function paymentCallback(Request $request, $uuid)
+    private function createOrder($request): Order
     {
-        // todo: notify
-        try {
-            $payment = Payment::whereUuid($uuid)->firstOrFail();
+        $products = IndexController::getProductsFromCart();
+        $shipping = IndexController::getShippingFromCookie();
 
-            $receipt = ShetabitPayment::amount(1000)->transactionId($request->token)->verify();
-
-            $payment->trans2 = $receipt->getReferenceId();
-            $payment->is_paid = 1;
-            $payment->save();
-            $payment->order()->update(['is_paid' => 1, 'status_id' => Status::firstWhere('slug', 'processing')->id]);
-
-            return redirect()->route('user.orders')->with('flash', 'پرداخت با موفقیت انجام شد.');
-        } catch (InvalidPaymentException $e) {
-            $payment->result = $e->getMessage();
-            $payment->order()->update(['status_id' => Status::firstWhere('slug', 'failed')->id]);
-            $payment->save();
-            return redirect()->route('user.payments')->withErrors($e->getMessage());
-        } catch (\Exception $e) {
-            report($e);
-            return redirect()->route('cart')->withErrors('مشکلی در ذخیره اطلاعات خرید پیش آمد. ما مشکل را بررسی کرده و در صورت لزوم با شما تماس میگیریم.');
-        }
+        return tap(Order::create([
+            'user_id'        => auth()->id(),
+            'shipping_id'    => $shipping->id,
+            'price'          => $products->sum('price') + $shipping->price,
+            'shipping_price' => $shipping->price,
+            'comment'        => $request->comment,
+        ]), fn($order) => $order->products()->sync($products->pluck('id')->toArray()));
     }
 
     public function createPaymentAndPay(Order $order)
     {
-        $invoice = (new Invoice)->amount($order->price);
+        $invoice = (new Invoice)->amount(toRial($order->totalPrice));
         $invoice->detail('Title', 'خرید از ' . config('app.name'));
 
         $payment = new Payment;
@@ -81,17 +73,28 @@ class OrderController extends Controller
         }
     }
 
-    private function createOrder($request): Order
+    public function paymentCallback(Request $request, $uuid)
     {
-        $products = IndexController::getProductsFromCart();
-        $shipping = IndexController::getShippingFromCookie();
+        // todo: notify
+        try {
+            $payment = Payment::whereUuid($uuid)->whereIsPaid(false)->with('order')->firstOrFail();
 
-        return tap(Order::create([
-            'user_id'        => auth()->id(),
-            'shipping_id'    => $shipping->id,
-            'price'          => $products->sum('price') + $shipping->price,
-            'shipping_price' => $shipping->price,
-            'comment'        => $request->comment,
-        ]), fn($order) => $order->products()->sync($products->pluck('id')->toArray()));
+            $receipt = ShetabitPayment::amount(toRial($payment->order->totalPrice))->transactionId($request->token)->verify();
+
+            $payment->trans2 = $receipt->getReferenceId();
+            $payment->is_paid = 1;
+            $payment->save();
+            $payment->order()->update(['is_paid' => 1, 'status_id' => Status::firstWhere('slug', 'processing')->id]);
+
+            return flashBack('پرداخت با موفقیت انجام شد.', 'user.orders');
+        } catch (InvalidPaymentException $e) {
+            $payment->result = $e->getMessage();
+            $payment->order()->update(['status_id' => Status::firstWhere('slug', 'failed')->id]);
+            $payment->save();
+            return redirect()->route('user.payments')->withErrors($e->getMessage());
+        } catch (\Exception $e) {
+            report($e);
+            return redirect()->route('cart')->withErrors('مشکلی در ارتباط با درگاه پرداخت پیش آمد. ما مشکل را بررسی کرده و در صورت لزوم با شما تماس میگیریم.');
+        }
     }
 }
