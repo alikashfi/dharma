@@ -12,12 +12,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('parent_id')->nullable()->references('id')->on('categories')->cascadeOnUpdate()->nullOnDelete();
             $table->string('name', 30);
-            $table->string('title', 50);
+            $table->string('title', 50)->nullable();
             $table->string('slug', 30)->unique();
             $table->string('color', 7)->default('#FFFFFF');
             // $table->string('image', 30);
             $table->text('description');
-            $table->text('meta_description');
+            $table->text('meta_description')->nullable();
             $table->unsignedTinyInteger('order')->nullable();
             $table->boolean('in_menu')->default(true);
             $table->boolean('in_page')->default(true);

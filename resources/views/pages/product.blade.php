@@ -64,7 +64,7 @@
                         {{--     </div> --}}
                         {{--     <button type="button" class="product-review-show">150 reviews</button> --}}
                         {{-- </div> --}}
-                        <p class="mb-7">{{ $product->description }}</p>
+                        <p class="mb-7">{!! $product->description !!}</p>
                         <div class="product-details-action">
                             <h4 class="price">{{ $product->priceFormatted }} تومان</h4>
                             <div class="product-details-cart-wishlist">
@@ -82,6 +82,27 @@
     <!--== End Product Details Area Wrapper ==-->
 
 @endsection
+
+{{--@push('script')--}}
+{{--    <script type="application/ld+json" defer>--}}
+{{--            {--}}
+{{--                "@context": "https://schema.org/",--}}
+{{--                "@type": "BreadcrumbList",--}}
+{{--                "itemListElement": [{--}}
+{{--                        "@type": "ListItem",--}}
+{{--                        "position": 1,--}}
+{{--                        "name": "{{ $social->name }}",--}}
+{{--                        "item": "{{ route('social', $social->slug) }}"--}}
+{{--                    },{--}}
+{{--                        "@type": "ListItem",--}}
+{{--                        "position": 2,--}}
+{{--                        "name": "{{ $category->name }}",--}}
+{{--                        "item": "{{ route('category', ['social' => $social->slug, 'category' => $category->slug]) }}"--}}
+{{--                    }--}}
+{{--                ]--}}
+{{--            }--}}
+{{--        </script>--}}
+{{--@endpush--}}
 
 <style>
     /* galleryTop */

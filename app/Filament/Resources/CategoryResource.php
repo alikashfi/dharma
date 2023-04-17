@@ -43,14 +43,12 @@ class CategoryResource extends Resource
                         ->preload()
                         ->translateLabel(),
 
-
                     TextInput::make('name')
                         ->required()
                         ->maxLength(30)
                         ->translateLabel(),
 
                     TextInput::make('title')
-                        ->required()
                         ->maxLength(50)
                         ->translateLabel(),
 
@@ -69,11 +67,11 @@ class CategoryResource extends Resource
                         ->translateLabel(),
 
                     RichEditor::make('meta_description')
-                        ->required()
                         ->maxLength(65535)
                         ->translateLabel(),
 
                     TextInput::make('order')
+                        ->numeric()
                         ->translateLabel(),
 
                     Toggle::make('in_menu')

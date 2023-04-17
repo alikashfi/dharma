@@ -11,8 +11,6 @@
 
 @section('content')
 
-    @include('partials.page-categories')
-
     <!--== Start Product Area Wrapper ==-->
     <section class="section-space">
         <div class="container">
