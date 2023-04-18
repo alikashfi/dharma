@@ -32,8 +32,9 @@ class ProductResource extends Resource
             ->schema([
                 Forms\Components\Card::make()->schema([
                     SpatieMediaLibraryFileUpload::make('images')
-                        ->multiple()
+                        ->disk('images')
                         ->collection('product')
+                        ->multiple()
                         ->enableReordering()
                         ->maxSize(2048)
                         ->translateLabel(),

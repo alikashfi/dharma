@@ -60,12 +60,12 @@ class Product extends Model implements HasMedia
 
     protected function image(): Attribute
     {
-        return Attribute::make(get: fn() => $this->media->first()?->getUrl() ?? '/images/default-product.jpg');
+        return Attribute::make(get: fn() => $this->media->sortByDesc('order_column')->first()?->getUrl() ?? '/images/default-product.jpg');
     }
 
     protected function thumbImage(): Attribute
     {
-        return Attribute::make(get: fn() => $this->media->first()?->getUrl('thumb') ?? '/images/default-product.jpg');
+        return Attribute::make(get: fn() => $this->media->sortByDesc('order_column')->first()?->getUrl('thumb') ?? '/images/default-product.jpg');
     }
 
     protected function priceFormatted(): Attribute

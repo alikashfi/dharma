@@ -32,8 +32,8 @@ class CategoryResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Card::make()->schema([
-
                     SpatieMediaLibraryFileUpload::make('image')
+                        ->disk('images')
                         ->collection('category')
                         ->maxSize(1024)
                         ->translateLabel(),
@@ -89,7 +89,7 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                SpatieMediaLibraryImageColumn::make('image')->collection('category')->conversion('thumb')->translateLabel(),
+                SpatieMediaLibraryImageColumn::make('image')->collection('category')->translateLabel(),
                 Tables\Columns\TextColumn::make('name')->translateLabel(),
                 Tables\Columns\TextColumn::make('created_at')->dateTime()->translateLabel(),
             ])

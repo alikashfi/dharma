@@ -52,11 +52,4 @@ class Category extends Model implements HasMedia
     {
         return Attribute::make(get: fn() => $this->meta_description ?? $this->description);
     }
-
-    public function registerMediaConversions(Media $media = null): void
-    {
-        $this->addMediaConversion('thumb')
-            ->fit(Manipulations::FIT_CROP, 100, 100)
-            ->nonQueued();
-    }
 }
