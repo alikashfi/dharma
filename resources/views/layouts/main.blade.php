@@ -6,7 +6,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>@yield('title') - {{ config('app.name') }}</title>
     <meta name="description" content="Brancy - Cosmetic & Beauty Salon Website Template">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width">
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png">

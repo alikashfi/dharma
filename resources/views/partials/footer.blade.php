@@ -10,7 +10,7 @@
                             <a class="widget-logo" href="index.html">
                                 <img src="{{ url('images/logo.jpg') }}" width="95" height="68" alt="Logo">
                             </a>
-                            <p class="desc">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
+                            <p class="desc">{{ $settings->footerDescription }}</p>
                         </div>
                     </div>
                 </div>

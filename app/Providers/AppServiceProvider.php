@@ -48,15 +48,12 @@ class AppServiceProvider extends ServiceProvider
                 TextInput::make('shopDescription')->translateLabel(),
                 TextInput::make('instagramTitle')->translateLabel(),
                 TextInput::make('instagramLink')->translateLabel(),
+                TextInput::make('instagramButton')->translateLabel(),
+                TextInput::make('footerDescription')->translateLabel(),
+            ]),
 
+            Card::make()->schema([
                 Repeater::make('socials')->schema([
-                    // FileUpload::make('image')
-                    //     ->disk('images')
-                    //     ->storeFileNamesIn('image')
-                    //     ->image()
-                    //     ->requiredWithout('icon')
-                    //     ->visibility('public')
-                    //     ->translateLabel(),
                     TextInput::make('image')
                         ->requiredWithout('icon')
                         ->placeholder('instagram.png')
@@ -69,11 +66,9 @@ class AppServiceProvider extends ServiceProvider
                         ->url()
                         ->required()
                         ->translateLabel(),
-                ])
-                    ->columns(3)
-                    ->translateLabel(),
-
+                ])->columns(3)->translateLabel(),
             ]),
+
         ]);
     }
 
