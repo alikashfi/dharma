@@ -1,8 +1,8 @@
 @extends('layouts.main', ['breadcrumb' => [
-    'links' => ['بازیابی ' . __('password')]
+    'links' => ['حساب کاربری']
 ]])
 
-@section('title', 'بازیابی' . __('password'))
+@section('title', 'ثبت نام')
 
 @section('content')
     <!--== Start Account Area Wrapper ==-->
@@ -12,16 +12,13 @@
                 <div class="col-lg-6 mb-8">
                     <!--== Start Register Area Wrapper ==-->
                     <div class="my-account-item-wrap">
-                        <h3 class="title">بازیابی {{ __('password') }}</h3>
+                        <h3 class="title">ثبت نام</h3>
                         <div class="my-account-form">
-                            <form method="POST" action="{{ route('password.store') }}">
+                            <form method="POST" action="{{ route('register') }}">
                                 @csrf
-
-                                <input type="hidden" name="token" value="{{ $request->route('token') }}">
-
                                 <div class="form-group mb-6">
                                     <label for="email">ایمیل <sup>*</sup></label>
-                                    <input type="email" name="email" id="email" class="form-control" value="{{ old('email', $request->email) }}" readonly>
+                                    <input type="email" name="email" id="email">
                                 </div>
 
                                 <div class="form-group mb-6">
@@ -36,7 +33,7 @@
 
                                 <div class="form-group">
                                     {{-- <p class="desc mb-4">Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy.</p> --}}
-                                    <button class="btn" type="submit">ثبت {{ __('password') }} جدید</button>
+                                    <button class="btn" type="submit">ثبت نام</button>
                                 </div>
                             </form>
                         </div>

@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function passVariablesToViews(): void
     {
-        View::composer(['pages.*', 'user.*'], function ($view) {
+        View::composer(['pages.*', 'user.*', 'auth.*'], function ($view) {
             $categories = Category::with('media')->orderBy('order')->get();
 
             $view->with([

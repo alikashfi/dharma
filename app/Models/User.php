@@ -48,4 +48,15 @@ class User extends Authenticatable implements FilamentUser, HasName
     {
         return count(array_filter($this->only('fname', 'lname', 'address', 'postal_code', 'phone'))) === 5;
     }
+
+    // todo: overwrite default email template for password reset.
+    // public function sendPasswordResetNotification($token): void
+    // {
+    //     public function sendResetLink
+    //     \Illuminate\Auth\Notifications\ResetPassword::class; // default notification class in vendor
+    //
+    //     $url = 'https://example.com/reset-password?token='.$token;
+    //
+    //     $this->notify(new ResetPasswordNotification($url));
+    // }
 }

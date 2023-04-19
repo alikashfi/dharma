@@ -1,6 +1,5 @@
 @extends('layouts.main', ['breadcrumb' => [
-    'links' => ['حساب کاربری'],
-    'title' => 'حساب کاربری'
+    'links' => ['فراموشی ' . __('password')]
 ]])
 
 @section('title', 'ثبت نام')
@@ -13,29 +12,22 @@
                 <div class="col-lg-6 mb-8">
                     <!--== Start Register Area Wrapper ==-->
                     <div class="my-account-item-wrap">
-                        <h3 class="title">ثبت نام</h3>
+                        <h3 class="title">فراموشی {{ __('password') }}</h3>
+                        <p>پسورد خود را فراموش کردید؟</p>
+                        <p>ایمیلی که با آن ثبت نام کردید را وارد کنید. یک لینک برای انتخاب پسورد جدید برای شما ایمیل میکنیم.</p>
                         <div class="my-account-form">
-                            <form method="POST" action="{{ route('register') }}">
+                            <form method="POST" action="{{ route('forgot-password') }}">
                                 @csrf
+
                                 <div class="form-group mb-6">
                                     <label for="register_username">ایمیل <sup>*</sup></label>
                                     <input type="email" name="email" id="register_username">
                                 </div>
 
-                                <div class="form-group mb-6">
-                                    <label for="register_pwsd">پسورد <sup>*</sup></label>
-                                    <input type="password" name="password" id="register_pwsd">
-                                </div>
-
-                                <div class="form-group mb-6">
-                                    <label for="register_pwsd">تکرار پسورد <sup>*</sup></label>
-                                    <input type="password" name="password_confirmation" id="register_pwsd">
-                                </div>
-
                                 <div class="form-group">
-                                    {{-- <p class="desc mb-4">Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy.</p> --}}
-                                    <button class="btn" type="submit">ثبت نام</button>
+                                    <button class="btn" type="submit">ارسال لینک بازیابی</button>
                                 </div>
+
                             </form>
                         </div>
                     </div>

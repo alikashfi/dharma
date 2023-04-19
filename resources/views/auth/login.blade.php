@@ -1,6 +1,5 @@
 @extends('layouts.main', ['breadcrumb' => [
-    'links' => ['حساب کاربری'],
-    'title' => 'حساب کاربری'
+    'links' => ['حساب کاربری']
 ]])
 
 @section('title', 'ورود')
@@ -37,7 +36,7 @@
                                         <label class="form-check-label" for="remember">مرا به خاطر بسپار</label>
                                     </div>
                                 </div>
-                                <a class="lost-password" href="my-account.html">پسورد خود را فراموش کرده اید?</a>
+                                <a class="lost-password" href="{{ route('forgot-password') }}">{{ __('password') }} خود را فراموش کرده اید?</a>
                             </form>
                         </div>
                     </div>
