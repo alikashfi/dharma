@@ -18,10 +18,6 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 
 // Pages
 Route::get('', [IndexController::class, 'home'])->name('home');
-// Route::get('about', [IndexController::class, 'about'])->name('about');
-// Route::get('contact', [IndexController::class, 'contact'])->name('contact');
-// Route::get('faq', [IndexController::class, 'faq'])->name('faq');
-// Route::get('privacy-policy', [IndexController::class, 'privacyPolicy'])->name('privacy-policy');
 Route::get('shop', [IndexController::class, 'shop'])->name('shop');
 Route::get('product/{product}', [IndexController::class, 'product'])->name('product');
 Route::get('category/{category}', [IndexController::class, 'category'])->name('category');

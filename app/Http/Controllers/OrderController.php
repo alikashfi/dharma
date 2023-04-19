@@ -6,10 +6,14 @@ use App\Http\Requests\CheckoutPageRequest;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Status;
+use App\Models\User;
+use App\Notifications\OrderCreated;
+use App\Notifications\OrderPaid;
 use Cart;
 use DB;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Notification;
 use Shetabit\Multipay\Exceptions\InvalidPaymentException;
 use Shetabit\Multipay\Invoice;
 use Shetabit\Payment\Facade\Payment as ShetabitPayment;
@@ -26,7 +30,7 @@ class OrderController extends Controller
         return DB::transaction(function() use ($request){
             $order = $this->createOrder($request);
 
-            // todo: notify
+            Notification::send(User::whereIsAdmin(true)->get(), new OrderCreated($order));
 
             return tap($this->createPaymentAndPay($order), fn() => Cart::clear());
         });
@@ -75,7 +79,7 @@ class OrderController extends Controller
 
     public function paymentCallback(Request $request, $uuid)
     {
-        // todo: notify
+        // todo: here i need db transaction but don't know how to implement it clean!
         try {
             $payment = Payment::whereUuid($uuid)->whereIsPaid(false)->with('order')->firstOrFail();
 
@@ -84,7 +88,9 @@ class OrderController extends Controller
             $payment->trans2 = $receipt->getReferenceId();
             $payment->is_paid = 1;
             $payment->save();
-            $payment->order()->update(['is_paid' => 1, 'status_id' => Status::firstWhere('slug', 'processing')->id]);
+            $payment->order->update(['is_paid' => 1, 'status_id' => Status::firstWhere('slug', 'processing')->id]);
+
+            Notification::send(User::whereIsAdmin(true)->get(), new OrderPaid($payment->order));
 
             return flashBack('پرداخت با موفقیت انجام شد.', 'user.orders');
         } catch (InvalidPaymentException $e) {
