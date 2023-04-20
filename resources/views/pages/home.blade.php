@@ -1,9 +1,15 @@
-@extends('layouts.main'/*, ['header' => 'sticky']*/)
+@extends('layouts.main', ['header' => $settings->fullPageHero ? 'sticky' : null])
 
 @section('title', $settings->homeTitle)
 @section('description', $settings->homeDescription)
 
 @section('content')
+
+    {{-- <div style="height: 100vh; background-image: url({{ url('images/hero.jpg') }}); background-size: cover; background-position: center;" class="position-relative w-100"> --}}
+    {{--      --}}
+    {{-- </div> --}}
+    <img src="{{ url('images/hero.jpg') }}" alt="{{ config('app.name') }}" class="hero-image">
+
 
     @include('partials.page-categories')
 
@@ -14,7 +20,6 @@
                 <div class="col-12">
                     <div class="section-title text-center">
                         <h2 class="title">جدید ترین محصولات</h2>
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
                     </div>
                 </div>
             </div>
@@ -126,7 +131,7 @@
     <!--== End Blog Area Wrapper ==-->
 
     <!--== Start News Letter Area Wrapper ==-->
-    <section class="section-space pt-0 mt-10">
+    <section class="section-space">
         <div class="container">
             <div class="newsletter-content-wrap" data-bg-img="assets/images/photos/instagram-background.jpg">
                 <div class="newsletter-content">

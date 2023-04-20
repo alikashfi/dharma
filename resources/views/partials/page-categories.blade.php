@@ -1,5 +1,5 @@
 <!--== Start Product Category Area Wrapper ==-->
-<section class="section-space pt-3 pb-0">
+<section class="section-space py-2">
     <div class="container">
         <div class="row g-3 g-sm-6">
             @foreach($pageCategories as $pcategory)

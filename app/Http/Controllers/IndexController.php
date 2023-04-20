@@ -32,7 +32,11 @@ class IndexController extends Controller
     {
         $product->load('category')->increaseView();
 
-        return view('pages.product', compact('product'));
+        $similarProducts = Product::whereCategoryId($product->category_id)->latest()->take(12)->get();
+        if ($similarProducts->count() < 4)
+            $similarProducts = Product::whereCategoryId($product->category->parent->id)->latest()->take(12)->get();
+
+        return view('pages.product', compact('product', 'similarProducts'));
     }
 
     public function category(Category $category)

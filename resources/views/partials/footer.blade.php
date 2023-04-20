@@ -8,7 +8,7 @@
                     <div class="widget-item">
                         <div class="widget-about">
                             <a class="widget-logo" href="index.html">
-                                <img src="{{ url('images/logo.jpg') }}" width="95" height="68" alt="Logo">
+                                <img src="{{ url('images/logo.png') }}" width="95" height="68" alt="Logo">
                             </a>
                             <p class="desc">{{ $settings->footerDescription }}</p>
                         </div>

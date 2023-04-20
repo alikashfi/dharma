@@ -7,6 +7,8 @@ use App\Models\Page;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
+use Filament\Tables\Columns\IconColumn;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Spatie\Valuestore\Valuestore;
@@ -51,6 +53,7 @@ class AppServiceProvider extends ServiceProvider
                 TextInput::make('instagramBox')->translateLabel(),
                 TextInput::make('instagramButton')->translateLabel(),
                 TextInput::make('footerDescription')->translateLabel(),
+                Toggle::make('fullPageHero')->translateLabel(),
             ]),
 
             Card::make()->schema([

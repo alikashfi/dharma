@@ -2,11 +2,10 @@
     'links' => [
         $product->category->name => route('category', $product->category->slug),
         $product->name
-    ],
-    'title' => $product->name
+    ]
 ]])
 
-@section('title', $product->title)
+@section('title', 'خرید ' . $product->title)
 @section('description', $product->metaDescription)
 
 @section('content')
@@ -15,11 +14,6 @@
         <div class="container">
             <div class="row product-details">
                 <div class="col-lg-6">
-                    {{-- <div class="product-details-thumb"> --}}
-                    {{--     <img src="/assets/images/shop/product-details/4.webp" width="570" height="693" alt="Image"> --}}
-                    {{--     <span class="flag-new">new</span> --}}
-                    {{-- </div> --}}
-
                     <div>
                         <!-- top gallery -->
                         <main class="swiper gallery">
@@ -64,7 +58,9 @@
                         {{--     </div> --}}
                         {{--     <button type="button" class="product-review-show">150 reviews</button> --}}
                         {{-- </div> --}}
-                        <p class="mb-4">کد محصول: {{ $product->code }}</p>
+                        @if ($product->code)
+                            <p class="mb-4">کد محصول: {{ $product->code }}</p>
+                        @endif
                         <div class="mb-5">{!! $product->description !!}</div>
                         <div class="product-details-action">
                             <h4 class="price">{{ $product->priceFormatted }} تومان</h4>
@@ -76,7 +72,7 @@
                             </div>
                         </div>
                         <div class="product-details-action">
-                            <a href="{{ $settings->instagramLink }}" class="igbtn text-white w-100" style="letter-spacing: 0; background-image: linear-gradient(to right, #DF4384 0%, #DD2A7B 51%, #8134AF 100%);">
+                            <a href="{{ $settings->instagramLink }}" class="igbtn text-white" style="letter-spacing: 0; background-image: linear-gradient(to right, #DF4384 0%, #DD2A7B 51%, #8134AF 100%);">
                                 {{ $settings->instagramButton }}
                             </a>
                         </div>
@@ -87,6 +83,27 @@
     </section>
     <!--== End Product Details Area Wrapper ==-->
 
+    <!--== Start Similar Products Area Wrapper ==-->
+    <section class="section-space">
+        <div class="container">
+            <div class="row">
+                <div class="section-title text-center">
+                    <h2 class="title">{{ $product->category->name }} های مشابه</h2>
+                </div>
+            </div>
+            <div class="row product-details">
+                    @foreach($similarProducts as $similarProduct)
+                        @include('partials.product-item', ['product' => $similarProduct])
+                    @endforeach
+            </div>
+            <div class="row">
+                <div class="text-center mt-10">
+                    <a class="fs-5 text-primary" href="{{ route('category', $product->category->slug) }}">« {{ $product->category->name }} های بیشتر ... »</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--== End Similar Products Area Wrapper ==-->
 @endsection
 
 {{--@push('script')--}}
@@ -111,11 +128,10 @@
 {{--@endpush--}}
 
 <style>
-
     .igbtn {
         flex: 1 1 auto;
         margin: 10px;
-        padding: 30px;
+        padding: 17px;
         text-align: center;
         text-transform: uppercase;
         transition: 0.5s;
@@ -126,28 +142,21 @@
         border-radius: 10px;
         border: none;
     }
-
-    /* Demo Stuff End -> */
-
-    /* <- Magic Stuff Start */
-
     .igbtn:hover {
         background-position: right center; /* change the direction of the change here */
     }
+
     /* galleryTop */
     .swiper.gallery {
         height: max-content !important;
     }
-
     .gallery .swiper-slide {
         cursor: pointer;
     }
-
     .gallery img {
         width: 100%;
         height: auto;
     }
-
     .swiper-zoom-container img {
         border-radius: 10px;
         margin-bottom: 10px;
@@ -157,7 +166,6 @@
     .swiper.gallery-thumbs {
         height: max-content !important;
     }
-
     .gallery-thumbs .swiper-slide {
         width: auto;
         border-radius: 10px;
@@ -165,7 +173,6 @@
         -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
         filter: grayscale(100%);
     }
-
     .gallery-thumbs .swiper-slide-active {
         opacity: 1;
         -webkit-filter: initial; /* Safari 6.0 - 9.0 */
@@ -173,7 +180,6 @@
         font-weight: bold;
         color: #231b93;
     }
-
     .gallery-thumbs img {
         cursor: pointer;
         width: auto;
@@ -192,7 +198,6 @@
         -webkit-transition: opacity 0.6s; /* For Safari 3.1 to 6.0 */
         transition: opacity 0.6s;
     }
-
     .swiper-button-prev {
         width: 50%;
         top: 0;
@@ -202,28 +207,22 @@
         -webkit-transition: opacity 0.6s; /* For Safari 3.1 to 6.0 */
         transition: opacity 0.6s;
     }
-
     .swiper-button-prev:hover, .swiper-button-next:hover {
         opacity: 1;
     }
-
     .swiper-button-next:after, .swiper-container-rtl .swiper-button-next:after {
         margin-left: auto;
     }
-
     .swiper-button-prev:after, .swiper-container-rtl .swiper-button-next:after {
         margin-right: auto;
     }
-
-
     @media (hover: none), (pointer: coarse) {
         .swiper-button-prev, .swiper-button-next {
             display: none;
         }
     }
-
-
 </style>
+
 <script type="module">
     /* gallery  */
     var galleryTop = new Swiper(".gallery", {
@@ -267,5 +266,4 @@
     /* set conteoller  */
     galleryTop.controller.control = galleryThumbs;
     galleryThumbs.controller.control = galleryTop;
-
 </script>

@@ -1,5 +1,5 @@
 <!--== Start Page Header Area Wrapper ==-->
- <section class="page-header-area pt-5 pb-5" data-bg-color="#FFF3DA">
+ <section class="page-header-area pt-5 pb-5" data-bg-color="#e2dbff">
      <div class="container">
          <div class="row">
              <div class="col-md-5">

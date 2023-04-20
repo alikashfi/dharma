@@ -101,6 +101,18 @@
         .main-nav li.has-submenu a {
             color: #262626;
         }
+        .section-space {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+        .product-details {
+            margin-bottom: 0;
+        }
+        .hero-image {
+            height: {{ $settings->fullPageHero ? '100vh' : '70vh' }};
+            width: 100%;
+            object-fit: cover;
+        }
         @media only screen and (max-width: 767px) {
             .section-space {
                 padding-top: 30px;
@@ -108,6 +120,11 @@
             }
             .ighomebutton {
                 width: inherit !important;
+            }
+            .hero-image {
+                height: 35vh;
+                width: 100%;
+                object-fit: cover;
             }
         }
     </style>
@@ -123,7 +140,7 @@
     <main class="main-content">
         @includeWhen(isset($breadcrumb), 'partials.breadcrumb', $breadcrumb ?? null)
 
-        <div class="container mt-4">
+        <div class="container">
             @include('partials.flash')
         </div>
 
