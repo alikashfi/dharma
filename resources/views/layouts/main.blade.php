@@ -98,10 +98,16 @@
         .my-account-tab-menu.nav-tabs .nav-link {
             text-align: right;
         }
+        .main-nav li.has-submenu a {
+            color: #262626;
+        }
         @media only screen and (max-width: 767px) {
             .section-space {
                 padding-top: 30px;
                 padding-bottom: 30px;
+            }
+            .ighomebutton {
+                width: inherit !important;
             }
         }
     </style>

@@ -44,9 +44,10 @@
   "Home description": "توضیحات صفحه خانه",
   "Shop title": "عنوان صفحه فروشگاه",
   "Shop description": "توضیحات صفحه فروشگاه",
-  "Instagram title": "عنوان اینستاگرام",
   "Instagram link": "آدرس اینستاگرام",
-  "Instagram button": "دکمه اینستاگرام",
+  "Instagram header": "عنوان اینستاگرام (منو)",
+  "Instagram box": "عنوان اینستاگرام (جعبه)",
+  "Instagram button": "عنوان اینستاگرام (دکمه)",
   "Footer description": "توضیحات پابرگ",
 
   "home": "خانه",

@@ -33,7 +33,7 @@
                                 @endforeach
                             </ul>
                         </li>
-                        <li><a href="{{ $settings->instagramLink }}">{{ $settings->instagramTitle }}</a></li>
+                        <li><a href="{{ $settings->instagramLink }}">{{ $settings->instagramHeader }}</a></li>
                     </ul>
                 </div>
             </div>
@@ -135,7 +135,7 @@
                             @endforeach
                         </ul>
                     </li>
-                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="{{ $settings->instagramLink }}">{{ $settings->instagramTitle }}</a></li>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="{{ $settings->instagramLink }}">{{ $settings->instagramHeader }}</a></li>
                 </ul>
             </div>
         </div>
